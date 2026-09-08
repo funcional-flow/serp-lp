@@ -2,20 +2,19 @@
 
 import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
-import Image from "next/image";
 import ConteudoCarousel from "./ConteudoCarousel";
 
 const slides = [
-  //   {
-  //     image: "/modelo_man.jfif",
-  //     background: "bg-linear-to-tr from-yellow1 to-purple1",
-  //     controlsColor: "var(--color-black)",
-  //   },
-  //   {
-  //     image: "/modelo_woman.jfif",
-  //     background: "bg-linear-to-tr from-black via-gray-900 to-purple1",
-  //     controlsColor: "var(--color-yellow-400)",
-  //   },
+  {
+    content: <ConteudoCarousel src="/modelo_man.jfif" width={1408} height={768} className="w-6xl" />,
+    background: "bg-linear-to-tr from-purple1 via-gray-900 to-black",
+    controlsColor: "var(--color-white)",
+  },
+  {
+    content: <ConteudoCarousel src="/modelo_woman.jfif" width={1408} height={768} className="w-6xl" />,
+    background: "bg-linear-to-tr from-black via-gray-900 to-purple1",
+    controlsColor: "var(--color-yellow-400)",
+  },
   {
     content: <ConteudoCarousel src="/Hero/serp-marca-abreviada-branca.png" />,
     background: "bg-black",
@@ -127,12 +126,14 @@ export default function SerpCarousel() {
     if (prevButtonRef.current) {
       gsap.set(prevButtonRef.current, {
         color: initialControlsColor,
+        borderColor: initialControlsColor,
       });
     }
 
     if (nextButtonRef.current) {
       gsap.set(nextButtonRef.current, {
         color: initialControlsColor,
+        borderColor: initialControlsColor,
       });
     }
 
@@ -287,7 +288,7 @@ export default function SerpCarousel() {
       backgroundNext,
       {
         opacity: 1,
-        duration: 1.1,
+        duration: 0.65,
         ease: "power2.inOut",
       },
       0,
@@ -301,6 +302,7 @@ export default function SerpCarousel() {
       [prevButton, nextButton, counter],
       {
         color: slides[nextIndex].controlsColor,
+        borderColor: slides[nextIndex].controlsColor,
         duration: 0,
         ease: "power2.inOut",
       },
@@ -338,7 +340,7 @@ export default function SerpCarousel() {
         rotateY: 0,
         opacity: 1,
         filter: "blur(0px)",
-        duration: 0.9,
+        duration: 0.65,
         ease: "power3.out",
       },
       0.7,
@@ -409,7 +411,7 @@ export default function SerpCarousel() {
           type="button"
           onClick={() => goTo(-1)}
           aria-label="Imagem anterior"
-          className="text-3xl font-light opacity-60 transition-all duration-300 hover:scale-125 hover:opacity-100"
+          className="rounded-full border px-2 py-1 text-3xl font-light opacity-60 transition-all duration-300 hover:scale-125 hover:opacity-100 active:scale-100"
         >
           ←
         </button>
@@ -419,7 +421,7 @@ export default function SerpCarousel() {
           type="button"
           onClick={() => goTo(1)}
           aria-label="Próxima imagem"
-          className="text-3xl font-light opacity-60 transition-all duration-300 hover:scale-125 hover:opacity-100"
+          className="rounded-full border px-2 py-1 text-3xl font-light opacity-60 transition-all duration-300 hover:scale-125 hover:opacity-100 active:scale-100"
         >
           →
         </button>

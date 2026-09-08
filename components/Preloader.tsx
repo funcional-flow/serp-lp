@@ -13,11 +13,11 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       bar_full: "bg-white",
     },
     {
-      color: "bg-white",
-      image: "/Preloader/serp-marca-extensa-preta.png",
-      text: "text-black",
-      bar_empty: "bg-black/20",
-      bar_full: "bg-black",
+      color: "bg-purple1",
+      image: "/Preloader/serp-marca-extensa-amarela.png",
+      text: "text-yellow1",
+      bar_empty: "bg-yellow1/20",
+      bar_full: "bg-yellow1",
     },
   ];
 
