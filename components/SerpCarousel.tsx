@@ -3,7 +3,6 @@
 import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import ConteudoCarousel from "./ConteudoCarousel";
-import Image from "next/image";
 
 const slides = [
   {
@@ -16,14 +15,15 @@ const slides = [
         width={333}
         height={862}
         className_img="w-xs pt-5"
-        className_traco="top-35 left-93"
+        className_traco="top-35 left-80"
+        cor_borda="border border-gray-500"
         cor_card="bg-white"
         cor_card_secundaria="bg-gray-700"
         cor_letra_card="text-gray-700"
         area_hover1="top-[26%] left-[46.7%] h-24 w-20"
       />
     ),
-    background: "bg-linear-to-tr from-black via-zinc-950 to-zinc-900",
+    background: "bg-linear-to-t from-black via-zinc-950 to-zinc-500",
     controlsColor: "var(--color-white)",
   },
   {
@@ -36,15 +36,15 @@ const slides = [
         width={553}
         height={862}
         className_img="w-136 pt-1"
-        className_traco="top-26 left-88"
-        cor_card="bg-white"
-        cor_card_secundaria="bg-gray-400"
-        cor_letra_card="text-gray-700"
-        cor_borda="border border-gray-400"
+        className_traco="top-28 left-78"
+        cor_card="bg-black"
+        cor_card_secundaria="bg-white"
+        cor_letra_card="text-gray-300"
+        cor_borda="border border-white"
         area_hover1="top-[23.5%] left-[46.5%] h-20 w-16"
       />
     ),
-    background: "bg-linear-to-r from-white to-gray-200",
+    background: "bg-linear-to-t from-white to-gray-400",
     controlsColor: "var(--color-black)",
   },
   //   {
