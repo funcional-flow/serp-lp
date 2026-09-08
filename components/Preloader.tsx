@@ -71,7 +71,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
 
   return (
     <div
-      className={`fixed inset-0 w-full z-9999 flex flex-col items-center justify-center ${theme.color} transition-all duration-700 ${exit ? "pointer-events-none opacity-0" : "opacity-100"} `}
+      className={`fixed inset-0 z-9999 flex w-full flex-col items-center justify-center ${theme.color} transition-all duration-700 ${exit ? "pointer-events-none opacity-0" : "opacity-100"} `}
     >
       {/* Logo */}
       <div
@@ -82,6 +82,8 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           alt="SERPENTIZE"
           width={618}
           height={343}
+          draggable={false}
+          onContextMenu={(e) => e.preventDefault()}
           className="h-auto w-full xl:w-96"
         />
       </div>

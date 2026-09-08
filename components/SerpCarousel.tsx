@@ -12,7 +12,7 @@ const slides = [
         img_background="/arquivos de marca/serp-marca-abreviada-preta.png"
         w_img_background={618}
         h_img_background={343}
-        className_background="w-5xl opacity-10"
+        className_background="w-5xl opacity-5"
         width={553}
         height={862}
         className_img="w-136 pt-1"
@@ -52,7 +52,7 @@ const slides = [
         area_hover1="top-[26%] left-[46.7%] h-24 w-20"
       />
     ),
-    background: "bg-linear-to-t from-[#2b2b32] via-[#111217] to-[#050608]",
+    background: "bg-linear-to-b from-[#2b2b32] via-[#111217] to-[#050608]",
     controlsColor: "var(--color-white)",
   },
   //   {
@@ -452,7 +452,7 @@ export default function SerpCarousel() {
           type="button"
           onClick={() => goTo(-1)}
           aria-label="Imagem anterior"
-          className="cursor-pointer rounded-full border px-2 py-1 text-3xl font-light opacity-60 transition-all duration-300 hover:scale-125 hover:opacity-100 active:scale-100"
+          className="cursor-pointer rounded-full border px-2 py-1.5 text-3xl font-light opacity-60 transition-all duration-300 hover:scale-125 hover:opacity-100 active:scale-100"
         >
           ←
         </button>
@@ -462,7 +462,7 @@ export default function SerpCarousel() {
           type="button"
           onClick={() => goTo(1)}
           aria-label="Próxima imagem"
-          className="cursor-pointer rounded-full border px-2 py-1 text-3xl font-light opacity-60 transition-all duration-300 hover:scale-125 hover:opacity-100 active:scale-100"
+          className="cursor-pointer rounded-full border px-2 py-1.5 text-3xl font-light opacity-60 transition-all duration-300 hover:scale-125 hover:opacity-100 active:scale-100"
         >
           →
         </button>

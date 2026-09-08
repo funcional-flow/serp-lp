@@ -42,7 +42,7 @@ export default function ConteudoCarousel({
   cor_detalhes = "bg-white/60",
 }: ConteudoCarouselProps) {
   return (
-    <div className="relative">
+    <div className="relative select-none">
       {/* Imagem de Background */}
       <div className="absolute inset-0 z-0 flex items-center justify-center">
         <Image
@@ -50,47 +50,13 @@ export default function ConteudoCarousel({
           alt={img_background}
           width={w_img_background || 618}
           height={h_img_background || 343}
+          draggable={false}
+          onContextMenu={(e) => e.preventDefault()}
           className={`h-auto object-cover ${className_background}`}
         />
       </div>
       <div className="relative flex h-svh w-full">
-        <div className={`peer absolute z-20 ${area_hover1}`} />
-        {/* Lateral Esquerda */}
-        <div className={`absolute flex flex-col pt-10 pl-14 ${cor_textos1}`}>
-          <div className="flex items-center gap-6">
-            <h1 className="font-metrim text-2xl tracking-[0.3em]">SERP</h1>
-            <div className={`h-px w-14 ${cor_detalhes}`} />
-          </div>
-
-          <div className="flex flex-col gap-6 pt-80">
-            <h1 className="flex flex-col text-3xl tracking-widest">
-              <span>MOVEMENT</span>
-              <span>WITH INTENTION</span>
-            </h1>
-            <p className={`flex flex-col ${cor_textos2}`}>
-              <span>Mais que roupas,</span>
-              <span>é um estilo de vida.</span>
-            </p>
-          </div>
-        </div>
-
-        {/* Lateral direita */}
-        <div className={`absolute right-0 flex flex-col items-end pt-10 pr-14 ${cor_textos1}`}>
-          <div className={`flex flex-col items-end gap-1 text-xs tracking-[0.4em] ${cor_textos2}`}>
-            <p>STREETWEAR</p>
-            <p>ATHLETIC</p>
-            <p>LIFESTYLE</p>
-          </div>
-
-          <div className={`mt-60 h-14 w-px ${cor_detalhes}`} />
-          <div className={`text-4xl pt-5 ${cor_textos2}`}>+</div>
-
-          <div className="flex flex-col items-end gap-1 pt-20 text-xs tracking-[0.4em]">
-            <p>DISCIPLINA</p>
-            <p>FOCO</p>
-            <p>EVOLUÇÃO</p>
-          </div>
-        </div>
+        <div className={`peer absolute z-20 cursor-help ${area_hover1}`} />
 
         {/* Card */}
         <div
@@ -118,12 +84,55 @@ export default function ConteudoCarousel({
           </div>
         </div>
 
+        {/* Lateral Esquerda */}
+        <div className={`absolute flex flex-col pt-10 pl-14 ${cor_textos1}`}>
+          <div className="flex items-center gap-6">
+            <h1 className="font-metrim text-2xl tracking-[0.3em]">SERP</h1>
+            <div className={`h-px w-14 ${cor_detalhes}`} />
+          </div>
+
+          <div className="flex flex-col gap-6 pt-80">
+            <h1 className="flex flex-col text-3xl tracking-widest">
+              <span>MOVEMENT</span>
+              <span>WITH INTENTION</span>
+            </h1>
+            <p className={`flex flex-col ${cor_textos2}`}>
+              <span>Mais que roupas,</span>
+              <span>é um estilo de vida.</span>
+            </p>
+          </div>
+        </div>
+
+        {/* Lateral direita */}
+        <div
+          className={`absolute right-0 flex flex-col items-end pt-10 pr-14 ${cor_textos1}`}
+        >
+          <div
+            className={`flex flex-col items-end gap-1 text-xs tracking-[0.4em] ${cor_textos2}`}
+          >
+            <p>STREETWEAR</p>
+            <p>ATHLETIC</p>
+            <p>LIFESTYLE</p>
+          </div>
+
+          <div className={`mt-60 h-14 w-px ${cor_detalhes}`} />
+          <div className={`pt-5 text-4xl ${cor_textos2}`}>+</div>
+
+          <div className="flex flex-col items-end gap-1 pt-20 text-xs tracking-[0.4em]">
+            <p>DISCIPLINA</p>
+            <p>FOCO</p>
+            <p>EVOLUÇÃO</p>
+          </div>
+        </div>
+
         <div className="relative z-1 flex w-full items-start justify-center">
           <Image
             src={src}
             alt=""
             width={width}
             height={height}
+            draggable={false}
+            onContextMenu={(e) => e.preventDefault()}
             className={`h-auto ${className_img}`}
           />
         </div>
