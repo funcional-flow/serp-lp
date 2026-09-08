@@ -7,7 +7,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
   const themes = [
     {
       color: "bg-black",
-      image: "/Preloader/serp-marca-extensa-branca.png",
+      image: "/Preloader/serp-marca-extensa-branca1.png",
       text: "text-white/50",
       bar_empty: "bg-white/20",
       bar_full: "bg-white",
@@ -33,7 +33,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
   }, []);
 
   useEffect(() => {
-    const duration = 1500;
+    const duration = 2500;
     const intervalTime = 20;
     const increment = 100 / (duration / intervalTime);
     // document.documentElement.style.scrollbarGutter = "stable"; // faz a barra de rolagem ocupar espaço fixo
@@ -75,7 +75,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
     >
       {/* Logo */}
       <div
-        className={`mb-8 text-5xl font-bold text-white transition-all duration-700 ${exit ? "-translate-y-10 opacity-0" : "translate-y-0 opacity-100"} `}
+        className={`mb-3 text-5xl font-bold text-white transition-all duration-700 ${exit ? "-translate-y-10 opacity-0" : "translate-y-0 opacity-100"} `}
       >
         <Image
           src={theme.image}
@@ -86,6 +86,10 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           onContextMenu={(e) => e.preventDefault()}
           className="h-auto w-full xl:w-96"
         />
+      </div>
+
+      <div className="mb-5 text-center text-white/90 uppercase">
+        boas vindas ao movimento
       </div>
 
       {/* Barra */}
