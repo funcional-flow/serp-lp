@@ -5,6 +5,7 @@ interface ConteudoCarouselProps {
   width?: number;
   height?: number;
   img_background?: string;
+  className_background?: string;
   w_img_background?: number;
   h_img_background?: number;
   className_img?: string;
@@ -32,89 +33,95 @@ export default function ConteudoCarousel({
   area_hover2 = "",
   w_img_background = 618,
   h_img_background = 343,
+  className_background = "",
 }: ConteudoCarouselProps) {
   return (
     <div className="relative">
-      <div className="absolute inset-0 z-9 flex items-center justify-center">
+      {/* Imagem de Background */}
+      <div className="absolute inset-0 z-0 flex items-center justify-center">
         <Image
           src={img_background}
           alt={img_background}
           width={w_img_background || 618}
           height={h_img_background || 343}
-          className="h-auto w-7xl object-cover opacity-5"
+          className={`h-auto object-cover ${className_background}`}
         />
       </div>
-      <div className="relative z-10">
-        <div className="relative flex h-svh w-full">
-          <div className={`peer absolute z-20 ${area_hover1}`} />
-          <div
-            className={`pointer-events-none absolute z-10 flex items-center opacity-0 transition-opacity duration-600 peer-hover:opacity-100 ${className_traco}`}
-          >
-            <div
-              className={`font-montserrat ${cor_borda} z-10 w-xs rounded-2xl ${cor_card} p-6 ${cor_letra_card}`}
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio id
-              ipsam rem repellendus. Incidunt inventore praesentium esse,
-              explicabo velit ea in vitae ipsam fuga quia sequi voluptatem
-              laborum, laudantium nihil.
-            </div>
-            <div
-              className={`relative z-10 flex h-2 w-60 ${cor_card_secundaria}`}
-            >
-              <div
-                className={`absolute top-0.5 left-0 z-9 h-1 w-61 ${cor_card}`}
-              />
-            </div>
-            <div
-              className={`z-10 flex h-3 w-3 items-center justify-center rounded-full ${cor_card} border ${cor_borda}`}
-            >
-              <div
-                className={`h-1.5 w-1.5 rounded-full ${cor_card_secundaria}`}
-              />
-            </div>
+      <div className="relative flex h-svh w-full">
+        <div className={`peer absolute z-20 ${area_hover1}`} />
+        {/* Lateral Esquerda */}
+        <div className="absolute flex flex-col pt-10 pl-14 text-white">
+          <div className="flex items-center gap-6">
+            <h1 className="font-metrim text-2xl tracking-[0.3em]">SERP</h1>
+            <div className="h-px w-14 bg-white/60" />
           </div>
 
-          <div className="relative flex w-full items-start justify-center">
-            <Image
-              src={src}
-              alt=""
-              width={width}
-              height={height}
-              className={`h-auto ${className_img}`}
+          <div className="flex flex-col gap-6 pt-80">
+            <h1 className="flex flex-col text-3xl tracking-widest">
+              <span>MOVEMENT</span>
+              <span>WITH INTENTION</span>
+            </h1>
+            <p className="flex flex-col text-white/70">
+              <span>Mais que roupas,</span>
+              <span>é um estilo de vida.</span>
+            </p>
+          </div>
+        </div>
+
+        {/* Lateral direita */}
+        <div className="absolute right-0 flex flex-col items-end pt-10 pr-14 text-white">
+          <div className="flex flex-col items-end gap-1 text-xs tracking-[0.4em] text-white/60">
+            <p>STREETWEAR</p>
+            <p>ATHLETIC</p>
+            <p>LIFESTYLE</p>
+          </div>
+
+          <div className="mt-60 h-14 w-px bg-white/60" />
+          <div className="text-4xl pt-5 text-white/60">+</div>
+
+          <div className="flex flex-col items-end gap-1 pt-15 text-xs tracking-[0.4em] text-white/60">
+            <p>DISCIPLINA</p>
+            <p>FOCO</p>
+            <p>EVOLUÇÃO</p>
+          </div>
+        </div>
+
+        {/* Card */}
+        <div
+          className={`pointer-events-none absolute z-10 flex items-center opacity-0 transition-opacity duration-600 peer-hover:opacity-100 ${className_traco}`}
+        >
+          <div
+            className={`font-montserrat ${cor_borda} z-10 w-xs rounded-2xl ${cor_card} p-6 ${cor_letra_card}`}
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio id
+            ipsam rem repellendus. Incidunt inventore praesentium esse,
+            explicabo velit ea in vitae ipsam fuga quia sequi voluptatem
+            laborum, laudantium nihil.
+          </div>
+          <div className={`relative z-10 flex h-2 w-60 ${cor_card_secundaria}`}>
+            <div
+              className={`absolute top-0.5 left-0 z-9 h-1 w-61 ${cor_card}`}
+            />
+          </div>
+          <div
+            className={`z-10 flex h-3 w-3 items-center justify-center rounded-full ${cor_card} border ${cor_borda}`}
+          >
+            <div
+              className={`h-1.5 w-1.5 rounded-full ${cor_card_secundaria}`}
             />
           </div>
         </div>
+
+        <div className="relative z-1 flex w-full items-start justify-center">
+          <Image
+            src={src}
+            alt=""
+            width={width}
+            height={height}
+            className={`h-auto ${className_img}`}
+          />
+        </div>
       </div>
     </div>
-
-    // <div className="relative flex h-svh w-full">
-    //   <div className="group absolute top-[23.5%] left-[46.5%] z-20 h-20 w-16 bg-red-500/50">
-    //     <div className="absolute hidden group-hover:flex">
-    //       <div className={`absolute flex items-center ${className_traco}`}>
-    //         <div className="font-montserrat z-10 w-xs rounded-2xl bg-black p-6 text-white">
-    //           Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio id
-    //           ipsam rem repellendus. Incidunt inventore praesentium esse,
-    //           explicabo velit ea in vitae ipsam fuga quia sequi voluptatem
-    //           laborum, laudantium nihil.
-    //         </div>
-    //         <div className="z-10 h-1 w-60 bg-black" />
-    //         <div className="absolute left-80 z-9 h-1.5 w-60 bg-white" />
-    //         <div className="z-10 flex h-3 w-3 items-center justify-center rounded-full bg-black outline outline-white">
-    //           <div className="h-1.5 w-1.5 rounded-full bg-white" />
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-
-    //   <div className="relative flex w-full items-start justify-center">
-    //     <Image
-    //       src={src}
-    //       alt=""
-    //       width={width}
-    //       height={height}
-    //       className={`h-auto ${className_img}`}
-    //     />
-    //   </div>
-    // </div>
   );
 }

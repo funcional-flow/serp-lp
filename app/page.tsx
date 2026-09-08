@@ -14,13 +14,13 @@ export default function Home() {
 
       <main>
         <SerpCarousel />
-        <section>
+        <section className="relative z-20">
           <Hero
             image="/Hero/serp-marca-abreviada-amarela.png"
             background="bg-purple1"
           />
         </section>
-        <section>
+        <section className="relative z-20">
           <Hero
             image="/Hero/serp-marca-abreviada-roxa.png"
             background="bg-yellow1"

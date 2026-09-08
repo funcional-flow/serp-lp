@@ -9,6 +9,10 @@ const slides = [
     content: (
       <ConteudoCarousel
         src="/modelo_woman1.png"
+        // img_background="/chao.jpg"
+        // w_img_background={2000}
+        // h_img_background={1000}
+        className_background="w-5xl opacity-5"
         img_background="/arquivos de marca/serp-marca-abreviada-branca.png"
         w_img_background={618}
         h_img_background={343}
@@ -23,7 +27,7 @@ const slides = [
         area_hover1="top-[26%] left-[46.7%] h-24 w-20"
       />
     ),
-    background: "bg-linear-to-t from-black via-zinc-950 to-zinc-500",
+    background: "bg-linear-to-t from-[#2b2b32] via-[#111217] to-[#050608]",
     controlsColor: "var(--color-white)",
   },
   {
@@ -33,6 +37,7 @@ const slides = [
         img_background="/arquivos de marca/serp-marca-abreviada-preta.png"
         w_img_background={618}
         h_img_background={343}
+        className_background="w-7xl opacity-10"
         width={553}
         height={862}
         className_img="w-136 pt-1"
@@ -381,7 +386,7 @@ export default function SerpCarousel() {
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section className="sticky top-0 z-0 h-screen w-full overflow-hidden">
       {/* =========================================
           BACKGROUND ATUAL
       ========================================= */}
@@ -438,7 +443,7 @@ export default function SerpCarousel() {
           SETAS
       ========================================= */}
 
-      <div className="absolute bottom-20 left-1/2 z-20 flex -translate-x-1/2 items-center gap-8">
+      <div className="absolute bottom-20 left-1/2 z-10 flex -translate-x-1/2 items-center gap-8">
         <button
           ref={prevButtonRef}
           type="button"
