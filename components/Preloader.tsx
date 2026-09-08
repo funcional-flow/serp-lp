@@ -12,13 +12,13 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       bar_empty: "bg-white/20",
       bar_full: "bg-white",
     },
-    {
-      color: "bg-purple1",
-      image: "/Preloader/serp-marca-extensa-amarela.png",
-      text: "text-yellow1",
-      bar_empty: "bg-yellow1/20",
-      bar_full: "bg-yellow1",
-    },
+    // {
+    //   color: "bg-purple1",
+    //   image: "/Preloader/serp-marca-extensa-amarela.png",
+    //   text: "text-yellow1",
+    //   bar_empty: "bg-yellow1/20",
+    //   bar_full: "bg-yellow1",
+    // },
   ];
 
   const [progress, setProgress] = useState(0);

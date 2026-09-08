@@ -3,38 +3,71 @@
 import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import ConteudoCarousel from "./ConteudoCarousel";
+import Image from "next/image";
 
 const slides = [
   {
-    content: <ConteudoCarousel src="/modelo_man.jfif" width={1408} height={768} className="w-6xl" />,
-    background: "bg-linear-to-tr from-purple1 via-gray-900 to-black",
+    content: (
+      <ConteudoCarousel
+        src="/modelo_woman1.png"
+        img_background="/arquivos de marca/serp-marca-abreviada-branca.png"
+        w_img_background={618}
+        h_img_background={343}
+        width={333}
+        height={862}
+        className_img="w-xs pt-5"
+        className_traco="top-35 left-93"
+        cor_card="bg-white"
+        cor_card_secundaria="bg-gray-700"
+        cor_letra_card="text-gray-700"
+        area_hover1="top-[26%] left-[46.7%] h-24 w-20"
+      />
+    ),
+    background: "bg-linear-to-tr from-black via-zinc-950 to-zinc-900",
     controlsColor: "var(--color-white)",
   },
   {
-    content: <ConteudoCarousel src="/modelo_woman.jfif" width={1408} height={768} className="w-6xl" />,
-    background: "bg-linear-to-tr from-black via-gray-900 to-purple1",
-    controlsColor: "var(--color-yellow-400)",
-  },
-  {
-    content: <ConteudoCarousel src="/Hero/serp-marca-abreviada-branca.png" />,
-    background: "bg-black",
-    controlsColor: "var(--color-white)",
-  },
-  {
-    content: <ConteudoCarousel src="/Hero/serp-marca-abreviada-amarela.png" />,
-    background: "bg-purple1",
-    controlsColor: "var(--color-yellow-400)",
-  },
-  {
-    content: <ConteudoCarousel src="/Hero/serp-marca-abreviada-roxa.png" />,
-    background: "bg-yellow1",
-    controlsColor: "var(--color-purple1)",
-  },
-  {
-    content: <ConteudoCarousel src="/Hero/serp-marca-abreviada-preta.png" />,
-    background: "bg-white",
+    content: (
+      <ConteudoCarousel
+        src="/modelo_woman2.png"
+        img_background="/arquivos de marca/serp-marca-abreviada-preta.png"
+        w_img_background={618}
+        h_img_background={343}
+        width={553}
+        height={862}
+        className_img="w-136 pt-1"
+        className_traco="top-26 left-88"
+        cor_card="bg-white"
+        cor_card_secundaria="bg-gray-400"
+        cor_letra_card="text-gray-700"
+        cor_borda="border border-gray-400"
+        area_hover1="top-[23.5%] left-[46.5%] h-20 w-16"
+      />
+    ),
+    background: "bg-linear-to-r from-white to-gray-200",
     controlsColor: "var(--color-black)",
   },
+  //   {
+  //     content: (
+  //       <ConteudoCarousel
+  //         src="/modelo_man3.png"
+  //         img_background="/arquivos de marca/serp-marca-abreviada-branca.png"
+  //         w_img_background={618}
+  //         h_img_background={343}
+  //         width={861}
+  //         height={862}
+  //         className_img="w-184 transition-transform duration-500"
+  //         className_traco="top-26 left-88"
+  //         cor_card="bg-white"
+  //         cor_card_secundaria="bg-gray-400"
+  //         cor_letra_card="text-gray-700"
+  //         cor_borda="border border-gray-400"
+  //         area_hover1="top-[23.5%] left-[46.5%] h-20 w-16"
+  //       />
+  //     ),
+  //     background: "bg-linear-to-br from-yellow-900 to-[#e39c22]",
+  //     controlsColor: "var(--color-black)",
+  //   },
 ];
 
 export default function SerpCarousel() {
@@ -411,7 +444,7 @@ export default function SerpCarousel() {
           type="button"
           onClick={() => goTo(-1)}
           aria-label="Imagem anterior"
-          className="rounded-full border px-2 py-1 text-3xl font-light opacity-60 transition-all duration-300 hover:scale-125 hover:opacity-100 active:scale-100"
+          className="cursor-pointer rounded-full border px-2 py-1 text-3xl font-light opacity-60 transition-all duration-300 hover:scale-125 hover:opacity-100 active:scale-100"
         >
           ←
         </button>
@@ -421,7 +454,7 @@ export default function SerpCarousel() {
           type="button"
           onClick={() => goTo(1)}
           aria-label="Próxima imagem"
-          className="rounded-full border px-2 py-1 text-3xl font-light opacity-60 transition-all duration-300 hover:scale-125 hover:opacity-100 active:scale-100"
+          className="cursor-pointer rounded-full border px-2 py-1 text-3xl font-light opacity-60 transition-all duration-300 hover:scale-125 hover:opacity-100 active:scale-100"
         >
           →
         </button>
