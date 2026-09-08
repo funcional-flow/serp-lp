@@ -1,0 +1,28 @@
+@keyframes pulse-image {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes pulse-image-reverse {
+  0%, 100% {
+    transform: scale(1.05);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+}
+
+.animate-image-pulse {
+  animation: pulse-image 10s ease-in-out infinite;
+}
+
+.animate-image-pulse-reverse {
+  animation: pulse-image-reverse 10s ease-in-out infinite;
+  animation-direction: reverse;
+}

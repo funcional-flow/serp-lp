@@ -44,7 +44,7 @@ export default function ConteudoCarousel({
   return (
     <div className="relative select-none">
       {/* Imagem de Background */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center">
+      <div className="group absolute top-1/2 left-1/2 z-0 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center">
         <Image
           src={img_background}
           alt={img_background}
@@ -52,7 +52,7 @@ export default function ConteudoCarousel({
           height={h_img_background || 343}
           draggable={false}
           onContextMenu={(e) => e.preventDefault()}
-          className={`h-auto object-cover ${className_background}`}
+          className={`h-auto object-cover ${className_background} group-hover:opacity-100`}
         />
       </div>
       <div className="relative flex h-svh w-full">
@@ -87,7 +87,7 @@ export default function ConteudoCarousel({
         {/* Lateral Esquerda */}
         <div className={`absolute flex flex-col pt-10 pl-14 ${cor_textos1}`}>
           <div className="flex items-center gap-6">
-            <h1 className="font-metrim text-2xl tracking-[0.3em]">SERP</h1>
+            <h1 className="font-metrim text-xl tracking-[0.2em]">SERPENTIZE</h1>
             <div className={`h-px w-14 ${cor_detalhes}`} />
           </div>
 

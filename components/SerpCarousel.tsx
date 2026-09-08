@@ -9,13 +9,13 @@ const slides = [
     content: (
       <ConteudoCarousel
         src="/modelo_woman2.png"
-        img_background="/arquivos de marca/serp-marca-abreviada-preta.png"
+        img_background="/Hero/serp-marca-abreviada-preta1.png"
         w_img_background={618}
         h_img_background={343}
-        className_background="w-5xl opacity-5"
+        className_background="w-5xl opacity-5 animate-image-pulse-reverse"
         width={553}
         height={862}
-        className_img="w-136 pt-1"
+        className_img="w-134 pt-4 animate-image-pulse"
         className_traco="top-28 left-78"
         cor_card="bg-black"
         cor_card_secundaria="bg-white"
@@ -34,16 +34,16 @@ const slides = [
     content: (
       <ConteudoCarousel
         src="/modelo_woman1.png"
+        width={333}
+        height={862}
+        className_img="w-xs pt-5 animate-image-pulse-reverse"
         // img_background="/chao.jpg"
         // w_img_background={2000}
         // h_img_background={1000}
-        className_background="w-5xl opacity-5"
-        img_background="/arquivos de marca/serp-marca-abreviada-branca.png"
+        img_background="/Hero/serp-marca-abreviada-branca1.png"
         w_img_background={618}
         h_img_background={343}
-        width={333}
-        height={862}
-        className_img="w-xs pt-5"
+        className_background="w-5xl opacity-5 animate-image-pulse"
         className_traco="top-35 left-80"
         cor_borda="border border-gray-500"
         cor_card="bg-white"
