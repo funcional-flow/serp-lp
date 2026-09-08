@@ -8,6 +8,31 @@ const slides = [
   {
     content: (
       <ConteudoCarousel
+        src="/modelo_woman2.png"
+        img_background="/arquivos de marca/serp-marca-abreviada-preta.png"
+        w_img_background={618}
+        h_img_background={343}
+        className_background="w-5xl opacity-10"
+        width={553}
+        height={862}
+        className_img="w-136 pt-1"
+        className_traco="top-28 left-78"
+        cor_card="bg-black"
+        cor_card_secundaria="bg-white"
+        cor_letra_card="text-gray-300"
+        cor_borda="border border-white"
+        area_hover1="top-[23.5%] left-[46.5%] h-20 w-16"
+        cor_textos1="text-black"
+        cor_textos2="text-gray-600"
+        cor_detalhes="bg-black/30"
+      />
+    ),
+    background: "bg-linear-to-t from-white to-gray-400",
+    controlsColor: "var(--color-black)",
+  },
+  {
+    content: (
+      <ConteudoCarousel
         src="/modelo_woman1.png"
         // img_background="/chao.jpg"
         // w_img_background={2000}
@@ -29,28 +54,6 @@ const slides = [
     ),
     background: "bg-linear-to-t from-[#2b2b32] via-[#111217] to-[#050608]",
     controlsColor: "var(--color-white)",
-  },
-  {
-    content: (
-      <ConteudoCarousel
-        src="/modelo_woman2.png"
-        img_background="/arquivos de marca/serp-marca-abreviada-preta.png"
-        w_img_background={618}
-        h_img_background={343}
-        className_background="w-7xl opacity-10"
-        width={553}
-        height={862}
-        className_img="w-136 pt-1"
-        className_traco="top-28 left-78"
-        cor_card="bg-black"
-        cor_card_secundaria="bg-white"
-        cor_letra_card="text-gray-300"
-        cor_borda="border border-white"
-        area_hover1="top-[23.5%] left-[46.5%] h-20 w-16"
-      />
-    ),
-    background: "bg-linear-to-t from-white to-gray-400",
-    controlsColor: "var(--color-black)",
   },
   //   {
   //     content: (

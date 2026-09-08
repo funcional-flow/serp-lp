@@ -16,6 +16,9 @@ interface ConteudoCarouselProps {
   cor_borda?: string;
   area_hover1?: string;
   area_hover2?: string;
+  cor_textos1?: string;
+  cor_textos2?: string;
+  cor_detalhes?: string;
 }
 
 export default function ConteudoCarousel({
@@ -34,6 +37,9 @@ export default function ConteudoCarousel({
   w_img_background = 618,
   h_img_background = 343,
   className_background = "",
+  cor_textos1 = "text-white",
+  cor_textos2 = "text-white/70",
+  cor_detalhes = "bg-white/60",
 }: ConteudoCarouselProps) {
   return (
     <div className="relative">
@@ -50,10 +56,10 @@ export default function ConteudoCarousel({
       <div className="relative flex h-svh w-full">
         <div className={`peer absolute z-20 ${area_hover1}`} />
         {/* Lateral Esquerda */}
-        <div className="absolute flex flex-col pt-10 pl-14 text-white">
+        <div className={`absolute flex flex-col pt-10 pl-14 ${cor_textos1}`}>
           <div className="flex items-center gap-6">
             <h1 className="font-metrim text-2xl tracking-[0.3em]">SERP</h1>
-            <div className="h-px w-14 bg-white/60" />
+            <div className={`h-px w-14 ${cor_detalhes}`} />
           </div>
 
           <div className="flex flex-col gap-6 pt-80">
@@ -61,7 +67,7 @@ export default function ConteudoCarousel({
               <span>MOVEMENT</span>
               <span>WITH INTENTION</span>
             </h1>
-            <p className="flex flex-col text-white/70">
+            <p className={`flex flex-col ${cor_textos2}`}>
               <span>Mais que roupas,</span>
               <span>é um estilo de vida.</span>
             </p>
@@ -69,17 +75,17 @@ export default function ConteudoCarousel({
         </div>
 
         {/* Lateral direita */}
-        <div className="absolute right-0 flex flex-col items-end pt-10 pr-14 text-white">
-          <div className="flex flex-col items-end gap-1 text-xs tracking-[0.4em] text-white/60">
+        <div className={`absolute right-0 flex flex-col items-end pt-10 pr-14 ${cor_textos1}`}>
+          <div className={`flex flex-col items-end gap-1 text-xs tracking-[0.4em] ${cor_textos2}`}>
             <p>STREETWEAR</p>
             <p>ATHLETIC</p>
             <p>LIFESTYLE</p>
           </div>
 
-          <div className="mt-60 h-14 w-px bg-white/60" />
-          <div className="text-4xl pt-5 text-white/60">+</div>
+          <div className={`mt-60 h-14 w-px ${cor_detalhes}`} />
+          <div className={`text-4xl pt-5 ${cor_textos2}`}>+</div>
 
-          <div className="flex flex-col items-end gap-1 pt-15 text-xs tracking-[0.4em] text-white/60">
+          <div className="flex flex-col items-end gap-1 pt-20 text-xs tracking-[0.4em]">
             <p>DISCIPLINA</p>
             <p>FOCO</p>
             <p>EVOLUÇÃO</p>
