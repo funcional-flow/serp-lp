@@ -8,20 +8,24 @@ const slides = [
   {
     content: (
       <ConteudoCarousel
-        src="/modelo_woman2.png"
+        // Background
         img_background="/Hero/serp-marca-abreviada-preta1.png"
         w_img_background={618}
         h_img_background={343}
         className_background="w-5xl opacity-5 animate-image-pulse-reverse"
+        // Modelo
+        src="/modelo_woman2.png"
         width={553}
         height={862}
         className_img="w-134 pt-4 animate-image-pulse"
-        className_traco="top-28 left-78"
+        // Card
         cor_card="bg-black"
         cor_card_secundaria="bg-white"
         cor_letra_card="text-gray-300"
+        className_traco="top-28 left-78"
         cor_borda="border border-white"
         area_hover1="top-[23.5%] left-[46.5%] h-20 w-16"
+        // Textos Gerais
         cor_textos1="text-black"
         cor_textos2="text-gray-600"
         cor_detalhes="bg-black/30"
@@ -33,23 +37,27 @@ const slides = [
   {
     content: (
       <ConteudoCarousel
+        // Modelo
         src="/modelo_woman1.png"
         width={333}
         height={862}
         className_img="w-xs pt-5 animate-image-pulse-reverse"
-        // img_background="/chao.jpg"
-        // w_img_background={2000}
-        // h_img_background={1000}
+        // Background
         img_background="/Hero/serp-marca-abreviada-branca1.png"
         w_img_background={618}
         h_img_background={343}
         className_background="w-5xl opacity-5 animate-image-pulse"
-        className_traco="top-35 left-80"
-        cor_borda="border border-gray-500"
+        // Card
         cor_card="bg-white"
         cor_card_secundaria="bg-gray-700"
         cor_letra_card="text-gray-700"
+        className_traco="top-35 left-80"
+        cor_borda="border border-gray-700"
         area_hover1="top-[26%] left-[46.7%] h-24 w-20"
+        // Textos Gerais
+        cor_textos1="text-white/90"
+        cor_textos2="text-gray-400"
+        cor_detalhes="bg-white/30"
       />
     ),
     background: "bg-linear-to-b from-[#2b2b32] via-[#111217] to-[#050608]",

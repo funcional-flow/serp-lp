@@ -70,18 +70,8 @@ export default function ConteudoCarousel({
             explicabo velit ea in vitae ipsam fuga quia sequi voluptatem
             laborum, laudantium nihil.
           </div>
-          <div className={`relative z-10 flex h-2 w-60 ${cor_card_secundaria}`}>
-            <div
-              className={`absolute top-0.5 left-0 z-9 h-1 w-61 ${cor_card}`}
-            />
-          </div>
-          <div
-            className={`z-10 flex h-3 w-3 items-center justify-center rounded-full ${cor_card} border ${cor_borda}`}
-          >
-            <div
-              className={`h-1.5 w-1.5 rounded-full ${cor_card_secundaria}`}
-            />
-          </div>
+          <div className={`relative z-10 flex h-2 w-60 border ${cor_borda} ${cor_card}`} />
+          <div className={`absolute left-139 z-10 flex h-3 w-3 items-center justify-center rounded-full ${cor_card} border-2 ${cor_borda}`} />
         </div>
 
         {/* Lateral Esquerda */}
