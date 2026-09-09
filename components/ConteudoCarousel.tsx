@@ -44,7 +44,7 @@ export default function ConteudoCarousel({
   return (
     <div className="relative select-none">
       {/* Imagem de Background */}
-      <div className="group absolute top-1/2 left-1/2 z-0 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center">
+      <div className="group absolute top-1/2 left-1/2 z-0 flex w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center">
         <Image
           src={img_background}
           alt={img_background}
@@ -70,23 +70,31 @@ export default function ConteudoCarousel({
             explicabo velit ea in vitae ipsam fuga quia sequi voluptatem
             laborum, laudantium nihil.
           </div>
-          <div className={`relative z-10 flex h-2 w-60 border ${cor_borda} ${cor_card}`} />
-          <div className={`absolute left-139 z-10 flex h-3 w-3 items-center justify-center rounded-full ${cor_card} border-2 ${cor_borda}`} />
+          <div
+            className={`relative z-10 flex h-2 w-60 border ${cor_borda} ${cor_card}`}
+          />
+          <div
+            className={`absolute left-139 z-10 flex h-3 w-3 items-center justify-center rounded-full ${cor_card} border-2 ${cor_borda}`}
+          />
         </div>
 
         {/* Lateral Esquerda */}
-        <div className={`absolute flex flex-col pt-10 pl-14 ${cor_textos1}`}>
+        <div
+          className={`absolute flex flex-col pt-4 pl-4 lg:pt-10 lg:pl-14 ${cor_textos1}`}
+        >
           <div className="flex items-center gap-6">
-            <h1 className="font-metrim text-xl tracking-[0.2em]">SERPENTIZE</h1>
-            <div className={`h-px w-14 ${cor_detalhes}`} />
+            <h1 className="font-metrim text-xl tracking-[0.15em] lg:tracking-[0.2em]">
+              SERPENTIZE
+            </h1>
+            <div className={`hidden h-0.5 w-14 lg:block ${cor_detalhes}`} />
           </div>
 
-          <div className="flex flex-col gap-6 pt-80">
-            <h1 className="flex flex-col text-3xl tracking-widest">
+          <div className="flex flex-col gap-2 lg:gap-6 pt-20 lg:pt-80">
+            <h1 className="flex flex-col text-xl tracking-widest lg:text-3xl">
               <span>MOVEMENT</span>
               <span>WITH INTENTION</span>
             </h1>
-            <p className={`flex flex-col ${cor_textos2}`}>
+            <p className={`flex flex-col text-sm lg:text-base ${cor_textos2}`}>
               <span>Mais que roupas,</span>
               <span>é um estilo de vida.</span>
             </p>
@@ -95,7 +103,7 @@ export default function ConteudoCarousel({
 
         {/* Lateral direita */}
         <div
-          className={`absolute right-0 flex flex-col items-end pt-10 pr-14 ${cor_textos1}`}
+          className={`absolute right-0 flex flex-col items-end pt-4.5 pr-4 lg:pt-10 lg:pr-14 ${cor_textos1}`}
         >
           <div
             className={`flex flex-col items-end gap-1 text-xs tracking-[0.4em] ${cor_textos2}`}
@@ -105,10 +113,15 @@ export default function ConteudoCarousel({
             <p>LIFESTYLE</p>
           </div>
 
-          <div className={`mt-60 h-14 w-px ${cor_detalhes}`} />
-          <div className={`pt-5 text-4xl ${cor_textos2}`}>+</div>
+          <div className={`lg:mt-60 mt-15 h-14 w-0.5 ${cor_detalhes}`} />
+          <div className={`relative mt-8 pt-5 pr-2`}>
+            <div className={`absolute -top-1.75 h-4 w-0.5 ${cor_detalhes}`} />
+            <div
+              className={`absolute top-0 -left-1.75 h-0.5 w-4 ${cor_detalhes}`}
+            />
+          </div>
 
-          <div className="flex flex-col items-end gap-1 pt-20 text-xs tracking-[0.4em]">
+          <div className="flex flex-col items-end gap-1 pt-100 lg:pt-20 text-xs tracking-[0.4em]">
             <p>DISCIPLINA</p>
             <p>FOCO</p>
             <p>EVOLUÇÃO</p>

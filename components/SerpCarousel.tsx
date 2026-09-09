@@ -12,12 +12,12 @@ const slides = [
         img_background="/Hero/serp-marca-abreviada-preta1.png"
         w_img_background={618}
         h_img_background={343}
-        className_background="w-5xl opacity-5 animate-image-pulse-reverse"
+        className_background="lg:w-4xl w-sm opacity-5 animate-image-pulse-reverse"
         // Modelo
-        src="/modelo_woman2.png"
-        width={553}
-        height={862}
-        className_img="w-134 pt-4 animate-image-pulse"
+        src="/modelo_woman21.png"
+        width={216}
+        height={847}
+        className_img="w-40 pt-50 lg:w-51 lg:pt-6 animate-image-pulse"
         // Card
         cor_card="bg-black"
         cor_card_secundaria="bg-white"
@@ -28,7 +28,7 @@ const slides = [
         // Textos Gerais
         cor_textos1="text-black"
         cor_textos2="text-gray-600"
-        cor_detalhes="bg-black/30"
+        cor_detalhes="lg:bg-black/30 bg-black/50"
       />
     ),
     background: "bg-linear-to-t from-white to-gray-400",
@@ -37,16 +37,16 @@ const slides = [
   {
     content: (
       <ConteudoCarousel
-        // Modelo
-        src="/modelo_woman1.png"
-        width={333}
-        height={862}
-        className_img="w-xs pt-5 animate-image-pulse-reverse"
         // Background
         img_background="/Hero/serp-marca-abreviada-branca1.png"
         w_img_background={618}
         h_img_background={343}
-        className_background="w-5xl opacity-5 animate-image-pulse"
+        className_background="lg:w-4xl w-sm opacity-5 animate-image-pulse"
+        // Modelo
+        src="/modelo_woman11.png"
+        width={333}
+        height={862}
+        className_img="w-50 ml-6 pt-50 lg:w-69 lg:pt-6 animate-image-pulse-reverse"
         // Card
         cor_card="bg-white"
         cor_card_secundaria="bg-gray-700"
@@ -60,7 +60,7 @@ const slides = [
         cor_detalhes="bg-white/30"
       />
     ),
-    background: "bg-linear-to-b from-[#2b2b32] via-[#111217] to-[#050608]",
+    background: "bg-linear-to-t from-[#2b2b32] via-[#111217] to-[#050608]",
     controlsColor: "var(--color-white)",
   },
   //   {
