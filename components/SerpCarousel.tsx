@@ -397,7 +397,7 @@ export default function SerpCarousel() {
   };
 
   return (
-    <section className="sticky top-0 z-0 h-screen w-full overflow-hidden">
+    <section className="sticky top-0 z-0 h-svh w-full overflow-hidden">
       {/* =========================================
           BACKGROUND ATUAL
       ========================================= */}

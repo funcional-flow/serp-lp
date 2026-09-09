@@ -42,9 +42,9 @@ export default function ConteudoCarousel({
   cor_detalhes = "bg-white/60",
 }: ConteudoCarouselProps) {
   return (
-    <div className="relative select-none">
+    <div className="relative h-svh select-none">
       {/* Imagem de Background */}
-      <div className="group absolute top-1/2 left-1/2 z-0 flex w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center">
+      <div className="absolute top-1/2 left-1/2 z-0 flex w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center">
         <Image
           src={img_background}
           alt={img_background}
@@ -52,7 +52,7 @@ export default function ConteudoCarousel({
           height={h_img_background || 343}
           draggable={false}
           onContextMenu={(e) => e.preventDefault()}
-          className={`h-auto object-cover ${className_background} group-hover:opacity-100`}
+          className={`h-auto object-cover ${className_background}`}
         />
       </div>
       <div className="relative flex h-svh w-full">
