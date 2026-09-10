@@ -82,14 +82,16 @@ export default function ConteudoCarousel({
         <div
           className={`absolute flex flex-col pt-4 pl-4 lg:pt-10 lg:pl-14 ${cor_textos1}`}
         >
-          <div className="flex items-center gap-6">
-            <h1 className="font-metrim text-xl tracking-[0.15em] lg:tracking-[0.2em]">
-              SERPENTIZE
+          <div className="absolute top-10 left-14 flex items-center gap-6">
+            <h1 className="font-metrim z-20 text-xl tracking-[0.15em] lg:tracking-[0.2em]">
+              <a href="#final">
+                SERPENTIZE
+              </a>
             </h1>
             <div className={`hidden h-0.5 w-14 lg:block ${cor_detalhes}`} />
           </div>
 
-          <div className="flex flex-col gap-2 lg:gap-6 pt-20 lg:pt-80">
+          <div className="flex flex-col gap-2 pt-20 lg:gap-6 lg:pt-80">
             <h1 className="flex flex-col text-xl tracking-widest lg:text-3xl">
               <span>MOVEMENT</span>
               <span>WITH INTENTION</span>
@@ -113,7 +115,7 @@ export default function ConteudoCarousel({
             <p>LIFESTYLE</p>
           </div>
 
-          <div className={`lg:mt-60 mt-15 h-14 w-0.5 ${cor_detalhes}`} />
+          <div className={`mt-15 h-14 w-0.5 lg:mt-60 ${cor_detalhes}`} />
           <div className={`relative mt-8 pt-5 pr-2`}>
             <div className={`absolute -top-1.75 h-4 w-0.5 ${cor_detalhes}`} />
             <div
@@ -121,7 +123,7 @@ export default function ConteudoCarousel({
             />
           </div>
 
-          <div className="flex flex-col items-end gap-1 pt-100 lg:pt-20 text-xs tracking-[0.4em]">
+          <div className="flex flex-col items-end gap-1 pt-100 text-xs tracking-[0.4em] lg:pt-20">
             <p>DISCIPLINA</p>
             <p>FOCO</p>
             <p>EVOLUÇÃO</p>

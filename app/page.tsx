@@ -33,7 +33,7 @@ export default function Home() {
             duration={2000}
           />
         </section>
-        <section className="select-none relative gap-5 z-20 flex flex-col h-svh items-center justify-center bg-purple1">
+        <section id="final" className="select-none relative gap-5 z-20 flex flex-col h-svh items-center justify-center bg-purple1">
           <h1 className="text-7xl font-metrim uppercase text-yellow1">serpentize</h1>
           <span className="font-montserrat text-xl text-yellow1">EM BREVE . . .</span>
         </section>

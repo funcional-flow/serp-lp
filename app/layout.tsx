@@ -36,7 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${metrimLetter.variable} h-full antialiased`}
     >
       <ReactLenis root>
-        <body className="font-montserrat flex min-h-full flex-col">
+        <body className="font-montserrat flex min-h-full flex-col scroll-smooth">
           {children}
         </body>
       </ReactLenis>
