@@ -33,7 +33,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
   }, []);
 
   useEffect(() => {
-    const duration = 2500;
+    const duration = 2000;
     const intervalTime = 20;
     const increment = 100 / (duration / intervalTime);
     // document.documentElement.style.scrollbarGutter = "stable"; // faz a barra de rolagem ocupar espaço fixo

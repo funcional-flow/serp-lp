@@ -1,18 +1,23 @@
 "use client";
 
-import { useLayoutEffect, useRef, type CSSProperties } from "react";
+import {
+  useLayoutEffect,
+  useRef,
+  type CSSProperties,
+} from "react";
+
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 interface ImageSequenceProps {
-  images?: string[]; // array de URLs, obrigatório
+  images?: string[]; // array de URLs
 
   duration?: number; // quanto de scroll a sequência consome
 
-  canvasWidth?: number; // resolução interna do canvas
-  canvasHeight?: number; // resolução interna do canvas
+  canvasWidth?: number; // resolução interna inicial do canvas
+  canvasHeight?: number; // resolução interna inicial do canvas
 
   background?: string; // cor de fundo
 
@@ -20,17 +25,22 @@ interface ImageSequenceProps {
 
   scrub?: boolean | number; // controle da suavidade do acompanhamento do scroll
 
-  pin?: boolean; // permitir desligar o pin se algum dia precisar
+  pin?: boolean; // permitir desligar o pin
 
   clear?: boolean; // útil para imagens com transparência
 
   fit?: "contain" | "cover" | "stretch";
 
-  className?: string; // para personalização visual da seção
-  canvasClassName?: string; // para controlar o tamanho/posição do canvas
-  canvasStyle?: CSSProperties; // para controlar o tamanho/posição do canvas
+  className?: string; // personalização visual da seção
 
-  onFrameChange?: (frame: number, image: HTMLImageElement) => void; // callback para você reagir à mudança de frame
+  canvasClassName?: string; // personalização visual do canvas
+
+  canvasStyle?: CSSProperties; // estilos inline do canvas
+
+  onFrameChange?: (
+    frame: number,
+    image: HTMLImageElement,
+  ) => void; // callback para reagir à mudança de frame
 }
 
 export default function ImageSequence({
@@ -59,150 +69,456 @@ export default function ImageSequence({
 
   onFrameChange,
 }: ImageSequenceProps) {
-  const sectionRef = useRef<HTMLElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const sectionRef =
+    useRef<HTMLElement>(null);
 
+  const canvasRef =
+    useRef<HTMLCanvasElement>(null);
+
+  /*
+   * Caso nenhuma imagem seja passada,
+   * utiliza a sequência padrão dos AirPods.
+   */
   if (images.length === 0) {
-    images = Array.from({ length: 147 }, (_, index) => {
-      const frame = String(index + 1).padStart(4, "0");
+    images = Array.from(
+      { length: 147 },
+      (_, index) => {
+        const frame = String(
+          index + 1,
+        ).padStart(4, "0");
 
-      return `https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/${frame}.jpg`;
-    });
+        return `https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/${frame}.jpg`;
+      },
+    );
   }
 
   useLayoutEffect(() => {
-    const section = sectionRef.current;
-    const canvas = canvasRef.current;
+    const section =
+      sectionRef.current;
 
-    if (!section || !canvas || images.length === 0) {
+    const canvas =
+      canvasRef.current;
+
+    if (
+      !section ||
+      !canvas ||
+      images.length === 0
+    ) {
       return;
     }
 
-    const ctx = canvas.getContext("2d");
+    const ctx =
+      canvas.getContext("2d");
 
     if (!ctx) {
       return;
     }
 
-    const loadedImages: HTMLImageElement[] = [];
+    /*
+     * Imagens carregadas
+     */
+    const loadedImages: HTMLImageElement[] =
+      [];
 
+    /*
+     * Frame atualmente desenhado
+     */
     let currentFrame = -1;
 
+    /*
+     * Controle da animação
+     */
     const playhead = {
       frame: 0,
     };
 
-    const updateImage = () => {
-      const frame = Math.round(playhead.frame);
+    /*
+     * -----------------------------------------
+     * RESIZE DO CANVAS
+     * -----------------------------------------
+     *
+     * O canvas visual ocupa 100% da section.
+     *
+     * O width/height internos são ajustados
+     * de acordo com o tamanho real da section.
+     *
+     * O DPR melhora a qualidade em telas
+     * Retina/HiDPI.
+     */
+    const resizeCanvas = () => {
+      const rect =
+        section.getBoundingClientRect();
 
-      if (frame === currentFrame) {
+      const width = rect.width;
+      const height = rect.height;
+
+      const dpr = Math.min(
+        window.devicePixelRatio || 1,
+        2,
+      );
+
+      /*
+       * Resolução interna
+       */
+      canvas.width = Math.round(
+        width * dpr,
+      );
+
+      canvas.height = Math.round(
+        height * dpr,
+      );
+
+      /*
+       * Tamanho visual
+       */
+      canvas.style.width =
+        `${width}px`;
+
+      canvas.style.height =
+        `${height}px`;
+
+      /*
+       * Faz com que o sistema de
+       * coordenadas continue usando
+       * pixels CSS.
+       */
+      ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0,
+      );
+    };
+
+    /*
+     * -----------------------------------------
+     * DESENHAR IMAGEM
+     * -----------------------------------------
+     */
+    const drawImage = (
+      image: HTMLImageElement,
+    ) => {
+      const rect =
+        section.getBoundingClientRect();
+
+      const width = rect.width;
+      const height = rect.height;
+
+      const imageWidth =
+        image.naturalWidth;
+
+      const imageHeight =
+        image.naturalHeight;
+
+      if (
+        !imageWidth ||
+        !imageHeight
+      ) {
         return;
       }
 
-      const image = loadedImages[frame];
-
-      if (!image || !image.complete) {
-        return;
-      }
-
+      /*
+       * Limpa o canvas
+       */
       if (clear) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(
+          0,
+          0,
+          width,
+          height,
+        );
       }
 
-      const imageWidth = image.naturalWidth;
-      const imageHeight = image.naturalHeight;
+      /*
+       * -------------------------------------
+       * STRETCH
+       * -------------------------------------
+       */
+      if (fit === "stretch") {
+        ctx.drawImage(
+          image,
+          0,
+          0,
+          width,
+          height,
+        );
 
-      let drawWidth = canvas.width;
-      let drawHeight = canvas.height;
+        return;
+      }
+
+      const imageRatio =
+        imageWidth /
+        imageHeight;
+
+      const canvasRatio =
+        width / height;
+
+      let drawWidth = 0;
+      let drawHeight = 0;
+
       let offsetX = 0;
       let offsetY = 0;
 
+      /*
+       * -------------------------------------
+       * CONTAIN
+       * -------------------------------------
+       *
+       * Mostra a imagem inteira.
+       */
       if (fit === "contain") {
-        const scale = Math.min(
-          canvas.width / imageWidth,
-          canvas.height / imageHeight,
-        );
+        const scale =
+          Math.min(
+            width / imageWidth,
+            height / imageHeight,
+          );
 
-        drawWidth = imageWidth * scale;
-        drawHeight = imageHeight * scale;
+        drawWidth =
+          imageWidth * scale;
 
-        offsetX = (canvas.width - drawWidth) / 2;
-        offsetY = (canvas.height - drawHeight) / 2;
+        drawHeight =
+          imageHeight * scale;
+
+        offsetX =
+          (width - drawWidth) / 2;
+
+        offsetY =
+          (height - drawHeight) / 2;
       }
 
+      /*
+       * -------------------------------------
+       * COVER
+       * -------------------------------------
+       *
+       * Preenche completamente
+       * a tela mantendo proporção.
+       */
       if (fit === "cover") {
-        const scale = Math.max(
-          canvas.width / imageWidth,
-          canvas.height / imageHeight,
-        );
+        const scale =
+          Math.max(
+            width / imageWidth,
+            height / imageHeight,
+          );
 
-        drawWidth = imageWidth * scale;
-        drawHeight = imageHeight * scale;
+        drawWidth =
+          imageWidth * scale;
 
-        offsetX = (canvas.width - drawWidth) / 2;
-        offsetY = (canvas.height - drawHeight) / 2;
+        drawHeight =
+          imageHeight * scale;
+
+        offsetX =
+          (width - drawWidth) / 2;
+
+        offsetY =
+          (height - drawHeight) / 2;
       }
 
-      if (fit === "stretch") {
-        drawWidth = canvas.width;
-        drawHeight = canvas.height;
+      /*
+       * Desenha a imagem
+       */
+      ctx.drawImage(
+        image,
+        offsetX,
+        offsetY,
+        drawWidth,
+        drawHeight,
+      );
+    };
+
+    /*
+     * -----------------------------------------
+     * ATUALIZAR FRAME
+     * -----------------------------------------
+     */
+    const updateImage = () => {
+      const frame = Math.round(
+        playhead.frame,
+      );
+
+      if (
+        frame === currentFrame
+      ) {
+        return;
       }
 
-      ctx.drawImage(image, offsetX, offsetY, drawWidth, drawHeight);
+      const image =
+        loadedImages[frame];
+
+      if (
+        !image ||
+        !image.complete
+      ) {
+        return;
+      }
+
+      drawImage(image);
 
       currentFrame = frame;
 
-      onFrameChange?.(frame, image);
+      onFrameChange?.(
+        frame,
+        image,
+      );
     };
 
+    /*
+     * -----------------------------------------
+     * CARREGAR IMAGENS
+     * -----------------------------------------
+     */
     images.forEach((src) => {
-      const image = new Image();
+      const image =
+        new Image();
 
       image.src = src;
 
       loadedImages.push(image);
     });
 
-    loadedImages[0].onload = updateImage;
+    /*
+     * -----------------------------------------
+     * PRIMEIRA IMAGEM
+     * -----------------------------------------
+     */
+    loadedImages[0].onload = () => {
+      resizeCanvas();
 
-    const animation = gsap.to(playhead, {
-      frame: loadedImages.length - 1,
+      drawImage(
+        loadedImages[0],
+      );
 
-      ease: "none",
+      currentFrame = 0;
 
-      scrollTrigger: {
-        trigger: section,
+      onFrameChange?.(
+        0,
+        loadedImages[0],
+      );
 
-        start,
-
-        end: `+=${duration}`,
-
-        scrub,
-
-        pin,
-
-        invalidateOnRefresh: true,
-      },
-
-      onUpdate: updateImage,
-    });
-
-    return () => {
-      animation.kill();
+      ScrollTrigger.refresh();
     };
-  }, [images, duration, start, scrub, pin, clear, onFrameChange]);
+
+    /*
+     * -----------------------------------------
+     * RESIZE OBSERVER
+     * -----------------------------------------
+     *
+     * Se a section mudar de tamanho,
+     * o canvas acompanha automaticamente.
+     */
+    const resizeObserver =
+      new ResizeObserver(() => {
+        resizeCanvas();
+
+        /*
+         * Redesenha o frame atual
+         * depois do resize.
+         */
+        if (
+          currentFrame >= 0
+        ) {
+          const image =
+            loadedImages[
+              currentFrame
+            ];
+
+          if (
+            image?.complete
+          ) {
+            drawImage(image);
+          }
+        }
+      });
+
+    resizeObserver.observe(
+      section,
+    );
+
+    /*
+     * Tamanho inicial
+     */
+    resizeCanvas();
+
+    /*
+     * -----------------------------------------
+     * GSAP
+     * -----------------------------------------
+     */
+    const animation = gsap.to(
+      playhead,
+      {
+        frame:
+          loadedImages.length - 1,
+
+        ease: "none",
+
+        scrollTrigger: {
+          trigger: section,
+
+          start,
+
+          end: `+=${duration}`,
+
+          scrub,
+
+          pin,
+
+          invalidateOnRefresh: true,
+        },
+
+        onUpdate:
+          updateImage,
+      },
+    );
+
+    /*
+     * -----------------------------------------
+     * CLEANUP
+     * -----------------------------------------
+     */
+    return () => {
+      resizeObserver.disconnect();
+
+      animation.kill();
+
+      animation.scrollTrigger?.kill();
+    };
+  }, [
+    images,
+    duration,
+    start,
+    scrub,
+    pin,
+    clear,
+    fit,
+    onFrameChange,
+  ]);
 
   return (
     <section
       ref={sectionRef}
-      className={`relative h-screen w-full overflow-hidden ${className}`}
-      style={{ background }}
+      className={`
+        relative
+        h-screen
+        w-full
+        overflow-hidden
+        ${background}
+        ${className}
+      `}
     >
       <canvas
         ref={canvasRef}
         width={canvasWidth}
         height={canvasHeight}
-        className={`absolute top-1/2 left-1/2 max-h-[80vh] max-w-[80vw] -translate-x-1/2 -translate-y-1/2 ${canvasClassName} `}
+        className={`
+          absolute
+          inset-0
+          h-full
+          w-full
+          ${canvasClassName}
+        `}
         style={canvasStyle}
       />
     </section>
