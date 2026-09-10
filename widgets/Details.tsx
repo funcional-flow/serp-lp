@@ -1,5 +1,7 @@
+import AnimatedSections from "@/components/gsap/AnimatedSections";
+
 export default function Details() {
   return (
-    <div>Details</div>
+    <div className="min-h-svh bg-white"><AnimatedSections/></div>
   )
 }

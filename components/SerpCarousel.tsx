@@ -397,7 +397,7 @@ export default function SerpCarousel() {
   };
 
   return (
-    <section className="sticky top-0 z-0 h-svh w-full overflow-hidden">
+    <div className="h-svh w-full overflow-hidden">
       {/* =========================================
           BACKGROUND ATUAL
       ========================================= */}
@@ -487,6 +487,6 @@ export default function SerpCarousel() {
         {String(current + 1).padStart(2, "0")} /{" "}
         {String(slides.length).padStart(2, "0")}
       </div>
-    </section>
+    </div>
   );
 }

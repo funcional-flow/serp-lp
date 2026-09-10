@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Montserrat } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
+import ReactLenis from "lenis/react";
 
 const metrimLetter = localFont({
   src: "../assets/fonts/MetrimLetter-Regular.otf",
@@ -34,7 +35,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${metrimLetter.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col font-montserrat">{children}</body>
+      <ReactLenis root>
+        <body className="font-montserrat flex min-h-full flex-col">
+          {children}
+        </body>
+      </ReactLenis>
     </html>
   );
 }
