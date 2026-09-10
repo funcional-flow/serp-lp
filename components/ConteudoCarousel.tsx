@@ -63,7 +63,7 @@ export default function ConteudoCarousel({
           className={`pointer-events-none absolute z-10 flex items-center opacity-0 transition-opacity duration-600 peer-hover:opacity-100 ${className_traco}`}
         >
           <div
-            className={`font-montserrat ${cor_borda} z-10 w-xs rounded-2xl ${cor_card} p-6 ${cor_letra_card}`}
+            className={`${cor_borda} z-10 w-xs rounded-2xl ${cor_card} p-6 ${cor_letra_card}`}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio id
             ipsam rem repellendus. Incidunt inventore praesentium esse,

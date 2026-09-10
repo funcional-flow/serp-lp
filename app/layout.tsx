@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Montserrat } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
 import ReactLenis from "lenis/react";
@@ -9,14 +9,9 @@ const metrimLetter = localFont({
   variable: "--font-metrim",
 });
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const actium = localFont({
+  src: "../assets/fonts/ActiumW00-Regular.otf",
+  variable: "--font-actium",
 });
 
 const montserrat = Montserrat({
@@ -32,11 +27,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${metrimLetter.variable} h-full antialiased`}
+      lang="pt-BR"
+      className={`${montserrat.variable} ${metrimLetter.variable} ${actium.variable} h-full antialiased`}
     >
       <ReactLenis root>
-        <body className="font-montserrat flex min-h-full flex-col scroll-smooth">
+        <body className="font-actium tracking-wide flex min-h-full flex-col scroll-smooth">
           {children}
         </body>
       </ReactLenis>

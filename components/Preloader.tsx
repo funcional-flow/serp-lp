@@ -89,7 +89,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       </div>
 
       <div className="mb-5 text-center text-white/90 uppercase">
-        boas vindas ao movimento
+        MOVEMENT WITH INTENTION
       </div>
 
       {/* Barra */}
@@ -103,7 +103,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       </div>
 
       {/* Porcentagem */}
-      <span className={`font-montserrat mt-3 text-sm ${theme.text}`}>
+      <span className={`mt-3 text-sm ${theme.text}`}>
         {Math.floor(progress)}%
       </span>
     </div>
