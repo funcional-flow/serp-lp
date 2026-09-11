@@ -4,6 +4,7 @@ import { useState } from "react";
 import Preloader from "@/components/Preloader";
 import SerpCarousel from "@/components/SerpCarousel";
 import ImageSequence from "@/components/gsap/ImageSequence";
+import Details from "@/widgets/Details";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -22,7 +23,7 @@ export default function Home() {
         <section className="sticky top-0 z-0 lg:sticky">
           <SerpCarousel />
         </section>
-        <section className="relative z-20 bg-white">
+        <section className="relative z-1 bg-white">
           <ImageSequence
             onFrameChange={(frame) => console.log(frame)}
             canvasWidth={1920}
@@ -33,9 +34,18 @@ export default function Home() {
             duration={2000}
           />
         </section>
-        <section id="final" className="select-none relative gap-5 z-20 flex flex-col h-svh items-center justify-center bg-purple1">
-          <h1 className="text-7xl font-metrim uppercase text-yellow1">serpentize</h1>
-          <span className="font-montserrat text-xl text-yellow1">EM BREVE . . .</span>
+        {/* <section className="relative z-1 h-svh bg-[#ababab]">dale</section> */}
+        {/* <section className="bg-background relative z-1">
+          <Details />
+        </section> */}
+        <section
+          id="final"
+          className="bg-purple1 relative z-1 flex h-svh flex-col items-center justify-center gap-5 select-none"
+        >
+          <h1 className="font-metrim text-yellow1 text-7xl uppercase">
+            serpentize
+          </h1>
+          <span className="text-yellow1 text-xl">EM BREVE . . .</span>
         </section>
       </main>
     </>
