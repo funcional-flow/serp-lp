@@ -1,6 +1,5 @@
 import CardDetails from "@/components/CardDetails";
 import LogoLoop from "@/components/LogoLoop";
-import ScrollingText from "@/components/ScrollingText";
 
 export default function Details() {
   const logosBranca = [
@@ -42,15 +41,16 @@ export default function Details() {
       </div> */}
       <div className="relative">
         <CardDetails
-          src="/Details/modelo_woman3.png"
+          img_principal="/Details/modelo_woman3.png"
+          img_secundaria1="/Details/modelo_woman3.png"
           width={859}
           height={858}
           texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
-          imgAntes={false}
+          imgAntes={true}
           background="bg-black"
           corTexto="text-white"
-          classNameImage="w-2xl"
-          larguraTexto="w-4xl"
+          classNameImage="max-w-md"
+          larguraTexto="max-w-4xl"
           backgroundMeshColors={["#dc9f38", "#FFAD20", "#D48700"]}
         />
       </div>
@@ -66,7 +66,7 @@ export default function Details() {
       </div>
       <div className="relative">
         <CardDetails
-          src="/Details/modelo_man1.png"
+          img_principal="/Details/modelo_man1.png"
           width={507}
           height={859}
           texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
@@ -89,7 +89,7 @@ export default function Details() {
       </div>
       <div className="relative">
         <CardDetails
-          src="/Details/modelo_man2.png"
+          img_principal="/Details/modelo_man2.png"
           width={487}
           height={860}
           texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
@@ -110,15 +110,15 @@ export default function Details() {
       </div>
       <div className="relative">
         <CardDetails
-          src="/Details/modelo_woman4.png"
+          img_principal="/Details/modelo_woman4.png"
           width={1053}
           height={823}
           texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
           imgAntes={true}
           background="bg-yellow-600"
           corTexto="text-white"
-          classNameImage="w-2xl"
-          larguraTexto="w-4xl"
+          classNameImage="max-w-md"
+          larguraTexto="max-w-4xl"
           backgroundMeshColors={["#dc9f38", "#FFAD20", "#D48700"]}
         />
       </div>
@@ -134,7 +134,7 @@ export default function Details() {
       </div>
       <div className="relative">
         <CardDetails
-          src="/Details/modelo_man3.png"
+          img_principal="/Details/modelo_man3.png"
           width={474}
           height={848}
           texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
