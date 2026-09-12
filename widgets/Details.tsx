@@ -29,6 +29,61 @@ export default function Details() {
 
   return (
     <div className="relative">
+      {/* ====== Card ====== */}
+      <div className="relative">
+        <LogoLoop
+          logos={logosBranca}
+          fadeOut
+          fadeOutColor="var(--color-black)"
+          ariaLabel="Serpentize"
+          className="bg-black"
+        />
+      </div>
+      <div className="relative">
+        <CardDetails
+          img_principal1="/camisa1.jpg"
+          img_principal2="/camisa2.jpg"
+          img_secundaria1="/Details/modelo_man2.png"
+          width={1251}
+          height={1251}
+          texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
+          imgAntes={true}
+          corTexto="text-black"
+          corTextoSecundario="text-black/50"
+          background="bg-white"
+          backgroundMeshColors={["#FFFFFF", "#DFDFDF", "#C0C0C0"]}
+          borderColor="border-black"
+          activeTabColor="bg-black"
+          lineColor="border-black/25"
+        />
+      </div>
+      {/* ====== Card ====== */}
+      <div className="relative">
+        <LogoLoop
+          logos={logosPreta}
+          fadeOut
+          fadeOutColor="var(--color-white)"
+          ariaLabel="Serpentize"
+          className="bg-white"
+        />
+      </div>
+      <div className="relative">
+        <CardDetails
+          img_principal1="/Details/modelo_man3.png"
+          width={474}
+          height={848}
+          texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
+          imgAntes={false}
+          background="bg-black"
+          corTexto="text-white"
+          corTextoSecundario="text-white/50"
+          backgroundMeshColors={["#000000", "#0C0C0C", "#141414"]}
+          logoColor="white"
+          activeTabColor="bg-white"
+          borderColor="border-white"
+          lineColor="border-white/25"
+        />
+      </div>
       {/* Card 1 */}
       {/* <div className="relative">
         <LogoLoop
@@ -41,7 +96,7 @@ export default function Details() {
       </div> */}
       {/* <div className="relative">
         <CardDetails
-          img_principal="/Details/modelo_woman3.png"
+          img_principal1="/Details/modelo_woman3.png"
           img_secundaria1="/Details/modelo_woman3.png"
           width={859}
           height={858}
@@ -66,7 +121,7 @@ export default function Details() {
       </div>
       <div className="relative">
         <CardDetails
-          img_principal="/Details/modelo_man1.png"
+          img_principal1="/Details/modelo_man1.png"
           width={507}
           height={859}
           texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
@@ -77,28 +132,6 @@ export default function Details() {
           backgroundMeshColors={["#3a1f61", "#311A52", "#401A75"]}
         />
       </div> */}
-      {/* Card 3 */}
-      <div className="relative">
-        <LogoLoop
-          logos={logosBranca}
-          fadeOut
-          fadeOutColor="var(--color-black)"
-          ariaLabel="Serpentize"
-          className="bg-black"
-        />
-      </div>
-      <div className="relative">
-        <CardDetails
-          img_principal="/camisa1.png"
-          img_secundaria1="/Details/modelo_man2.png"
-          width={487}
-          height={860}
-          texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
-          imgAntes={true}
-          background="bg-white"
-          backgroundMeshColors={["#FFFFFF", "#DFDFDF", "#C0C0C0"]}
-        />
-      </div>
       {/* Card 4 */}
       {/* <div className="relative">
         <LogoLoop
@@ -111,7 +144,7 @@ export default function Details() {
       </div>
       <div className="relative">
         <CardDetails
-          img_principal="/Details/modelo_woman4.png"
+          img_principal1="/Details/modelo_woman4.png"
           width={1053}
           height={823}
           texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
@@ -123,28 +156,6 @@ export default function Details() {
           backgroundMeshColors={["#dc9f38", "#FFAD20", "#D48700"]}
         />
       </div> */}
-      {/* Card 5 */}
-      <div className="relative">
-        <LogoLoop
-          logos={logosPreta}
-          fadeOut
-          fadeOutColor="var(--color-white)"
-          ariaLabel="Serpentize"
-          className="bg-white"
-        />
-      </div>
-      <div className="relative">
-        <CardDetails
-          img_principal="/Details/modelo_man3.png"
-          width={474}
-          height={848}
-          texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
-          imgAntes={false}
-          background="bg-black"
-          corTexto="text-white"
-          backgroundMeshColors={["#000000", "#0C0C0C", "#141414"]}
-        />
-      </div>
     </div>
   );
 }
