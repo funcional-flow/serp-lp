@@ -39,7 +39,7 @@ export default function Details() {
           className="bg-black"
         />
       </div> */}
-      <div className="relative">
+      {/* <div className="relative">
         <CardDetails
           img_principal="/Details/modelo_woman3.png"
           img_secundaria1="/Details/modelo_woman3.png"
@@ -53,9 +53,9 @@ export default function Details() {
           larguraTexto="max-w-4xl"
           backgroundMeshColors={["#dc9f38", "#FFAD20", "#D48700"]}
         />
-      </div>
+      </div> */}
       {/* Card 2 */}
-      <div className="relative">
+      {/* <div className="relative">
         <LogoLoop
           logos={logosRoxa}
           fadeOut
@@ -76,7 +76,7 @@ export default function Details() {
           classNameImage=""
           backgroundMeshColors={["#3a1f61", "#311A52", "#401A75"]}
         />
-      </div>
+      </div> */}
       {/* Card 3 */}
       <div className="relative">
         <LogoLoop
@@ -89,17 +89,18 @@ export default function Details() {
       </div>
       <div className="relative">
         <CardDetails
-          img_principal="/Details/modelo_man2.png"
+          img_principal="/camisa1.png"
+          img_secundaria1="/Details/modelo_man2.png"
           width={487}
           height={860}
           texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
-          imgAntes={false}
+          imgAntes={true}
           background="bg-white"
           backgroundMeshColors={["#FFFFFF", "#DFDFDF", "#C0C0C0"]}
         />
       </div>
       {/* Card 4 */}
-      <div className="relative">
+      {/* <div className="relative">
         <LogoLoop
           logos={logosAmarela}
           fadeOut
@@ -121,7 +122,7 @@ export default function Details() {
           larguraTexto="max-w-4xl"
           backgroundMeshColors={["#dc9f38", "#FFAD20", "#D48700"]}
         />
-      </div>
+      </div> */}
       {/* Card 5 */}
       <div className="relative">
         <LogoLoop

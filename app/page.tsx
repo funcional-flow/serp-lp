@@ -23,7 +23,13 @@ export default function Home() {
         <section className="sticky top-0 z-0 lg:sticky">
           <SerpCarousel />
         </section>
-        <section className="relative z-1 bg-white">
+        <section className="relative z-1 flex h-svh flex-col items-center justify-center bg-[#ababab] text-7xl">
+          MAIS VENDIDOS
+          <p>boxy - serp e minimal</p>
+          <p>padrao - serp e minimal</p>
+          <p>regata - serp e minimal</p>
+        </section>
+        {/* <section className="relative z-1 bg-white">
           <ImageSequence
             onFrameChange={(frame) => console.log(frame)}
             canvasWidth={1920}
@@ -33,11 +39,14 @@ export default function Home() {
             images={images}
             duration={2000}
           />
-        </section>
-        {/* <section className="relative z-1 h-svh bg-[#ababab]">dale</section> */}
-        {/* <section className="bg-background relative z-1">
-          <Details />
         </section> */}
+
+        <section className="relative flex text-white h-svh items-center justify-center bg-purple1 text-7xl">
+          Animação Camisa
+        </section>
+        <section className="bg-background relative z-1">
+          <Details />
+        </section>
         <section
           id="final"
           className="bg-purple1 relative z-1 flex h-svh flex-col items-center justify-center gap-5 select-none"
