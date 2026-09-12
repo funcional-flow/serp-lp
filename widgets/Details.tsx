@@ -44,8 +44,8 @@ export default function Details() {
           img_principal1="/camisa1.jpg"
           img_principal2="/camisa2.jpg"
           img_secundaria1="/Details/modelo_man2.png"
-          width={1251}
-          height={1251}
+          width={1254}
+          height={1254}
           texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
           imgAntes={true}
           corTexto="text-black"
@@ -69,9 +69,11 @@ export default function Details() {
       </div>
       <div className="relative">
         <CardDetails
-          img_principal1="/Details/modelo_man3.png"
-          width={474}
-          height={848}
+          img_principal1="/camisa2.jpg"
+          img_principal2="/camisa1.jpg"
+          img_secundaria1="/Details/modelo_man3.png"
+          width={1254}
+          height={1254}
           texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
           imgAntes={false}
           background="bg-black"
