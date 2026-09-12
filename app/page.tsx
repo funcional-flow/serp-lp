@@ -23,7 +23,9 @@ export default function Home() {
         <section className="sticky top-0 z-0 lg:sticky">
           <SerpCarousel />
         </section>
-        <section className="relative z-1 flex h-svh flex-col items-center justify-center bg-[#ababab] text-7xl">
+        <section className="relative z-1 flex h-[100svh] bg-linear-to-b from-transparent to-[white] text-7xl" />
+        <section className="relative z-1 flex h-[10svh] bg-[white] text-7xl" />
+        <section className="relative z-1 flex h-svh flex-col items-center justify-center bg-white text-7xl"> {/*#ababab - cinza */}
           MAIS VENDIDOS
           <p>boxy - serp e minimal</p>
           <p>padrao - serp e minimal</p>
@@ -41,7 +43,7 @@ export default function Home() {
           />
         </section> */}
 
-        <section className="relative flex text-white h-svh items-center justify-center bg-purple1 text-7xl">
+        <section className="bg-purple1 relative flex h-svh items-center justify-center text-7xl text-white">
           Animação Camisa
         </section>
         <section className="bg-background relative z-1">
