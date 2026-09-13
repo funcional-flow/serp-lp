@@ -12,6 +12,8 @@ interface CardDetailsProps {
   img_secundaria4?: string;
   width: number;
   height: number;
+  titulo: string;
+  subtitulo: string;
   texto: string;
   imgAntes?: boolean;
   alt?: string;
@@ -24,9 +26,11 @@ interface CardDetailsProps {
   resolucaoMaximaMesh?: number;
   borderColor?: string;
   logoColor?: string;
+  linkCamisa?: string;
+  buttonTextColor?: string;
   //   Tabs
   corTextoSecundario?: string;
-  activeTabColor?: string;
+  buttonColor?: string;
   lineColor?: string;
 }
 
@@ -40,6 +44,8 @@ export default function CardDetails({
   alt = "",
   width,
   height,
+  titulo,
+  subtitulo,
   texto,
   imgAntes = true,
   background = "bg-white",
@@ -52,7 +58,9 @@ export default function CardDetails({
   resolucaoMaximaMesh = 720 * 480,
   borderColor = "border-white",
   logoColor = "black",
-  activeTabColor = "bg-background",
+  linkCamisa = "#pecas",
+  buttonColor = "bg-black",
+  buttonTextColor = "text-white",
   lineColor = "border-black/25",
 }: CardDetailsProps) {
   return (
@@ -84,7 +92,7 @@ export default function CardDetails({
             animation="flip"
             tabsAlign="center"
             tabsPosition="top"
-            activeColor={activeTabColor}
+            activeColor={buttonColor}
             textColor={corTexto}
             textSecondaryColor={corTextoSecundario}
             lineColor={lineColor}
@@ -126,13 +134,14 @@ export default function CardDetails({
           className={`text-lg ${larguraTexto} ${corTexto} order-2 flex flex-col gap-5 text-center`}
         >
           <h1 className="font-metrim text-7xl uppercase [-webkit-text-stroke:1px_black]">
-            serpentize
+            {titulo}
           </h1>
-          <h2 className="text-2xl uppercase">Lorem Ipsum Dolor</h2>
-          <span>{texto}</span>
+          <h2 className="text-2xl uppercase">{subtitulo}</h2>
+          <span className="text-lg">{texto}</span>
           <a
-            href="#"
-            className="z-10 mx-auto mt-10 w-sm rounded-lg bg-black px-4 py-2 text-white"
+            href={linkCamisa}
+            target="_blank"
+            className={`z-10 mx-auto mt-10 w-sm rounded-lg ${buttonTextColor} ${buttonColor} px-4 py-2`}
           >
             Saiba mais
           </a>
