@@ -48,6 +48,7 @@ export default function Details() {
           height={1254}
           texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
           imgAntes={true}
+          tamanhoImagem="w-md"
           corTexto="text-black"
           corTextoSecundario="text-black/50"
           background="bg-white"
@@ -72,6 +73,7 @@ export default function Details() {
           img_principal1="/camisa2.jpg"
           img_principal2="/camisa1.jpg"
           img_secundaria1="/Details/modelo_man3.png"
+          tamanhoImagem="w-md"
           width={1254}
           height={1254}
           texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"

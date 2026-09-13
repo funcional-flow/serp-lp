@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import BackgroundMesh from "./BackgroundMesh";
 import AnimatedTabs from "./AnimatedTabs";
@@ -74,12 +75,13 @@ export default function CardDetails({
             className={`object-contain opacity-10`}
           />
         </div>
-        {/* Imagem Principal 1 */}
+        
+        {/* Imagem Principal */}
         <div
-          className={`relative ${imgAntes ? "order-1" : "order-3"} ${tamanhoImagem} h-auto`}
+          className={`relative ${imgAntes ? "order-1" : "order-3"} ${tamanhoImagem} h-auto z-10`}
         >
           <AnimatedTabs
-            animation="rotate"
+            animation="flip"
             tabsAlign="center"
             tabsPosition="top"
             activeColor={activeTabColor}
@@ -118,6 +120,8 @@ export default function CardDetails({
             ]}
           />
         </div>
+
+        {/* Texto no Centro */}
         <div
           className={`text-lg ${larguraTexto} ${corTexto} order-2 flex flex-col gap-5 text-center`}
         >
