@@ -3,7 +3,7 @@ import Image from "next/image";
 import BackgroundMesh from "./BackgroundMesh";
 import AnimatedTabs from "./AnimatedTabs";
 
-interface CardDetailsProps {
+interface CardModeloProps {
   img_principal1: string;
   img_principal2?: string;
   img_secundaria1?: string;
@@ -34,7 +34,7 @@ interface CardDetailsProps {
   lineColor?: string;
 }
 
-export default function CardDetails({
+export default function CardModelo({
   img_principal1,
   img_principal2 = img_principal1,
   img_secundaria1 = img_principal1,
@@ -62,7 +62,7 @@ export default function CardDetails({
   buttonColor = "bg-black",
   buttonTextColor = "text-white",
   lineColor = "border-black/25",
-}: CardDetailsProps) {
+}: CardModeloProps) {
   return (
     <div
       className={`${background} relative flex h-svh items-center select-none`}

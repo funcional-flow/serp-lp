@@ -5,6 +5,9 @@ import Preloader from "@/components/Preloader";
 import SerpCarousel from "@/components/SerpCarousel";
 import ImageSequence from "@/components/gsap/ImageSequence";
 import Details from "@/widgets/Details";
+import ScrollTransition from "@/components/gsap/ScrollTransition";
+import Image from "next/image";
+import Modelos from "@/widgets/Modelos";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -18,37 +21,20 @@ export default function Home() {
   return (
     <>
       {loading && <Preloader onComplete={() => setLoading(false)} />}
-
+      {/* <header className="fixed top-0 left-0 w-full z-1000 bg-white">Dale</header> */}
       <main>
         <section className="sticky top-0 z-0 lg:sticky">
           <SerpCarousel />
         </section>
-        <section className="relative z-1 flex h-[100svh] bg-linear-to-b from-transparent to-[white] text-7xl" />
-        <section className="relative z-1 flex h-[10svh] bg-[white] text-7xl" />
-        <section className="relative z-1 flex h-svh flex-col items-center justify-center bg-white text-7xl"> {/*#ababab - cinza */}
-          MAIS VENDIDOS
-          <p>boxy - serp e minimal</p>
-          <p>padrao - serp e minimal</p>
-          <p>regata - serp e minimal</p>
-        </section>
-        {/* <section className="relative z-1 bg-white">
-          <ImageSequence
-            onFrameChange={(frame) => console.log(frame)}
-            canvasWidth={1920}
-            canvasHeight={1080}
-            fit="contain"
-            background="bg-[#ababab]"
-            images={images}
-            duration={2000}
-          />
-        </section> */}
 
-        <section className="bg-purple1 relative flex h-svh items-center justify-center text-7xl text-white">
-          Animação Camisa
-        </section>
-        <section className="bg-background relative z-1">
+        <section className="relative z-1">
           <Details />
         </section>
+
+        <section id="pecas" className="bg-background relative z-1">
+          <Modelos />
+        </section>
+
         <section
           id="final"
           className="bg-purple1 relative z-1 flex h-svh flex-col items-center justify-center gap-5 select-none"
@@ -58,6 +44,20 @@ export default function Home() {
           </h1>
           <span className="text-yellow1 text-xl">EM BREVE . . .</span>
         </section>
+
+        {/* <ScrollTransition
+        //   background="bg-linear-to-t from-white to-gray-400"
+          first={
+            <section className="sticky top-0 z-0 lg:relative">
+              <SerpCarousel />
+            </section>
+          }
+          second={
+            <section id="pecas" className="bg-background relative z-1">
+              <Details />
+            </section>
+          }
+        /> */}
       </main>
     </>
   );
