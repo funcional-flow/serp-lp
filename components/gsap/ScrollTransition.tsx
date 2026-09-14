@@ -10,11 +10,13 @@ gsap.registerPlugin(ScrollTrigger);
 interface ScrollTransitionProps {
   panels: ReactNode[];
   background?: string;
+  scaleDown?: number;
 }
 
 export default function ScrollTransition({
   panels: content,
   background = "bg-background",
+  scaleDown = 1.05,
 }: ScrollTransitionProps) {
   const container = useRef<HTMLDivElement>(null);
 
@@ -27,7 +29,7 @@ export default function ScrollTransition({
       // Estado inicial
       gsap.set(panels, {
         opacity: 0,
-        scale: 1.05,
+        scale: scaleDown,
         pointerEvents: "none",
       });
 
@@ -59,16 +61,23 @@ export default function ScrollTransition({
             const transitionProgress =
               self.progress * totalTransitions - currentTransition;
 
-            // Durante a transição, nenhum painel recebe clique
+            // Bloqueia todos inicialmente
             panels.forEach((panel) => {
               panel.style.pointerEvents = "none";
             });
 
-            // Quando chegou ao próximo painel
-            if (transitionProgress >= 0.99) {
-              panels[currentTransition + 1].style.pointerEvents = "auto";
-            } else if (currentTransition === 0 && self.progress === 0) {
+            // Primeiro painel
+            if (self.progress === 0) {
               panels[0].style.pointerEvents = "auto";
+              return;
+            }
+
+            // A partir de 50% da transição,
+            // o próximo painel já pode receber cliques
+            if (transitionProgress >= 0.5) {
+              panels[currentTransition + 1].style.pointerEvents = "auto";
+            } else {
+              panels[currentTransition].style.pointerEvents = "auto";
             }
           },
         },
@@ -79,7 +88,8 @@ export default function ScrollTransition({
         // Painel anterior desaparece
         tl.to(panels[i - 1], {
           opacity: 0,
-          scale: 0.85,
+          scale: 1,
+          //   scale: 0.85,
           duration: 1,
           ease: "none",
         });
@@ -95,7 +105,7 @@ export default function ScrollTransition({
     },
     {
       scope: container,
-  },
+    },
   );
 
   return (
