@@ -1,9 +1,7 @@
 "use client";
-
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import ConteudoCarousel from "./ConteudoCarousel";
-
+import ConteudoCarousel from "@/components/ConteudoCarousel";
 const slides = [
   {
     content: (
@@ -63,62 +61,31 @@ const slides = [
     background: "bg-linear-to-t from-[#2b2b32] via-[#111217] to-[#050608]",
     controlsColor: "var(--color-white)",
   },
-  //   {
-  //     content: (
-  //       <ConteudoCarousel
-  //         src="/modelo_man3.png"
-  //         img_background="/arquivos de marca/serp-marca-abreviada-branca.png"
-  //         w_img_background={618}
-  //         h_img_background={343}
-  //         width={861}
-  //         height={862}
-  //         className_img="w-184 transition-transform duration-500"
-  //         className_traco="top-26 left-88"
-  //         cor_card="bg-white"
-  //         cor_card_secundaria="bg-gray-400"
-  //         cor_letra_card="text-gray-700"
-  //         cor_borda="border border-gray-400"
-  //         area_hover1="top-[23.5%] left-[46.5%] h-20 w-16"
-  //       />
-  //     ),
-  //     background: "bg-linear-to-br from-yellow-900 to-[#e39c22]",
-  //     controlsColor: "var(--color-black)",
-  //   },
 ];
-
 export default function SerpCarousel() {
   const [current, setCurrent] = useState(0);
-
-  // ==========================================
-  // REFS
-  // ==========================================
-
   const slidesRef = useRef<(HTMLDivElement | null)[]>([]);
-
+  const fadeRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const modelRefs = useRef<(HTMLDivElement | null)[]>([]);
   const backgroundCurrentRef = useRef<HTMLDivElement>(null);
   const backgroundNextRef = useRef<HTMLDivElement>(null);
-
   const prevButtonRef = useRef<HTMLButtonElement>(null);
   const nextButtonRef = useRef<HTMLButtonElement>(null);
   const counterRef = useRef<HTMLDivElement>(null);
-
   const isAnimating = useRef(false);
-
-  // ==========================================
-  // CONFIGURAÇÃO INICIAL
-  // ==========================================
-
   useEffect(() => {
-    // ------------------------------------------
-    // SLIDES
-    // ------------------------------------------
-
     slidesRef.current.forEach((slide, index) => {
       if (!slide) return;
-
+      gsap.set(slide, { zIndex: index === 0 ? 3 : 1 });
+    });
+    fadeRefs.current.forEach((element, index) => {
+      if (!element) return;
+      gsap.set(element, { opacity: index === 0 ? 1 : 0 });
+    });
+    modelRefs.current.forEach((element, index) => {
+      if (!element) return;
       if (index === 0) {
-        gsap.set(slide, {
-          zIndex: 3,
+        gsap.set(element, {
           opacity: 1,
           scale: 1,
           x: 0,
@@ -127,8 +94,7 @@ export default function SerpCarousel() {
           filter: "blur(0px)",
         });
       } else {
-        gsap.set(slide, {
-          zIndex: 1,
+        gsap.set(element, {
           opacity: 0,
           scale: 0.7,
           x: 0,
@@ -138,113 +104,66 @@ export default function SerpCarousel() {
         });
       }
     });
-
-    // ------------------------------------------
-    // BACKGROUND ATUAL
-    // ------------------------------------------
-
     if (backgroundCurrentRef.current) {
-      backgroundCurrentRef.current.className = `
-        absolute
-        inset-0
-        z-0
-        ${slides[0].background}
-      `;
-
-      gsap.set(backgroundCurrentRef.current, {
-        opacity: 1,
-      });
+      backgroundCurrentRef.current.className = ` absolute inset-0 z-0 ${slides[0].background} `;
+      gsap.set(backgroundCurrentRef.current, { opacity: 1 });
     }
-
-    // ------------------------------------------
-    // BACKGROUND PRÓXIMO
-    // ------------------------------------------
-
     if (backgroundNextRef.current) {
-      gsap.set(backgroundNextRef.current, {
-        opacity: 0,
-      });
+      gsap.set(backgroundNextRef.current, { opacity: 0 });
     }
-
-    // ------------------------------------------
-    // COR DOS CONTROLES
-    // ------------------------------------------
-
     const initialControlsColor = slides[0].controlsColor;
-
     if (prevButtonRef.current) {
       gsap.set(prevButtonRef.current, {
         color: initialControlsColor,
         borderColor: initialControlsColor,
       });
     }
-
     if (nextButtonRef.current) {
       gsap.set(nextButtonRef.current, {
         color: initialControlsColor,
         borderColor: initialControlsColor,
       });
     }
-
     if (counterRef.current) {
-      gsap.set(counterRef.current, {
-        color: initialControlsColor,
-      });
+      gsap.set(counterRef.current, { color: initialControlsColor });
     }
   }, []);
-
-  // ==========================================
-  // CALCULA PRÓXIMO ÍNDICE
-  // ==========================================
-
   const getIndex = (offset: number) => {
     return (current + offset + slides.length) % slides.length;
   };
-
-  // ==========================================
-  // TROCA DE SLIDE
-  // ==========================================
-
   const goTo = (direction: 1 | -1) => {
     if (isAnimating.current) return;
-
-    isAnimating.current = true;
-
     const nextIndex = getIndex(direction);
-
     const currentSlide = slidesRef.current[current];
     const nextSlide = slidesRef.current[nextIndex];
-
+    const currentFade = fadeRefs.current[current];
+    const nextFade = fadeRefs.current[nextIndex];
+    const currentModel = modelRefs.current[current];
+    const nextModel = modelRefs.current[nextIndex];
     const backgroundCurrent = backgroundCurrentRef.current;
     const backgroundNext = backgroundNextRef.current;
-
     const prevButton = prevButtonRef.current;
     const nextButton = nextButtonRef.current;
     const counter = counterRef.current;
-
-    // ------------------------------------------
-    // VALIDAÇÃO
-    // ------------------------------------------
-
     if (
       !currentSlide ||
       !nextSlide ||
+      !currentFade ||
+      !nextFade ||
+      !currentModel ||
+      !nextModel ||
       !backgroundCurrent ||
       !backgroundNext ||
       !prevButton ||
       !nextButton ||
       !counter
     ) {
-      isAnimating.current = false;
       return;
     }
-
-    // ==========================================
-    // PREPARA PRÓXIMO SLIDE
-    // ==========================================
-
-    gsap.set(nextSlide, {
-      zIndex: 2,
+    isAnimating.current = true;
+    gsap.set(nextSlide, { zIndex: 2 });
+    gsap.set(nextFade, { opacity: 0 });
+    gsap.set(nextModel, {
       opacity: 0,
       scale: 0.7,
       x: direction === 1 ? 80 : -80,
@@ -252,40 +171,23 @@ export default function SerpCarousel() {
       rotateY: direction === 1 ? -15 : 15,
       filter: "blur(10px)",
     });
-
-    // ==========================================
-    // PREPARA PRÓXIMO BACKGROUND
-    // ==========================================
-
-    backgroundNext.className = `
-      absolute
-      inset-0
-      z-0
-      ${slides[nextIndex].background}
-    `;
-
-    gsap.set(backgroundNext, {
-      opacity: 0,
-    });
-
-    // ==========================================
-    // TIMELINE
-    // ==========================================
-
+    backgroundNext.className = ` absolute inset-0 z-0 ${slides[nextIndex].background} `;
+    gsap.set(backgroundNext, { opacity: 0 });
     const tl = gsap.timeline({
       onComplete: () => {
         setCurrent(nextIndex);
-
-        // ========================================
-        // RESET DOS SLIDES
-        // ========================================
-
         slidesRef.current.forEach((slide, index) => {
           if (!slide) return;
-
+          gsap.set(slide, { zIndex: index === nextIndex ? 3 : 1 });
+        });
+        fadeRefs.current.forEach((element, index) => {
+          if (!element) return;
+          gsap.set(element, { opacity: index === nextIndex ? 1 : 0 });
+        });
+        modelRefs.current.forEach((element, index) => {
+          if (!element) return;
           if (index === nextIndex) {
-            gsap.set(slide, {
-              zIndex: 3,
+            gsap.set(element, {
               opacity: 1,
               scale: 1,
               x: 0,
@@ -294,8 +196,7 @@ export default function SerpCarousel() {
               filter: "blur(0px)",
             });
           } else {
-            gsap.set(slide, {
-              zIndex: 1,
+            gsap.set(element, {
               opacity: 0,
               scale: 0.7,
               x: 0,
@@ -305,65 +206,31 @@ export default function SerpCarousel() {
             });
           }
         });
-
-        // ========================================
-        // RESET DOS BACKGROUNDS
-        // ========================================
-
-        backgroundCurrent.className = `
-          absolute
-          inset-0
-          z-0
-          ${slides[nextIndex].background}
-        `;
-
-        gsap.set(backgroundCurrent, {
-          opacity: 1,
-        });
-
-        gsap.set(backgroundNext, {
-          opacity: 0,
-        });
-
+        backgroundCurrent.className = ` absolute inset-0 z-0 ${slides[nextIndex].background} `;
+        gsap.set(backgroundCurrent, { opacity: 1 });
+        gsap.set(backgroundNext, { opacity: 0 });
         isAnimating.current = false;
       },
     });
-
-    // ==========================================
-    // 1. FADE DO BACKGROUND
-    // ==========================================
-
     tl.to(
       backgroundNext,
-      {
-        opacity: 1,
-        duration: 0.65,
-        ease: "power2.inOut",
-      },
+      { opacity: 1, duration: 0.65, ease: "power2.inOut" },
       0,
     );
-
-    // ==========================================
-    // 2. FADE DA COR DOS CONTROLES
-    // ==========================================
-
+    tl.to(currentFade, { opacity: 0, duration: 0.45, ease: "power2.inOut" }, 0);
+    tl.to(nextFade, { opacity: 1, duration: 0.65, ease: "power2.inOut" }, 0.15);
     tl.to(
       [prevButton, nextButton, counter],
       {
         color: slides[nextIndex].controlsColor,
         borderColor: slides[nextIndex].controlsColor,
-        duration: 0,
+        duration: 0.4,
         ease: "power2.inOut",
       },
       0,
     );
-
-    // ==========================================
-    // 3. SLIDE ATUAL SAI
-    // ==========================================
-
     tl.to(
-      currentSlide,
+      currentModel,
       {
         x: direction === 1 ? -120 : 120,
         scale: 0.85,
@@ -375,13 +242,8 @@ export default function SerpCarousel() {
       },
       0,
     );
-
-    // ==========================================
-    // 4. PRÓXIMO SLIDE ENTRA
-    // ==========================================
-
     tl.to(
-      nextSlide,
+      nextModel,
       {
         x: 0,
         y: 0,
@@ -395,34 +257,16 @@ export default function SerpCarousel() {
       0.7,
     );
   };
-
   return (
     <div className="h-svh w-full overflow-hidden">
-      {/* =========================================
-          BACKGROUND ATUAL
-      ========================================= */}
-
       <div
         ref={backgroundCurrentRef}
-        className={`absolute inset-0 z-0 ${slides[0].background} `}
+        className={`absolute inset-0 z-0 ${slides[0].background}`}
       />
-
-      {/* =========================================
-          PRÓXIMO BACKGROUND
-      ========================================= */}
-
       <div ref={backgroundNextRef} className="absolute inset-0 z-0" />
-
-      {/* =========================================
-          SLIDES
-      ========================================= */}
-
       <div
         className="absolute inset-0 z-10 flex items-center justify-center"
-        style={{
-          perspective: "1600px",
-          transformStyle: "preserve-3d",
-        }}
+        style={{ perspective: "1600px", transformStyle: "preserve-3d" }}
       >
         {slides.map((slide, index) => (
           <div
@@ -430,30 +274,29 @@ export default function SerpCarousel() {
             ref={(element) => {
               slidesRef.current[index] = element;
             }}
-            // className="
-            //   absolute
-            //   flex
-            //   h-[70vh]
-            //   w-[min(70vw,900px)]
-            //   items-center
-            //   justify-center
-            // "
-            className="absolute inset-0 items-center justify-center"
+            className="absolute inset-0 flex items-center justify-center"
             style={{
               zIndex: index === 0 ? 3 : 1,
-              opacity: index === 0 ? 1 : 0,
               transformStyle: "preserve-3d",
             }}
           >
-            {slide.content}
+            <div
+              ref={(element) => {
+                fadeRefs.current[index] = element;
+              }}
+              className="absolute inset-0"
+            >
+              {slide.content}
+            </div>
+            <div
+              ref={(element) => {
+                modelRefs.current[index] = element;
+              }}
+              className="pointer-events-none absolute inset-0 flex items-center justify-center"
+            />
           </div>
         ))}
       </div>
-
-      {/* =========================================
-          SETAS
-      ========================================= */}
-
       <div className="absolute bottom-20 left-1/2 z-10 flex -translate-x-1/2 items-center gap-8">
         <button
           ref={prevButtonRef}
@@ -464,7 +307,6 @@ export default function SerpCarousel() {
         >
           ←
         </button>
-
         <button
           ref={nextButtonRef}
           type="button"
@@ -475,16 +317,11 @@ export default function SerpCarousel() {
           →
         </button>
       </div>
-
-      {/* =========================================
-          CONTADOR
-      ========================================= */}
-
       <div
         ref={counterRef}
         className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 text-xs tracking-[0.4em] opacity-60"
       >
-        {String(current + 1).padStart(2, "0")} /{" "}
+        {String(current + 1).padStart(2, "0")} /
         {String(slides.length).padStart(2, "0")}
       </div>
     </div>
