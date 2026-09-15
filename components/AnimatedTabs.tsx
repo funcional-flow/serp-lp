@@ -71,7 +71,7 @@ export default function AnimatedTabs({
 
   const tabsNavigation = (
     <div
-      className={`flex gap-8 border-b ${lineColor} mb-8 ${tabsAlignmentClass}`}
+      className={`flex gap-8 ${tabsPosition === "top" ? "mb-8 border-b" : "mt-8 border-t"} ${lineColor} ${tabsAlignmentClass}`}
     >
       {tabs.map((tab, index) => {
         const isActive = index === activeTab;
@@ -83,7 +83,7 @@ export default function AnimatedTabs({
             onClick={() => {
               swiperInstance?.slideTo(index);
             }}
-            className="relative pb-4 text-sm"
+            className={`relative text-sm ${tabsPosition === "top" ? "pb-4" : "pt-4"}`}
           >
             <span
               className={`transition-colors duration-300 ${
@@ -94,7 +94,7 @@ export default function AnimatedTabs({
             </span>
 
             <motion.span
-              className={`${activeColor} absolute right-0 -bottom-0.5 left-0 h-0.5 origin-center`}
+              className={`${activeColor} absolute right-0 left-0 h-0.5 ${tabsPosition === "top" ? "-bottom-0.5" : "-top-0.5"} origin-center`}
               initial={false}
               animate={{
                 scaleX: isActive ? 1 : 0,
