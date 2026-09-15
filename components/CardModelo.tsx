@@ -29,11 +29,11 @@ interface CardModeloProps {
   logoColor?: string;
   linkCamisa?: string;
   buttonTextColor?: string;
+  contentAspect?: "portrait" | "landscape";
   //   Tabs
   corTextoSecundario?: string;
   buttonColor?: string;
   lineColor?: string;
-  contentAspect?: "portrait" | "landscape";
 }
 
 export default function CardModelo({

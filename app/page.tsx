@@ -20,12 +20,13 @@ export default function Home() {
 
   return (
     <>
-      {loading && <Preloader onComplete={() => setLoading(false)} />}
+      {/* {loading && <Preloader onComplete={() => setLoading(false)} />} */}
       {/* <header className="fixed top-0 left-0 w-full z-1000 bg-white">Dale</header> */}
       <main>
         <ScrollTransition
           background="bg-gray-400"
-          //   scaleDown={1.05}
+          transitionDuration={1250}
+          //   scaleDownFrom={1.05}
           panels={[
             <section key="carousel" className="sticky top-0 z-0 lg:sticky">
               <SerpCarousel />

@@ -10,13 +10,15 @@ gsap.registerPlugin(ScrollTrigger);
 interface ScrollTransitionProps {
   panels: ReactNode[];
   background?: string;
-  scaleDown?: number;
+  scaleDownFrom?: number;
+  transitionDuration?: number;
 }
 
 export default function ScrollTransition({
   panels: content,
   background = "bg-background",
-  scaleDown = 1.05,
+  scaleDownFrom = 1.05,
+  transitionDuration = 2000,
 }: ScrollTransitionProps) {
   const container = useRef<HTMLDivElement>(null);
 
@@ -29,7 +31,7 @@ export default function ScrollTransition({
       // Estado inicial
       gsap.set(panels, {
         opacity: 0,
-        scale: scaleDown,
+        scale: scaleDownFrom,
         pointerEvents: "none",
       });
 
@@ -44,7 +46,7 @@ export default function ScrollTransition({
         scrollTrigger: {
           trigger: container.current,
           start: "top top",
-          end: `+=${(panels.length - 1) * 2000}`,
+          end: `+=${(panels.length - 1) * transitionDuration}`,
           pin: true,
           scrub: true,
 
