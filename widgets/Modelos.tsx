@@ -92,7 +92,7 @@ export default function Modelos() {
           background="bg-black"
           corTexto="text-white"
           corTextoSecundario="text-white/50"
-          backgroundMeshColors={["#000000", "#0C0C0C", "#141414"]}
+          backgroundMeshColors={["#000000", "#131313", "#202020"]}
           logoColor="white"
           buttonColor="bg-white"
           borderColor="border-white"
