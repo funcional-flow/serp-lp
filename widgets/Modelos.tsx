@@ -2,6 +2,12 @@ import CardModelo from "@/components/CardModelo";
 import LogoLoop from "@/components/LogoLoop";
 
 export default function Modelos() {
+  const logosPreta = [
+    { src: "/logo_loop/preta/logo_loop_preta (1).png", alt: "Tech 1" },
+    { src: "/logo_loop/preta/logo_loop_preta (2).png", alt: "Tech 2" },
+    { src: "/logo_loop/preta/logo_loop_preta (3).png", alt: "Tech 3" },
+    { src: "/logo_loop/preta/logo_loop_preta (4).png", alt: "Tech 4" },
+  ];
   const logosBranca = [
     { src: "/logo_loop/branca/logo_loop_branca (1).png", alt: "Tech 1" },
     { src: "/logo_loop/branca/logo_loop_branca (2).png", alt: "Tech 2" },
@@ -20,12 +26,6 @@ export default function Modelos() {
   //     { src: "/logo_loop/roxa/logo_loop_roxa (3).png", alt: "Tech 3" },
   //     { src: "/logo_loop/roxa/logo_loop_roxa (4).png", alt: "Tech 4" },
   //   ];
-  const logosPreta = [
-    { src: "/logo_loop/preta/logo_loop_preta (1).png", alt: "Tech 1" },
-    { src: "/logo_loop/preta/logo_loop_preta (2).png", alt: "Tech 2" },
-    { src: "/logo_loop/preta/logo_loop_preta (3).png", alt: "Tech 3" },
-    { src: "/logo_loop/preta/logo_loop_preta (4).png", alt: "Tech 4" },
-  ];
 
   return (
     <div className="relative">
@@ -41,16 +41,18 @@ export default function Modelos() {
       </div>
       <div className="relative">
         <CardModelo
-          img_principal1="/camisa1.jpg"
-          img_principal2="/camisa2.jpg"
+          img_principal1="/modelos/modelo_principal_frente.png"
+          img_principal2="/modelos/modelo_principal_costas.png"
           img_secundaria1="/Details/modelo_man2.png"
-          width={1254}
-          height={1254}
+          width={940}
+          height={1672}
+          tamanhoImagem="w-md"
+          contentAspect="portrait"
+        //   classNameImage=""
           titulo="Boxy"
           subtitulo="Lorem Ipsum Dolor"
           texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
           imgAntes={true}
-          tamanhoImagem="w-md"
           corTexto="text-black"
           corTextoSecundario="text-black/50"
           background="bg-white"
@@ -75,12 +77,13 @@ export default function Modelos() {
       </div>
       <div className="relative">
         <CardModelo
-          img_principal1="/camisa2.jpg"
-          img_principal2="/camisa1.jpg"
+          img_principal1="/modelos/modelo_principal_frente.png"
+          img_principal2="/modelos/modelo_principal_costas.png"
           img_secundaria1="/Details/modelo_man3.png"
-          tamanhoImagem="w-md"
           width={1254}
           height={1254}
+          tamanhoImagem="w-md"
+          contentAspect="portrait"
           titulo="Padrao"
           subtitulo="Lorem Ipsum Dolor"
           buttonTextColor="text-black"
@@ -109,12 +112,13 @@ export default function Modelos() {
       </div>
       <div className="relative">
         <CardModelo
-          img_principal1="/camisa1.jpg"
-          img_principal2="/camisa2.jpg"
+          img_principal1="/modelos/modelo_principal_frente.png"
+          img_principal2="/modelos/modelo_principal_costas.png"
           img_secundaria1="/Details/modelo_man2.png"
           width={1254}
           height={1254}
-          titulo="regata"
+          titulo="Regata"
+          contentAspect="portrait"
           subtitulo="Lorem Ipsum Dolor"
           texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
           imgAntes={true}

@@ -1,7 +1,8 @@
-"use client"
+"use client";
 import Image from "next/image";
 import BackgroundMesh from "./BackgroundMesh";
 import AnimatedTabs from "./AnimatedTabs";
+import { div } from "motion/react-client";
 
 interface CardModeloProps {
   img_principal1: string;
@@ -32,6 +33,7 @@ interface CardModeloProps {
   corTextoSecundario?: string;
   buttonColor?: string;
   lineColor?: string;
+  contentAspect?: "portrait" | "landscape";
 }
 
 export default function CardModelo({
@@ -62,6 +64,7 @@ export default function CardModelo({
   buttonColor = "bg-black",
   buttonTextColor = "text-white",
   lineColor = "border-black/25",
+  contentAspect = "portrait",
 }: CardModeloProps) {
   return (
     <div
@@ -71,22 +74,10 @@ export default function CardModelo({
         maxPixelCount={resolucaoMaximaMesh}
         colors={backgroundMeshColors}
       />
-      <div className="relative z-1 flex items-center gap-10 px-15">
-        {/* Logo de fundo */}
-        <div className="absolute inset-0 top-1/2 left-1/2 z-2 h-auto w-xl -translate-x-1/2 -translate-y-1/2">
-          <Image
-            src={`/Details/serp-simbolo-${logoColor}.png`}
-            alt=""
-            fill
-            draggable={false}
-            onContextMenu={(e) => e.preventDefault()}
-            className={`object-contain opacity-10`}
-          />
-        </div>
-        
+      <div className="relative z-1 flex w-full items-center gap-10 px-15">
         {/* Imagem Principal */}
         <div
-          className={`relative ${imgAntes ? "order-1" : "order-3"} ${tamanhoImagem} h-auto z-10`}
+          className={`relative ${imgAntes ? "order-1" : "order-3"} ${tamanhoImagem} z-10 h-auto`}
         >
           <AnimatedTabs
             animation="flip"
@@ -100,29 +91,33 @@ export default function CardModelo({
               {
                 label: "Frente",
                 content: (
-                  <Image
-                    src={img_principal1}
-                    alt={alt}
-                    width={width}
-                    height={height}
-                    draggable={false}
-                    onContextMenu={(e) => e.preventDefault()}
-                    className={`${classNameImage} ${tamanhoImagem} h-auto rounded-2xl`}
-                  />
+                  <div className={`relative flex ${contentAspect === "portrait" ? "h-[75svh]" : "h-auto"} w-full`}>
+                    <Image
+                      src={img_principal1}
+                      alt={alt}
+                      width={width}
+                      height={height}
+                      draggable={false}
+                      onContextMenu={(e) => e.preventDefault()}
+                      className={`${classNameImage} ${tamanhoImagem} h-auto rounded-2xl object-cover object-top`}
+                    />
+                  </div>
                 ),
               },
               {
-                label: "Verso",
+                label: "Costas",
                 content: (
-                  <Image
-                    src={img_principal2}
-                    alt={alt}
-                    width={width}
-                    height={height}
-                    draggable={false}
-                    onContextMenu={(e) => e.preventDefault()}
-                    className={`${classNameImage} ${tamanhoImagem} h-auto rounded-2xl`}
-                  />
+                  <div className={`relative flex ${contentAspect === "portrait" ? "h-[75svh]" : "h-auto"} w-full`}>
+                    <Image
+                      src={img_principal2}
+                      alt={alt}
+                      width={width}
+                      height={height}
+                      draggable={false}
+                      onContextMenu={(e) => e.preventDefault()}
+                      className={`${classNameImage} ${tamanhoImagem} h-auto rounded-2xl object-cover object-top`}
+                    />
+                  </div>
                 ),
               },
             ]}
@@ -201,6 +196,18 @@ export default function CardModelo({
             />
           </div>
         </div>
+      </div>
+
+      {/* Logo de fundo */}
+      <div className="absolute inset-0 top-1/2 left-1/2 z-0 h-auto w-xl -translate-x-1/2 -translate-y-1/2">
+        <Image
+          src={`/Details/serp-simbolo-${logoColor}.png`}
+          alt=""
+          fill
+          draggable={false}
+          onContextMenu={(e) => e.preventDefault()}
+          className={`object-contain opacity-10`}
+        />
       </div>
     </div>
   );

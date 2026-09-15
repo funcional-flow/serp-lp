@@ -71,7 +71,7 @@ export default function AnimatedTabs({
 
   const tabsNavigation = (
     <div
-      className={`flex gap-8 border-b ${lineColor} mb-12 ${tabsAlignmentClass}`}
+      className={`flex gap-8 border-b ${lineColor} mb-8 ${tabsAlignmentClass}`}
     >
       {tabs.map((tab, index) => {
         const isActive = index === activeTab;
@@ -123,6 +123,7 @@ export default function AnimatedTabs({
     >
       {tabs.map((tab) => (
         <SwiperSlide key={tab.label}>
+          {/* <div className="flex items-center justify-center">{tab.content}</div> */}
           <div>{tab.content}</div>
         </SwiperSlide>
       ))}
