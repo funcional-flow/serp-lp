@@ -14,18 +14,6 @@ export default function Modelos() {
     { src: "/logo_loop/branca/logo_loop_branca (3).png", alt: "Tech 3" },
     { src: "/logo_loop/branca/logo_loop_branca (4).png", alt: "Tech 4" },
   ];
-  //   const logosAmarela = [
-  //     { src: "/logo_loop/amarela/logo_loop_amarela (1).png", alt: "Tech 1" },
-  //     { src: "/logo_loop/amarela/logo_loop_amarela (2).png", alt: "Tech 2" },
-  //     { src: "/logo_loop/amarela/logo_loop_amarela (3).png", alt: "Tech 3" },
-  //     { src: "/logo_loop/amarela/logo_loop_amarela (4).png", alt: "Tech 4" },
-  //   ];
-  //   const logosRoxa = [
-  //     { src: "/logo_loop/roxa/logo_loop_roxa (1).png", alt: "Tech 1" },
-  //     { src: "/logo_loop/roxa/logo_loop_roxa (2).png", alt: "Tech 2" },
-  //     { src: "/logo_loop/roxa/logo_loop_roxa (3).png", alt: "Tech 3" },
-  //     { src: "/logo_loop/roxa/logo_loop_roxa (4).png", alt: "Tech 4" },
-  //   ];
 
   return (
     <div className="relative flex h-auto w-full flex-col bg-black">
@@ -48,10 +36,10 @@ export default function Modelos() {
             height={1672}
             contentAspect="portrait"
             larguraImagem="w-sm"
-            titulo="Minimal"
+            titulo="Minimal - boxy"
             texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
-            imgAntes={false}
-            background="bg-linear-to-b from-zinc-800 to-zinc-950"
+            imgAntes={true}
+            background="bg-zinc-950"
             textColor="text-white"
             textSecondaryColor="text-white/70"
             logoColor="white"
@@ -69,10 +57,10 @@ export default function Modelos() {
             height={1672}
             contentAspect="portrait"
             larguraImagem="w-sm"
-            titulo="serp"
+            titulo="Serp - boxy"
             texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
             imgAntes={false}
-            background="bg-linear-to-b from-white to-zinc-300"
+            background="bg-zinc-300"
             textColor="text-black"
             textSecondaryColor="text-black/70"
             logoColor="black"
@@ -80,6 +68,7 @@ export default function Modelos() {
             lineColor="border-black/25"
             linkCamisa="/padrao"
             buttonTextColor="text-white"
+            buttonShadowColor="hover:shadow-black/50"
           />
         </div>
       </div>
@@ -104,7 +93,7 @@ export default function Modelos() {
             height={1672}
             contentAspect="portrait"
             larguraImagem="w-sm"
-            titulo="Minimal"
+            titulo="Minimal - classica"
             texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
             imgAntes={false}
             background="bg-linear-to-t from-zinc-800 to-zinc-950"
@@ -125,7 +114,7 @@ export default function Modelos() {
             height={1672}
             contentAspect="portrait"
             larguraImagem="w-sm"
-            titulo="serp"
+            titulo="serp - classica"
             texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
             imgAntes={false}
             background="bg-linear-to-t from-white to-zinc-300"
@@ -159,7 +148,7 @@ export default function Modelos() {
             height={1672}
             contentAspect="portrait"
             larguraImagem="w-sm"
-            titulo="Minimal"
+            titulo="Minimal - regata"
             texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
             imgAntes={false}
             background="bg-linear-to-b from-zinc-800 to-zinc-950"
@@ -180,7 +169,7 @@ export default function Modelos() {
             height={1672}
             contentAspect="portrait"
             larguraImagem="w-sm"
-            titulo="serp"
+            titulo="serp - regata"
             texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
             imgAntes={false}
             background="bg-linear-to-b from-white to-zinc-300"

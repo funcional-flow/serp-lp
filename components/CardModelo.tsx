@@ -20,6 +20,7 @@ interface CardModeloProps {
   logoColor?: string;
   linkCamisa?: string;
   buttonTextColor?: string;
+  buttonShadowColor?: string;
   contentAspect?: "portrait" | "landscape";
   //   Tabs
   textSecondaryColor?: string;
@@ -46,12 +47,13 @@ export default function CardModelo({
   linkCamisa = "#pecas",
   buttonColor = "bg-black",
   buttonTextColor = "text-white",
+  buttonShadowColor = "hover:shadow-white/50",
   lineColor = "border-black/25",
   contentAspect = "portrait",
 }: CardModeloProps) {
   return (
     <div
-      className={`relative select-none flex h-full w-full items-center justify-center gap-5 ${background} px-12 opacity-25 transition-opacity duration-300 hover:opacity-100`}
+      className={`relative flex h-full w-full items-center justify-center gap-5 opacity-80 transition-opacity duration-500 select-none hover:opacity-100 ${background} px-12`}
     >
       <div
         className={`relative ${imgAntes ? "order-2" : "order-1"} flex flex-col items-center gap-5`}
@@ -63,26 +65,26 @@ export default function CardModelo({
             fill
             draggable={false}
             onContextMenu={(e) => e.preventDefault()}
-            className={`object-contain animate-image-pulse opacity-5`}
+            className={`animate-image-pulse object-contain opacity-5`}
           />
         </div>
         <h1
-          className={`font-metrim mt-20 text-center text-5xl tracking-widest z-1 uppercase ${textColor}`}
+          className={`font-metrim z-10 mt-20 mb-2 text-center text-4xl tracking-widest uppercase ${textColor}`}
         >
           {titulo}
         </h1>
-        <p className={`w-full text-center z-1 text-xl ${textSecondaryColor}`}>
+        <p className={`z-10 w-full text-center text-xl ${textSecondaryColor}`}>
           {texto}
         </p>
         <span
-          className={`font-montserrat mt-40 z-1 text-5xl font-bold ${textColor}`}
+          className={`font-montserrat z-10 mt-40 text-5xl font-bold ${textColor}`}
         >
           R$ 197,00
         </span>
         <a
           href={linkCamisa}
           target="_blank"
-          className={`${buttonColor} ${buttonTextColor} mt-5 z-1 flex w-xs items-center justify-center rounded-lg py-2 transition-all hover:scale-105 hover:shadow-lg hover:shadow-white/50`}
+          className={`${buttonColor} ${buttonTextColor} z-10 mt-5 flex w-xs items-center justify-center rounded-lg py-2 transition-all hover:scale-105 hover:shadow-lg ${buttonShadowColor}`}
         >
           Encomendar
         </a>
@@ -102,7 +104,7 @@ export default function CardModelo({
                 label: "Frente",
                 content: (
                   <div
-                    className={`relative flex bg-linear-to-b from-gray-500 to-gray-700 rounded-2xl transition-transform ${contentAspect === "portrait" ? "h-[75svh]" : "h-auto"} w-full`}
+                    className={`relative flex rounded-2xl bg-linear-to-b from-gray-500 to-gray-700 transition-transform ${contentAspect === "portrait" ? "h-[75svh]" : "h-auto"} w-full`}
                   >
                     <Image
                       src={img_modelo_frente}
@@ -120,7 +122,7 @@ export default function CardModelo({
                 label: "Costas",
                 content: (
                   <div
-                    className={`relative flex bg-linear-to-b from-gray-500 to-gray-700 rounded-2xl transition-transform ${contentAspect === "portrait" ? "h-[75svh]" : "h-auto"} w-full`}
+                    className={`relative flex rounded-2xl bg-linear-to-b from-gray-500 to-gray-700 transition-transform ${contentAspect === "portrait" ? "h-[75svh]" : "h-auto"} w-full`}
                   >
                     <Image
                       src={img_modelo_costas}
