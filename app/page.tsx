@@ -78,7 +78,7 @@ export default function Home() {
         </section>
         <footer>
           <div className="container mx-auto px-4">
-            <p>© 2025 Serpentize. Todos os direitos reservados.</p>
+            <p>© 2026 Serpentize. Todos os direitos reservados.</p>
           </div>
         </footer>
       </main>
