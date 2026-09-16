@@ -39,7 +39,7 @@ export default function Modelos() {
             titulo="Minimal - boxy"
             texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
             imgAntes={true}
-            background="bg-zinc-950"
+            background="bg-linear-to-b from-zinc-800 to-zinc-950"
             textColor="text-white"
             textSecondaryColor="text-white/70"
             logoColor="white"
@@ -60,7 +60,7 @@ export default function Modelos() {
             titulo="Serp - boxy"
             texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
             imgAntes={false}
-            background="bg-zinc-300"
+            background="bg-linear-to-b from-white to-zinc-300"
             textColor="text-black"
             textSecondaryColor="text-black/70"
             logoColor="black"

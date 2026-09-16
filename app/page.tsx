@@ -32,6 +32,7 @@ export default function Home() {
         <ScrollTransition
           background="bg-gray-400"
           transitionDuration={1250}
+          className="hidden lg:block"
           //   scaleDownFrom={1.05}
           panels={[
             <section key="carousel" id="carousel" className="relative z-0">
@@ -44,39 +45,39 @@ export default function Home() {
         />
         <section
           id="modelos"
-          className="bg-background relative z-1"
+          className="bg-background relative z-1 hidden lg:block"
         >
           <Modelos />
         </section>
 
-        <section id="diferenca" className="relative z-1">
+        <section id="diferenca" className="relative z-1 hidden lg:block">
           <DiferencaModelos />
         </section>
-        <section id="lifestyle" className="relative z-1">
+        <section id="lifestyle" className="relative z-1 hidden lg:block">
           <LifeStyle />
         </section>
-        <section id="qualidade" className="relative z-1">
+        <section id="qualidade" className="relative z-1 hidden lg:block">
           <Qualidade />
         </section>
-        <section id="depoimentos" className="relative z-1">
+        <section id="depoimentos" className="relative z-1 hidden lg:block">
           <Depoimentos />
         </section>
-        <section id="faq" className="relative z-1">
+        <section id="faq" className="relative z-1 hidden lg:block">
           <Faq />
         </section>
-        <section id="cta" className="relative z-1">
+        <section id="cta" className="relative z-1 hidden lg:block">
           <Cta />
         </section>
         <section
           id="final"
-          className="bg-purple1 relative z-1 flex h-svh flex-col items-center justify-center gap-5 select-none"
+          className="bg-purple1 relative z-1 flex h-svh w-full flex-col items-center justify-center gap-5 select-none"
         >
           <h1 className="font-metrim text-yellow1 text-7xl uppercase">
             serpentize
           </h1>
           <span className="text-yellow1 text-xl">EM BREVE . . .</span>
         </section>
-        <footer>
+        <footer className="hidden lg:block">
           <div className="container mx-auto px-4">
             <p>© 2026 Serpentize. Todos os direitos reservados.</p>
           </div>

@@ -12,6 +12,7 @@ interface ScrollTransitionProps {
   background?: string;
   scaleDownFrom?: number;
   transitionDuration?: number;
+  className?: string;
 }
 
 export default function ScrollTransition({
@@ -19,6 +20,7 @@ export default function ScrollTransition({
   background = "bg-background",
   scaleDownFrom = 1.05,
   transitionDuration = 2000,
+  className = "",
 }: ScrollTransitionProps) {
   const container = useRef<HTMLDivElement>(null);
 
@@ -111,7 +113,7 @@ export default function ScrollTransition({
   );
 
   return (
-    <section ref={container} className="relative">
+    <section ref={container} className={`relative ${className}`}>
       {/* Fundo permanente */}
       <div className={`absolute inset-0 ${background}`} />
 
