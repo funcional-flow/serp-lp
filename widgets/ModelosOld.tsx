@@ -1,4 +1,4 @@
-import CardModelo from "@/components/CardModelo";
+import CardModelo from "@/components/CardModeloOld";
 import LogoLoop from "@/components/LogoLoop";
 
 export default function Modelos() {
