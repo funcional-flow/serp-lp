@@ -3,9 +3,15 @@
 import { useState } from "react";
 import Preloader from "@/components/Preloader";
 import SerpCarousel from "@/components/SerpCarousel";
-import Details from "@/widgets/Details";
+import DiferencaModelos from "@/widgets/DiferencaModelos";
 import ScrollTransition from "@/components/gsap/ScrollTransition";
 import Modelos from "@/widgets/Modelos";
+import Manifesto from "@/widgets/Manifesto";
+import LifeStyle from "@/widgets/LifeStyle";
+import Qualidade from "@/widgets/Qualidade";
+import Depoimentos from "@/widgets/Depoimentos";
+import Faq from "@/widgets/Faq";
+import Cta from "@/widgets/Cta";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -20,7 +26,7 @@ export default function Home() {
 
   return (
     <>
-      {/* {loading && <Preloader onComplete={() => setLoading(false)} />} */}
+      {loading && <Preloader onComplete={() => setLoading(false)} />}
       {/* <header className="fixed top-0 left-0 w-full z-1000 bg-white">Dale</header> */}
       <main>
         <ScrollTransition
@@ -28,22 +34,39 @@ export default function Home() {
           transitionDuration={1250}
           //   scaleDownFrom={1.05}
           panels={[
-            <section key="carousel" className="sticky top-0 z-0 lg:sticky">
+            <section key="carousel" id="carousel" className="relative z-0">
               <SerpCarousel />
             </section>,
-            <section key="details" className="relative z-1">
-              <Details />
+            <section key="manifesto" id="manifesto" className="relative z-1">
+              <Manifesto />
             </section>,
           ]}
         />
         <section
-          key="modelos"
-          id="pecas"
+          id="modelos"
           className="bg-background relative z-1"
         >
           <Modelos />
         </section>
-        <section className="relative bg-white z-1">detalhes das peças / diferença das peças</section>
+
+        <section id="diferenca" className="relative z-1">
+          <DiferencaModelos />
+        </section>
+        <section id="lifestyle" className="relative z-1">
+          <LifeStyle />
+        </section>
+        <section id="qualidade" className="relative z-1">
+          <Qualidade />
+        </section>
+        <section id="depoimentos" className="relative z-1">
+          <Depoimentos />
+        </section>
+        <section id="faq" className="relative z-1">
+          <Faq />
+        </section>
+        <section id="cta" className="relative z-1">
+          <Cta />
+        </section>
         <section
           id="final"
           className="bg-purple1 relative z-1 flex h-svh flex-col items-center justify-center gap-5 select-none"
@@ -53,6 +76,11 @@ export default function Home() {
           </h1>
           <span className="text-yellow1 text-xl">EM BREVE . . .</span>
         </section>
+        <footer>
+          <div className="container mx-auto px-4">
+            <p>© 2025 Serpentize. Todos os direitos reservados.</p>
+          </div>
+        </footer>
       </main>
     </>
   );
