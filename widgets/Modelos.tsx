@@ -28,8 +28,7 @@ export default function Modelos() {
   //   ];
 
   return (
-    <div className="relative">
-      {/* ====== Card ====== */}
+    <div className="relative flex h-auto w-full flex-col bg-black">
       <div className="relative">
         <LogoLoop
           logos={logosBranca}
@@ -39,33 +38,52 @@ export default function Modelos() {
           className="bg-black"
         />
       </div>
-      <div className="relative">
-        <CardModelo
-          img_principal1="/modelos/modelo_principal_frente.png"
-          img_principal2="/modelos/modelo_principal_costas.png"
-          img_secundaria1="/Details/modelo_man2.png"
-          width={940}
-          height={1672}
-          tamanhoImagem="w-md"
-          contentAspect="portrait"
-        //   classNameImage=""
-          titulo="Boxy"
-          subtitulo="Lorem Ipsum Dolor"
-          texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
-          imgAntes={true}
-          corTexto="text-black"
-          corTextoSecundario="text-black/50"
-          background="bg-white"
-          borderColor="border-black"
-          buttonTextColor="text-white"
-          buttonColor="bg-black"
-          lineColor="border-black/25"
-          linkCamisa="/boxy"
-          //   Mesh colors for background gradient
-          backgroundMeshColors={["#FFFFFF", "#DFDFDF", "#C0C0C0"]}
-        />
+      <div className="relative flex h-svh">
+        {/* Primeira Sessão */}
+        <div className="relative flex w-1/2">
+          <CardModelo
+            img_modelo_frente="/modelos/modelo_principal_frente_transparente.png"
+            img_modelo_costas="/modelos/modelo_principal_costas_transparente.png"
+            width={940}
+            height={1672}
+            contentAspect="portrait"
+            larguraImagem="w-sm"
+            titulo="Minimal"
+            texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
+            imgAntes={false}
+            background="bg-linear-to-b from-zinc-800 to-zinc-950"
+            textColor="text-white"
+            textSecondaryColor="text-white/70"
+            logoColor="white"
+            buttonColor="bg-white"
+            lineColor="border-white/25"
+            linkCamisa="/padrao"
+            buttonTextColor="text-black"
+          />
+        </div>
+        <div className="relative flex w-1/2">
+          <CardModelo
+            img_modelo_frente="/modelos/modelo_principal_frente_transparente.png"
+            img_modelo_costas="/modelos/modelo_principal_costas_transparente.png"
+            width={940}
+            height={1672}
+            contentAspect="portrait"
+            larguraImagem="w-sm"
+            titulo="serp"
+            texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
+            imgAntes={false}
+            background="bg-linear-to-b from-white to-zinc-300"
+            textColor="text-black"
+            textSecondaryColor="text-black/70"
+            logoColor="black"
+            buttonColor="bg-black"
+            lineColor="border-black/25"
+            linkCamisa="/padrao"
+            buttonTextColor="text-white"
+          />
+        </div>
       </div>
-      {/* ====== Card ====== */}
+
       <div className="relative">
         <LogoLoop
           logos={logosPreta}
@@ -73,34 +91,55 @@ export default function Modelos() {
           fadeOutColor="var(--color-white)"
           ariaLabel="Serpentize"
           className="bg-white"
+          direction="right"
         />
       </div>
-      <div className="relative">
-        <CardModelo
-          img_principal1="/modelos/modelo_principal_frente.png"
-          img_principal2="/modelos/modelo_principal_costas.png"
-          img_secundaria1="/Details/modelo_man3.png"
-          width={1254}
-          height={1254}
-          tamanhoImagem="w-md"
-          contentAspect="portrait"
-          titulo="Padrao"
-          subtitulo="Lorem Ipsum Dolor"
-          buttonTextColor="text-black"
-          texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
-          imgAntes={false}
-          background="bg-black"
-          corTexto="text-white"
-          corTextoSecundario="text-white/50"
-          backgroundMeshColors={["#000000", "#131313", "#202020"]}
-          logoColor="white"
-          buttonColor="bg-white"
-          borderColor="border-white"
-          lineColor="border-white/25"
-          linkCamisa="/padrao"
-        />
+      <div className="relative flex h-svh">
+        {/* Segunda Sessão */}
+        <div className="relative order-2 flex w-1/2">
+          <CardModelo
+            img_modelo_frente="/modelos/modelo_principal_frente_transparente.png"
+            img_modelo_costas="/modelos/modelo_principal_costas_transparente.png"
+            width={940}
+            height={1672}
+            contentAspect="portrait"
+            larguraImagem="w-sm"
+            titulo="Minimal"
+            texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
+            imgAntes={false}
+            background="bg-linear-to-t from-zinc-800 to-zinc-950"
+            textColor="text-white"
+            textSecondaryColor="text-white/70"
+            logoColor="white"
+            buttonColor="bg-white"
+            lineColor="border-white/25"
+            linkCamisa="/padrao"
+            buttonTextColor="text-black"
+          />
+        </div>
+        <div className="relative order-1 flex w-1/2">
+          <CardModelo
+            img_modelo_frente="/modelos/modelo_principal_frente_transparente.png"
+            img_modelo_costas="/modelos/modelo_principal_costas_transparente.png"
+            width={940}
+            height={1672}
+            contentAspect="portrait"
+            larguraImagem="w-sm"
+            titulo="serp"
+            texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
+            imgAntes={false}
+            background="bg-linear-to-t from-white to-zinc-300"
+            textColor="text-black"
+            textSecondaryColor="text-black/70"
+            logoColor="black"
+            buttonColor="bg-black"
+            lineColor="border-black/25"
+            linkCamisa="/padrao"
+            buttonTextColor="text-white"
+          />
+        </div>
       </div>
-      {/* ====== Card ====== */}
+
       <div className="relative">
         <LogoLoop
           logos={logosBranca}
@@ -110,102 +149,51 @@ export default function Modelos() {
           className="bg-black"
         />
       </div>
-      <div className="relative">
-        <CardModelo
-          img_principal1="/modelos/modelo_principal_frente.png"
-          img_principal2="/modelos/modelo_principal_costas.png"
-          img_secundaria1="/Details/modelo_man2.png"
-          width={1254}
-          height={1254}
-          titulo="Regata"
-          contentAspect="portrait"
-          subtitulo="Lorem Ipsum Dolor"
-          texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
-          imgAntes={true}
-          tamanhoImagem="w-md"
-          corTexto="text-black"
-          corTextoSecundario="text-black/50"
-          background="bg-white"
-          backgroundMeshColors={["#FFFFFF", "#DFDFDF", "#C0C0C0"]}
-          borderColor="border-black"
-          buttonColor="bg-black"
-          buttonTextColor="text-white"
-          lineColor="border-black/25"
-          linkCamisa="/regata"
-        />
+      <div className="relative flex h-svh">
+        {/* Terceira Sessão */}
+        <div className="relative flex w-1/2">
+          <CardModelo
+            img_modelo_frente="/modelos/modelo_principal_frente_transparente.png"
+            img_modelo_costas="/modelos/modelo_principal_costas_transparente.png"
+            width={940}
+            height={1672}
+            contentAspect="portrait"
+            larguraImagem="w-sm"
+            titulo="Minimal"
+            texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
+            imgAntes={false}
+            background="bg-linear-to-b from-zinc-800 to-zinc-950"
+            textColor="text-white"
+            textSecondaryColor="text-white/70"
+            logoColor="white"
+            buttonColor="bg-white"
+            lineColor="border-white/25"
+            linkCamisa="/padrao"
+            buttonTextColor="text-black"
+          />
+        </div>
+        <div className="relative flex w-1/2">
+          <CardModelo
+            img_modelo_frente="/modelos/modelo_principal_frente_transparente.png"
+            img_modelo_costas="/modelos/modelo_principal_costas_transparente.png"
+            width={940}
+            height={1672}
+            contentAspect="portrait"
+            larguraImagem="w-sm"
+            titulo="serp"
+            texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
+            imgAntes={false}
+            background="bg-linear-to-b from-white to-zinc-300"
+            textColor="text-black"
+            textSecondaryColor="text-black/70"
+            logoColor="black"
+            buttonColor="bg-black"
+            lineColor="border-black/25"
+            linkCamisa="/padrao"
+            buttonTextColor="text-white"
+          />
+        </div>
       </div>
-      {/* Card 1 */}
-      {/* <div className="relative">
-        <LogoLoop
-          logos={logosAmarela}
-          fadeOut
-          fadeOutColor="var(--color-black)"
-          ariaLabel="Serpentize"
-          className="bg-black"
-        />
-      </div> */}
-      {/* <div className="relative">
-        <CardModelo
-          img_principal1="/Details/modelo_woman3.png"
-          img_secundaria1="/Details/modelo_woman3.png"
-          width={859}
-          height={858}
-          texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
-          imgAntes={true}
-          background="bg-black"
-          corTexto="text-white"
-          classNameImage="max-w-md"
-          larguraTexto="max-w-4xl"
-          backgroundMeshColors={["#dc9f38", "#FFAD20", "#D48700"]}
-        />
-      </div> */}
-      {/* Card 2 */}
-      {/* <div className="relative">
-        <LogoLoop
-          logos={logosRoxa}
-          fadeOut
-          fadeOutColor="var(--color-white)"
-          ariaLabel="Serpentize"
-          className="bg-white"
-        />
-      </div>
-      <div className="relative">
-        <CardModelo
-          img_principal1="/Details/modelo_man1.png"
-          width={507}
-          height={859}
-          texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
-          imgAntes={true}
-          background="bg-purple1"
-          corTexto="text-white"
-          classNameImage=""
-          backgroundMeshColors={["#3a1f61", "#311A52", "#401A75"]}
-        />
-      </div> */}
-      {/* Card 4 */}
-      {/* <div className="relative">
-        <LogoLoop
-          logos={logosAmarela}
-          fadeOut
-          fadeOutColor="var(--color-black)"
-          ariaLabel="Serpentize"
-          className="bg-black"
-        />
-      </div>
-      <div className="relative">
-        <CardModelo
-          img_principal1="/Details/modelo_woman4.png"
-          width={1053}
-          height={823}
-          texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
-          imgAntes={true}
-          background="bg-yellow-600"
-          corTexto="text-white"
-          classNameImage="max-w-md"
-          larguraTexto="max-w-4xl"
-          backgroundMeshColors={["#dc9f38", "#FFAD20", "#D48700"]}
-        />
-      </div> */}
     </div>
   );
 }
