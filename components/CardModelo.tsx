@@ -53,19 +53,19 @@ export default function CardModelo({
 }: CardModeloProps) {
   return (
     <div
-      className={`relative flex h-full w-full items-center justify-center gap-5 opacity-80 transition-opacity duration-500 select-none hover:opacity-100 ${background} px-12`}
+      className={`group relative flex h-full w-full items-center justify-center gap-5 opacity-80 transition-opacity duration-500 select-none hover:opacity-100 ${background} px-12`}
     >
       <div
         className={`relative ${imgAntes ? "order-2" : "order-1"} flex flex-col items-center gap-5`}
       >
-        <div className="absolute inset-0 top-1/2 left-1/2 z-0 h-auto w-md -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute inset-0 top-[62%] left-1/2 z-0 h-auto w-60 -translate-x-1/2 -translate-y-1/2">
           <Image
             src={`/Details/serp-simbolo-${logoColor}.png`}
             alt=""
             fill
             draggable={false}
             onContextMenu={(e) => e.preventDefault()}
-            className={`animate-image-pulse object-contain opacity-5`}
+            className={`animate-image-pulse object-contain opacity-0 transition-opacity duration-1000 group-hover:opacity-10`}
           />
         </div>
         <h1

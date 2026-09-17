@@ -116,7 +116,7 @@ export default function Modelos() {
             larguraImagem="w-sm"
             titulo="serp - classica"
             texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
-            imgAntes={false}
+            imgAntes={true}
             background="bg-linear-to-t from-white to-zinc-300"
             textColor="text-black"
             textSecondaryColor="text-black/70"
@@ -125,6 +125,7 @@ export default function Modelos() {
             lineColor="border-black/25"
             linkCamisa="/padrao"
             buttonTextColor="text-white"
+            buttonShadowColor="hover:shadow-black/50"
           />
         </div>
       </div>
@@ -150,7 +151,7 @@ export default function Modelos() {
             larguraImagem="w-sm"
             titulo="Minimal - regata"
             texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
-            imgAntes={false}
+            imgAntes={true}
             background="bg-linear-to-b from-zinc-800 to-zinc-950"
             textColor="text-white"
             textSecondaryColor="text-white/70"
@@ -180,6 +181,7 @@ export default function Modelos() {
             lineColor="border-black/25"
             linkCamisa="/padrao"
             buttonTextColor="text-white"
+            buttonShadowColor="hover:shadow-black/50"
           />
         </div>
       </div>
