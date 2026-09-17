@@ -185,6 +185,16 @@ export default function Modelos() {
           />
         </div>
       </div>
+      <div className="relative">
+        <LogoLoop
+          logos={logosPreta}
+          fadeOut
+          fadeOutColor="var(--color-white)"
+          ariaLabel="Serpentize"
+          className="bg-white"
+          direction="right"
+        />
+      </div>
     </div>
   );
 }
