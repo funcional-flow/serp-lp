@@ -50,14 +50,20 @@ export default function Home() {
           <Modelos />
         </section>
 
-        <section id="diferenca" className="relative z-1 hidden lg:block">
+        {/* <section id="diferenca" className="relative z-1 hidden lg:block lg:sticky lg:top-0">
           <DiferencaModelos />
+        </section> */}
+        <section
+          id="qualidade"
+          className="relative z-1 hidden lg:sticky lg:top-0 lg:block"
+        >
+          <Qualidade />
         </section>
         <section id="lifestyle" className="relative z-1 hidden lg:block">
-          <LifeStyle />
-        </section>
-        <section id="qualidade" className="relative z-1 hidden lg:block">
-          <Qualidade />
+          <div className="flex h-svh w-full items-center justify-center bg-linear-to-b from-white to-gray-300 px-24">
+            LifeStyle
+          </div>
+          {/* <LifeStyle /> */}
         </section>
         <section id="depoimentos" className="relative z-1 hidden lg:block">
           <Depoimentos />
