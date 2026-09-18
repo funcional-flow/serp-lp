@@ -14,13 +14,11 @@ type ImageItem = {
 
 interface BentoGalleryProps {
   background?: string;
-  imgPrincipal: string;
   images: ImageItem[];
 }
 
 export default function BentoGallery({
   background = "bg-black",
-  imgPrincipal,
   images,
 }: BentoGalleryProps) {
   if (images.length === 0) {
