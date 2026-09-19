@@ -53,7 +53,7 @@ export default function CardModelo({
 }: CardModeloProps) {
   return (
     <div
-      className={`group relative flex h-full w-full items-center justify-center gap-5 opacity-80 transition-opacity duration-500 select-none hover:opacity-100 ${background} px-12`}
+      className={`group relative flex h-full w-full items-center justify-center gap-5 brightness-80 transition-all duration-500 select-none hover:brightness-100 ${background} px-12`}
     >
       <div
         className={`relative ${imgAntes ? "order-2" : "order-1"} flex flex-col items-center gap-5`}

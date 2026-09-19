@@ -55,15 +55,15 @@ export default function Home() {
         </section> */}
         <section
           id="qualidade"
-          className="relative z-1 hidden lg:sticky lg:top-0 lg:block"
+          className="sticky top-0 z-1 hidden lg:block "
         >
           <Qualidade />
         </section>
         <section id="lifestyle" className="relative z-1 hidden lg:block">
-          <div className="flex h-svh w-full items-center justify-center bg-linear-to-b from-white to-gray-300 px-24">
+          {/* <div className="flex h-svh w-full items-center justify-center bg-linear-to-b from-white to-gray-300 px-24">
             LifeStyle
-          </div>
-          {/* <LifeStyle /> */}
+          </div> */}
+          <LifeStyle />
         </section>
         <section id="depoimentos" className="relative z-1 hidden lg:block">
           <Depoimentos />

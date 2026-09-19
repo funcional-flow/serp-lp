@@ -38,6 +38,8 @@ interface AnimatedTabsProps {
   lineColor?: string;
 
   activeColor?: string;
+
+  grabCursor?: boolean;
 }
 
 export default function AnimatedTabs({
@@ -53,9 +55,11 @@ export default function AnimatedTabs({
 
   textSecondaryColor = "text-muted-foreground",
 
-  lineColor = "bg-foreground",
+  lineColor = "border-background/50",
 
   activeColor = "bg-foreground",
+
+  grabCursor = true,
 }: AnimatedTabsProps) {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -114,7 +118,9 @@ export default function AnimatedTabs({
     <Swiper
       modules={[EffectFlip]}
       effect={animation === "flip" ? "flip" : "slide"}
-      grabCursor
+      grabCursor={grabCursor}
+      allowTouchMove={grabCursor}
+      simulateTouch={grabCursor}
       onSwiper={setSwiperInstance}
       onSlideChange={(swiper) => {
         setActiveTab(swiper.activeIndex);

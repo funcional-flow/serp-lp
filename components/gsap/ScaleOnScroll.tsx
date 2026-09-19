@@ -10,11 +10,15 @@ gsap.registerPlugin(ScrollTrigger);
 interface ScaleOnScrollProps {
   children: ReactNode;
   scale?: number;
+  startAnimation?: string;
+  opacity?: number;
 }
 
 export default function ScaleOnScroll({
   children,
-  scale=0.85
+  scale=0.85,
+  startAnimation="top", // Pode ser 0px também.
+  opacity=1
 }: ScaleOnScrollProps) {
   const container = useRef<HTMLDivElement>(null);
 
@@ -30,12 +34,14 @@ export default function ScaleOnScroll({
         content,
         {
           scale: 1,
+          opacity:1,
         },
         {
           scale: scale,
+          opacity: opacity,
           scrollTrigger: {
             trigger: container.current,
-            start: "top top",
+            start: `${startAnimation} top`,
             end: "+=2000",
             scrub: true,
           },
