@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import BackgroundMesh from "./BackgroundMesh";
 import AnimatedTabs from "./AnimatedTabs";
 
 interface CardModeloProps {

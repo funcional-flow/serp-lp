@@ -12,6 +12,8 @@ import Qualidade from "@/widgets/Qualidade";
 import Depoimentos from "@/widgets/Depoimentos";
 import Faq from "@/widgets/Faq";
 import Cta from "@/widgets/Cta";
+import Simbologia from "@/widgets/Simbologia";
+import SerpVideo from "@/widgets/SerpVideo";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -65,8 +67,14 @@ export default function Home() {
           </div> */}
           <LifeStyle />
         </section>
+        <section id="simbologia" className="relative z-1 hidden lg:block">
+          <Simbologia />
+        </section>
         <section id="depoimentos" className="relative z-1 hidden lg:block">
           <Depoimentos />
+        </section>
+        <section id="serpvideo" className="relative z-1 hidden lg:block">
+          <SerpVideo />
         </section>
         <section id="faq" className="relative z-1 hidden lg:block">
           <Faq />
