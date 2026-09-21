@@ -4,7 +4,7 @@ export default function LifeStyle() {
   return (
     <div className="relative bg-linear-to-b from-white to-gray-300">
       <BentoGallery
-        background="bg-linear-to-b from-black to-zinc-600"
+        background="bg-black"
         images={[
             // "/lifestyle/lifestyle_principal.jpg",
             {src: "/modelo_woman_urban.png", classNameImg: "object-cover"},
