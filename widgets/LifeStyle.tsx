@@ -7,11 +7,11 @@ export default function LifeStyle() {
         background="bg-black"
         images={[
             // "/lifestyle/lifestyle_principal.jpg",
-            {src: "/modelo_woman_urban.png", classNameImg: "object-cover"},
+            {src: "/lifestyle/lifestyle_principal1.png", classNameImg: "object-cover"},
             // {src: "/logo_loop/branca/logo_loop_branca (2).png", classNameImg: "object-contain"},
-            {src: "/lifestyle/lifestyle1.jpg", classNameImg: "object-cover object-[center_43%]"},
+            {src: "/lifestyle/lifestyle1.jpg", classNameImg: "object-cover object-[center_55%]"},
             {src: "/lifestyle/lifestyle2.jpg", classNameImg: "object-cover object-[center_50%]"},
-            {src: "/lifestyle/lifestyle3.jpg", classNameImg: "object-cover object-[50%]"},
+            {src: "/lifestyle/lifestyle3.jpg", classNameImg: "object-cover object-[center_30%]"},
             {src: "/lifestyle/lifestyle4.jpg", classNameImg: "object-cover object-[center_40%]"},
             {src: "/lifestyle/lifestyle5.jpg", classNameImg: "object-cover"},
             {src: "/lifestyle/lifestyle6.jpg", classNameImg: "object-cover"},

@@ -23,6 +23,7 @@ export default function Qualidade() {
           textColor="text-white"
           textSecondaryColor="text-white/60"
           grabCursor={false}
+          classNameSwiper="rounded-2xl"
           tabs={[
             {
               label: "Modelo Boxy",

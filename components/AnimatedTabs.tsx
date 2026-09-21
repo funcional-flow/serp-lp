@@ -40,6 +40,8 @@ interface AnimatedTabsProps {
   activeColor?: string;
 
   grabCursor?: boolean;
+
+  classNameSwiper?: string;
 }
 
 export default function AnimatedTabs({
@@ -60,6 +62,8 @@ export default function AnimatedTabs({
   activeColor = "bg-foreground",
 
   grabCursor = true,
+
+  classNameSwiper,
 }: AnimatedTabsProps) {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -125,7 +129,7 @@ export default function AnimatedTabs({
       onSlideChange={(swiper) => {
         setActiveTab(swiper.activeIndex);
       }}
-      className="w-full"
+      className={`w-full ${classNameSwiper}`}
     >
       {tabs.map((tab) => (
         <SwiperSlide key={tab.label}>

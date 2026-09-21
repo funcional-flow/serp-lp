@@ -13,7 +13,7 @@ export default function QualidadeCard({
   image2,
 }: QualidadeCardProps) {
   return (
-    <div className="h-[75svh] w-full rounded-2xl bg-linear-to-b from-white to-gray-300 py-6 select-none">
+    <div className="h-[75svh] w-full bg-linear-to-b from-white to-gray-300 py-6 select-none">
       <div className="flex items-center justify-center">
         {/* Imagem Esquerda */}
         <div className="flex w-1/3 flex-col items-center gap-5">
