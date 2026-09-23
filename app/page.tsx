@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Preloader from "@/components/Preloader";
 import SerpCarousel from "@/components/SerpCarousel";
-import DiferencaModelos from "@/widgets/DiferencaModelos";
 import ScrollTransition from "@/components/gsap/ScrollTransition";
 import Modelos from "@/widgets/Modelos";
 import Manifesto from "@/widgets/Manifesto";

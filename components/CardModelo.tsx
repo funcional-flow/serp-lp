@@ -83,7 +83,7 @@ export default function CardModelo({
         <a
           href={linkCamisa}
           target="_blank"
-          className={`${buttonColor} ${buttonTextColor} z-10 mt-5 flex w-xs items-center justify-center rounded-lg py-2 transition-all hover:scale-105 hover:shadow-lg ${buttonShadowColor}`}
+          className={`${buttonColor} ${buttonTextColor} z-10 mt-5 flex w-30 items-center justify-center rounded-lg py-2 transition-all hover:scale-105 hover:shadow-lg ${buttonShadowColor}`}
         >
           Encomendar
         </a>

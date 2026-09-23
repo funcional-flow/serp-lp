@@ -1,5 +1,5 @@
 import CardModelo from "@/components/CardModelo";
-import LogoLoop from "@/components/LogoLoop";
+import LogoLoop from "@/components/reactbits/LogoLoop";
 
 export default function Modelos() {
   const logosPreta = [
@@ -73,7 +73,7 @@ export default function Modelos() {
         </div>
       </div>
 
-      <div className="relative">
+      {/* <div className="relative">
         <LogoLoop
           logos={logosPreta}
           fadeOut
@@ -84,7 +84,6 @@ export default function Modelos() {
         />
       </div>
       <div className="relative flex h-svh">
-        {/* Segunda Sessão */}
         <div className="relative order-2 flex w-1/2">
           <CardModelo
             img_modelo_frente="/modelos/modelo_principal_frente_transparente.png"
@@ -140,7 +139,6 @@ export default function Modelos() {
         />
       </div>
       <div className="relative flex h-svh">
-        {/* Terceira Sessão */}
         <div className="relative flex w-1/2">
           <CardModelo
             img_modelo_frente="/modelos/modelo_principal_frente_transparente.png"
@@ -184,7 +182,8 @@ export default function Modelos() {
             buttonShadowColor="hover:shadow-black/50"
           />
         </div>
-      </div>
+      </div> */}
+      
       <div className="relative">
         <LogoLoop
           logos={logosPreta}

@@ -1,5 +1,5 @@
 import CardModelo from "@/components/CardModeloOld";
-import LogoLoop from "@/components/LogoLoop";
+import LogoLoop from "@/components/reactbits/LogoLoop";
 
 export default function Modelos() {
   const logosPreta = [

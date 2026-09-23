@@ -5,13 +5,18 @@ interface SimbologiaCarouselProps {
   alt?: string;
 }
 
-export default function SimbologiaCarousel({ src, alt }: SimbologiaCarouselProps) {
+export default function SimbologiaCarousel({
+  src,
+  alt,
+}: SimbologiaCarouselProps) {
   return (
     <div className="relative flex h-180 w-full">
       <Image
         src={src}
         alt={alt || "Modelo"}
         fill
+        draggable={false}
+        onContextMenu={(e) => e.preventDefault()}
         className="object-cover"
       />
     </div>
