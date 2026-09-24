@@ -15,6 +15,7 @@ export default function SimbologiaCarousel({
         src={src}
         alt={alt || "Modelo"}
         fill
+        sizes="(max-width: 768px) 100vw"
         draggable={false}
         onContextMenu={(e) => e.preventDefault()}
         className="object-cover"

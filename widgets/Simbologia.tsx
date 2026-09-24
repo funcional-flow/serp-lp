@@ -1,24 +1,27 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-import type { Swiper as SwiperInstance } from "swiper";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
-import { Autoplay, EffectFade } from "swiper/modules";
-
-import "swiper/css/effect-fade";
 import SimbologiaCarousel from "@/components/SimbologiaCarousel";
 import { simbologiaDados } from "@/config/simbologia_dados";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperInstance } from "swiper";
+import {
+  Autoplay,
+  EffectCreative,
+} from "swiper/modules";
+import "swiper/css/effect-fade";
+import "swiper/css";
 
 export default function Simbologia() {
   const [swiper, setSwiper] = useState<SwiperInstance | null>(null);
   return (
-    <div className="w-full gap-10 relative flex min-h-[110svh] bg-linear-to-b from-white to-gray-300 px-30">
+    <div className="relative flex min-h-[110svh] w-full gap-10 bg-linear-to-b from-white to-gray-300 px-30">
       <div className="absolute inset-0 z-0 opacity-5">
         <Image
-        //   src="/fundo1.jpg"
+          //   src="/fundo1.jpg"
           src="/simbologia/urban3.jpg"
           alt="Simbologia"
           fill
@@ -30,12 +33,11 @@ export default function Simbologia() {
       <div className="absolute inset-0 z-0 opacity-5"></div>
       {/* Lado Esquerdo */}
       <div className="relative z-1 mt-35 flex w-1/2 flex-col items-center">
-        <div className="group pointer-events-none relative w-2xl">
+        <div className="group relative w-2xl">
           <div className="absolute -top-1 -right-1 -bottom-1 -left-1 rounded-2xl bg-black transition-all duration-300 group-hover:scale-101 group-hover:bg-linear-to-b group-hover:from-black group-hover:to-zinc-950 group-hover:shadow-lg group-hover:shadow-black" />
           <Swiper
-            spaceBetween={50}
+            spaceBetween={675}
             slidesPerView={1}
-            effect={"fade"}
             loop={true}
             grabCursor={true}
             allowTouchMove={true}
@@ -46,9 +48,20 @@ export default function Simbologia() {
               delay: 7500,
               disableOnInteraction: false,
             }}
-            modules={[Autoplay, EffectFade]}
-            className="rounded-2xl transition-all duration-300 group-hover:scale-101"
+            modules={[Autoplay]}
+            className="relative rounded-2xl transition-all duration-300 group-hover:scale-101"
           >
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Image
+                src="/logo_branca.png"
+                alt="Simbologia"
+                width={500}
+                height={500}
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
+                className="h-50 w-auto opacity-20"
+              />
+            </div>
             {simbologiaDados.map((modelo, index) => (
               <SwiperSlide key={index}>
                 <SimbologiaCarousel src={modelo.src} alt={modelo.alt} />
