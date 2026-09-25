@@ -95,7 +95,7 @@ export default function SlideWithThumb({
                     : navigationLength === "lg"
                       ? "h-20 w-20 stroke-1"
                       : ""
-              } ${navigationColor}`}
+              } ${navigationColor} z-1`}
             />
           </button>
 
@@ -114,7 +114,7 @@ export default function SlideWithThumb({
                     : navigationLength === "lg"
                       ? "h-20 w-20 stroke-1"
                       : ""
-              } ${navigationColor}`}
+              } ${navigationColor} z-1`}
             />
           </button>
         </Swiper>

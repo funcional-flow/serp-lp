@@ -10,7 +10,7 @@ export default function Manifesto() {
         </h1>
         <div className="relative flex w-1/3 items-center justify-center">
           <Image
-            src="/camisa2_transparente.png"
+            src="/manifesto/camisa2_transparente.png"
             alt="Serpentize"
             width={1254}
             height={1254}

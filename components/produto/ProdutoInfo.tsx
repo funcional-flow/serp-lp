@@ -36,10 +36,11 @@ export default function ProdutoInfo({
       </p>
       <p className="font-montserrat flex flex-col pt-10 text-2xl font-bold">
         <span>R$ {precoFinal}</span>
+        <span className="text-sm font-normal">Até 4x de R$ 49,98</span>
       </p>
       <a
         href="#"
-        className="mt-5 flex w-xs items-center justify-center rounded-lg bg-black py-2 text-white"
+        className="mt-5 flex w-full items-center justify-center rounded-lg bg-black py-2 text-white"
       >
         Comprar Agora
       </a>

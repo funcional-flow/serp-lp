@@ -12,6 +12,7 @@ export default function ProdutoGaleria({ product }: ProdutoGaleriaProps) {
         dragabble={false}
         images={product.images}
         navigationLength="lg"
+        navigationColor="text-black"
         activeThumbClassName="border-black"
         imageClassName="object-contain"
         // cardClassName="bg-gray-500"
