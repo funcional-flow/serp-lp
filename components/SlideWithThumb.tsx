@@ -24,6 +24,8 @@ interface SlideWithThumbProps {
   navigationLength?: NavigationLength;
   navigationColor?: string;
   dragabble?: boolean;
+  thumbClassName?: string;
+  imageClassName?: string;
 }
 
 export default function SlideWithThumb({
@@ -31,12 +33,14 @@ export default function SlideWithThumb({
   navigationLength = "md",
   navigationColor = "text-white",
   dragabble = true,
+  thumbClassName,
+  imageClassName,
 }: SlideWithThumbProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div className="h-full w-full">
+    <div className="h-[79.8%] w-full">
       {/* Swiper principal */}
       <Swiper
         modules={[Thumbs, Navigation]}
@@ -63,7 +67,9 @@ export default function SlideWithThumb({
               src={image.src}
               alt={image.alt}
               fill
-              className="h-full w-full object-cover"
+              draggable={false}
+              onContextMenu={(e) => e.preventDefault()}
+              className={`h-full w-full object-cover object-center ${imageClassName}`}
             />
           </SwiperSlide>
         ))}
@@ -122,15 +128,18 @@ export default function SlideWithThumb({
           return (
             <SwiperSlide key={index}>
               <div
-                className={`aspect-square cursor-pointer overflow-hidden rounded-md transition-all duration-200 ${
+                className={`aspect-square cursor-grab overflow-hidden transition-all duration-200 ${
                   isActive ? "opacity-100" : "opacity-50 hover:opacity-100"
-                } `}
+                } ${thumbClassName}`}
               >
                 <Image
                   src={image.src}
                   alt={image.alt}
-                  fill
-                  className="object-cover object-center"
+                  width={150}
+                  height={150}
+                  draggable={false}
+                  onContextMenu={(e) => e.preventDefault()}
+                  className="aspect-square object-cover"
                 />
               </div>
             </SwiperSlide>
