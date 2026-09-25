@@ -9,6 +9,7 @@ gsap.registerPlugin(Flip, ScrollTrigger);
 
 type ImageItem = {
     src: string;
+    alt: string;
     classNameImg?: string;
 }
 
@@ -23,13 +24,13 @@ export default function BentoGallery({
 }: BentoGalleryProps) {
   if (images.length === 0) {
     images = [
-      { src: "/teste_gsap/portrait-image-12.jpg" },
-      { src: "/teste_gsap/portrait-image-9.jpg" },
-      { src: "/teste_gsap/portrait-image-5.jpg" },
-      { src: "/teste_gsap/portrait-image-4.jpg" },
-      { src: "/teste_gsap/portrait-image-3.jpg" },
-      { src: "/teste_gsap/portrait-image-2.jpg" },
-      { src: "/teste_gsap/portrait-image-1.jpg" },
+      { src: "/teste_gsap/portrait-image-12.jpg", alt: "Imagem 1" },
+      { src: "/teste_gsap/portrait-image-9.jpg", alt: "Imagem 2" },
+      { src: "/teste_gsap/portrait-image-5.jpg", alt: "Imagem 3" },
+      { src: "/teste_gsap/portrait-image-4.jpg", alt: "Imagem 4" },
+      { src: "/teste_gsap/portrait-image-3.jpg", alt: "Imagem 5" },
+      { src: "/teste_gsap/portrait-image-2.jpg", alt: "Imagem 6" },
+      { src: "/teste_gsap/portrait-image-1.jpg", alt: "Imagem 7" },
     ];
   }
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -114,7 +115,7 @@ export default function BentoGallery({
             /> */}
             <Image
               src={image.src}
-              alt=""
+              alt={image.alt || ""}
               fill
               className={`h-full w-full ${image.classNameImg || ""}`}
             />
