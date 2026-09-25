@@ -6,11 +6,11 @@ type ImageItem = {
 };
 
 const boxy_preta_serp: ImageItem[] = [
-  { src: "/pagina_camisetas/boxy_serp_preta/camisa2.jpg", alt: "" },
   {
     src: "/pagina_camisetas/boxy_serp_preta/camisa2_transparente.png",
     alt: "",
   },
+  { src: "/pagina_camisetas/boxy_serp_preta/camisa2.jpg", alt: "" },
   {
     src: "/pagina_camisetas/boxy_serp_preta/modelo_principal_frente_transparente.png",
     alt: "",
@@ -30,7 +30,7 @@ export const products: Product[] = [
     name: "Camiseta Preta Modelo Boxy Estampa Serp",
     description:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium ullam dolores maiores molestias facere iusto nesciunt natus nulla, doloribus quis magni dolorem voluptatibus odio recusandae, magnam consequatur laboriosam rem tempora.",
-    price: 19990,
+    price: 16990,
     images: boxy_preta_serp,
     type: "clothing",
     sizes: [

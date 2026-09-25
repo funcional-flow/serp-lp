@@ -13,9 +13,9 @@ export default function ProdutoGaleria({ product }: ProdutoGaleriaProps) {
         images={product.images}
         navigationLength="lg"
         navigationColor="text-black"
-        activeThumbClassName="border-black"
+        activeThumbClassName="border-black/25"
         imageClassName="object-contain"
-        // cardClassName="bg-gray-500"
+        // cardClassName=""
         // thumbClassName="bg-black"
       />
     </div>
