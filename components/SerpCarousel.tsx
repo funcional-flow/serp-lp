@@ -12,7 +12,7 @@ const slides = [
         h_img_background={343}
         className_background="lg:w-4xl w-sm opacity-5 animate-image-pulse-reverse"
         // Modelo
-        src="/modelo_woman21.png"
+        src="/Hero/modelo_woman21.png"
         width={216}
         height={847}
         className_img="w-40 pt-50 lg:w-51 lg:pt-6 animate-image-pulse"
@@ -41,7 +41,7 @@ const slides = [
         h_img_background={343}
         className_background="lg:w-4xl w-sm opacity-5 animate-image-pulse"
         // Modelo
-        src="/modelo_woman11.png"
+        src="/Hero/modelo_woman11.png"
         width={333}
         height={862}
         className_img="w-50 ml-6 pt-50 lg:w-69 lg:pt-6 animate-image-pulse-reverse"

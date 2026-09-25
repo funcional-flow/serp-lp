@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import AnimatedTabs from "./AnimatedTabs";
+import Link from "next/link";
 
 interface CardModeloProps {
   img_modelo_frente: string;
@@ -80,13 +81,13 @@ export default function CardModelo({
         >
           R$ 197,00
         </span>
-        <a
+        <Link
           href={linkCamisa}
-          target="_blank"
+        //   target="_blank"
           className={`${buttonColor} ${buttonTextColor} z-10 mt-5 flex w-30 items-center justify-center rounded-lg py-2 transition-all hover:scale-105 hover:shadow-lg ${buttonShadowColor}`}
         >
           Encomendar
-        </a>
+        </Link>
       </div>
       <div className={`relative ${imgAntes ? "order-1" : "order-2"}`}>
         <div className={`relative flex ${larguraImagem}`}>

@@ -7,11 +7,15 @@ interface ProdutoGaleriaProps {
 
 export default function ProdutoGaleria({ product }: ProdutoGaleriaProps) {
   return (
-    <div className="h-150 w-150">
+    <div className="h-full w-full">
       <SlideWithThumb
         dragabble={false}
         images={product.images}
         navigationLength="lg"
+        activeThumbClassName="border-black"
+        imageClassName="object-contain"
+        // cardClassName="bg-gray-500"
+        // thumbClassName="bg-black"
       />
     </div>
   );

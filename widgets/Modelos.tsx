@@ -45,7 +45,7 @@ export default function Modelos() {
             logoColor="white"
             buttonColor="bg-white"
             lineColor="border-white/25"
-            linkCamisa="/padrao"
+            linkCamisa="/pecas/preta-boxy-serp"
             buttonTextColor="text-black"
           />
         </div>
@@ -66,7 +66,7 @@ export default function Modelos() {
             logoColor="black"
             buttonColor="bg-black"
             lineColor="border-black/25"
-            linkCamisa="/padrao"
+            linkCamisa="/pecas/preta-boxy-serp"
             buttonTextColor="text-white"
             buttonShadowColor="hover:shadow-black/50"
           />
