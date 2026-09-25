@@ -26,6 +26,8 @@ interface SlideWithThumbProps {
   dragabble?: boolean;
   thumbClassName?: string;
   imageClassName?: string;
+  activeThumbClassName?: string;
+  background?: string;
 }
 
 export default function SlideWithThumb({
@@ -34,13 +36,15 @@ export default function SlideWithThumb({
   navigationColor = "text-white",
   dragabble = true,
   thumbClassName,
-  imageClassName,
+  imageClassName = "object-cover object-center",
+  activeThumbClassName,
+  background,
 }: SlideWithThumbProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div className="h-[79.8%] w-full">
+    <div className="h-full w-full">
       {/* Swiper principal */}
       <Swiper
         modules={[Thumbs, Navigation]}
@@ -59,7 +63,7 @@ export default function SlideWithThumb({
         grabCursor={dragabble}
         allowTouchMove={dragabble}
         simulateTouch={dragabble}
-        className="h-full w-full"
+        className={`h-full w-full ${background}`}
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
@@ -69,7 +73,7 @@ export default function SlideWithThumb({
               fill
               draggable={false}
               onContextMenu={(e) => e.preventDefault()}
-              className={`h-full w-full object-cover object-center ${imageClassName}`}
+              className={`h-full w-full ${imageClassName}`}
             />
           </SwiperSlide>
         ))}
@@ -120,7 +124,7 @@ export default function SlideWithThumb({
         spaceBetween={8}
         slidesPerView={5}
         watchSlidesProgress
-        className="mt-2"
+        className={`mt-2 ${background}`}
       >
         {images.map((image, index) => {
           const isActive = index === activeIndex;
@@ -129,8 +133,10 @@ export default function SlideWithThumb({
             <SwiperSlide key={index}>
               <div
                 className={`aspect-square cursor-grab overflow-hidden transition-all duration-200 ${
-                  isActive ? "opacity-100" : "opacity-50 hover:opacity-100"
-                } ${thumbClassName}`}
+                  isActive
+                    ? `${activeThumbClassName} opacity-100`
+                    : "opacity-50 hover:opacity-100"
+                }`}
               >
                 <Image
                   src={image.src}
@@ -139,7 +145,7 @@ export default function SlideWithThumb({
                   height={150}
                   draggable={false}
                   onContextMenu={(e) => e.preventDefault()}
-                  className="aspect-square object-cover"
+                  className={`${thumbClassName} aspect-square object-cover`}
                 />
               </div>
             </SwiperSlide>
