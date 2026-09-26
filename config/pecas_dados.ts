@@ -19,8 +19,8 @@ const boxy_preta_serp: ImageItem[] = [
     src: "/pagina_camisetas/boxy_serp_preta/modelo_principal_costas_transparente.png",
     alt: "",
   },
-  { src: "/pagina_camisetas/boxy_serp_preta/modelo_man.jfif", alt: "" },
-  { src: "/pagina_camisetas/boxy_serp_preta/modelo_woman.jfif", alt: "" },
+  { src: "/pagina_camisetas/boxy_serp_preta/modelo_man.jpg", alt: "" },
+  { src: "/pagina_camisetas/boxy_serp_preta/modelo_woman.jpg", alt: "" },
 ];
 
 export const products: Product[] = [

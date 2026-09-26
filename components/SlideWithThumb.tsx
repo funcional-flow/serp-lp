@@ -127,7 +127,7 @@ export default function SlideWithThumb({
         spaceBetween={8}
         slidesPerView={5}
         watchSlidesProgress
-        className={`mt-2 h-auto w-full shrink-0`}
+        className={`mt-2 h-auto w-full shrink-0 cursor-grab`}
       >
         {images.map((image, index) => {
           const isActive = index === activeIndex;
@@ -135,7 +135,7 @@ export default function SlideWithThumb({
           return (
             <SwiperSlide key={index}>
               <div
-                className={`aspect-square cursor-grab overflow-hidden transition-all duration-200 ${
+                className={`aspect-square overflow-hidden transition-all duration-200 ${
                   isActive
                     ? `${activeThumbClassName} border opacity-100`
                     : "border border-transparent opacity-50 hover:opacity-100"
@@ -148,7 +148,7 @@ export default function SlideWithThumb({
                   height={150}
                   draggable={false}
                   onContextMenu={(e) => e.preventDefault()}
-                  className={`${thumbClassName} aspect-square object-contain`}
+                  className={`${thumbClassName} aspect-square object-contain hover:cursor-pointer`}
                 />
               </div>
             </SwiperSlide>

@@ -13,7 +13,7 @@ export default function ProdutoGaleria({ product }: ProdutoGaleriaProps) {
         images={product.images}
         navigationLength="lg"
         navigationColor="text-black"
-        activeThumbClassName="border-black/25"
+        activeThumbClassName="border-black/15"
         imageClassName="object-contain"
         // cardClassName=""
         // thumbClassName="bg-black"
