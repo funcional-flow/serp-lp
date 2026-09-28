@@ -54,23 +54,17 @@ export default function Home() {
         {/* <section id="diferenca" className="relative z-1 hidden lg:block lg:sticky lg:top-0">
           <DiferencaModelos />
         </section> */}
-        <section
-          id="qualidade"
-          className="sticky top-0 z-1 hidden lg:block "
-        >
+        <section id="qualidade" className="sticky top-0 z-1 hidden lg:block">
           <Qualidade />
         </section>
         <section id="lifestyle" className="relative z-1 hidden lg:block">
-          {/* <div className="flex h-svh w-full items-center justify-center bg-linear-to-b from-white to-gray-300 px-24">
-            LifeStyle
-          </div> */}
           <LifeStyle />
-        </section>
-        <section id="simbologia" className="relative z-1 hidden lg:block">
-          <Simbologia />
         </section>
         <section id="depoimentos" className="relative z-1 hidden lg:block">
           <Depoimentos />
+        </section>
+        <section id="simbologia" className="relative z-1 hidden lg:block">
+          <Simbologia />
         </section>
         <section id="serpvideo" className="relative z-1 hidden lg:block">
           <SerpVideo />
@@ -81,7 +75,7 @@ export default function Home() {
         <section id="cta" className="relative z-1 hidden lg:block">
           <Cta />
         </section>
-        <section
+        {/* <section
           id="final"
           className="bg-purple1 relative z-1 flex h-svh w-full flex-col items-center justify-center gap-5 select-none"
         >
@@ -89,10 +83,12 @@ export default function Home() {
             serpentize
           </h1>
           <span className="text-yellow1 text-xl">EM BREVE . . .</span>
-        </section>
-        <footer className="hidden lg:block">
+        </section> */}
+        <footer className="relative z-10 hidden bg-gray-500 lg:block">
           <div className="container mx-auto px-4">
-            <p>© 2026 Serpentize. Todos os direitos reservados.</p>
+            <p className="text-white">
+              © 2026 Serpentize. Todos os direitos reservados.
+            </p>
           </div>
         </footer>
       </main>

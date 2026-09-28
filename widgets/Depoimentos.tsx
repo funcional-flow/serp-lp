@@ -1,7 +1,59 @@
+import LogoLoop from "@/components/reactbits/LogoLoop";
+import TestimonialsCard from "@/components/TestimonialsCard";
+import Image from "next/image";
+
 export default function Depoimentos() {
   return (
-    <div className="flex h-svh w-full items-center justify-center bg-linear-to-b from-white to-gray-300 px-24">
-      Depoimentos
+    <div className="relative flex h-[115svh] min-h-[115svh] w-full flex-col items-center justify-center bg-black text-white">
+      <div className="absolute inset-0">
+        <Image
+          src="/chao2.jpg"
+          alt="Chão"
+          fill
+          className="object-cover opacity-15"
+        />
+      </div>
+      <div className="relative flex flex-col items-center gap-2 pb-10">
+        <h1 className="font-metrim text-6xl uppercase">serpentize</h1>
+        <span className="text-lg uppercase">MOVEMENT WITH INTENTION</span>
+      </div>
+      <div className="relative h-auto w-full mb-3">
+        <LogoLoop
+          logos={[
+            { node: <TestimonialsCard key="1" title="Depoimento Card 1" /> },
+            { node: <TestimonialsCard key="2" title="Depoimento Card 2" /> },
+            { node: <TestimonialsCard key="3" title="Depoimento Card 3" /> },
+            { node: <TestimonialsCard key="4" title="Depoimento Card 4" /> },
+            { node: <TestimonialsCard key="5" title="Depoimento Card 5" /> },
+            { node: <TestimonialsCard key="6" title="Depoimento Card 6" /> },
+          ]}
+          fadeOut={true}
+          fadeOutColor="#000000"
+          direction="left"
+          altura="h-65"
+        />
+      </div>
+      <div className="relative h-auto w-full">
+        <LogoLoop
+          logos={[
+            { node: <TestimonialsCard key="1" title="Depoimento Card 1" /> },
+            { node: <TestimonialsCard key="2" title="Depoimento Card 2" /> },
+            { node: <TestimonialsCard key="3" title="Depoimento Card 3" /> },
+            { node: <TestimonialsCard key="4" title="Depoimento Card 4" /> },
+            { node: <TestimonialsCard key="5" title="Depoimento Card 5" /> },
+            { node: <TestimonialsCard key="6" title="Depoimento Card 6" /> },
+          ]}
+          fadeOut={true}
+          fadeOutColor="#000000"
+          direction="right"
+          altura="h-65"
+        />
+      </div>
+      <div className="relative">
+        <button className="rounded-lg mt-10 bg-white px-6 py-3 text-black transition-transform duration-200 hover:scale-105 hover:cursor-pointer">
+          QUERO FAZER PARTE DO MOVIMENTO
+        </button>
+      </div>
     </div>
   );
 }

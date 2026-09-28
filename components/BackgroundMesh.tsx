@@ -14,10 +14,10 @@ export default function BackgroundMesh({
   speed = 0.5,
 }: BackgroundMeshProps) {
   return (
-    <div className="absolute inset-0 z-0">
+    <div className="absolute inset-0 z-0 overflow-hidden">
       <MeshGradient
-        width={1920}
-        height={1080}
+        width={2560}
+        height={1440}
         colors={colors}
         distortion={0.8}
         swirl={0.1}

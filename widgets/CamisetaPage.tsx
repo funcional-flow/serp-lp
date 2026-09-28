@@ -45,7 +45,7 @@ export default function CamisetaPage({ product }: CamisetaPageProps) {
           </div>
         </div>
 
-        {/* Tabs de descrição */}
+        {/* Descrição */}
         <div className="mx-auto flex h-auto w-6xl max-w-6xl flex-col pt-13 pb-40">
           <h1 className="text-center text-5xl font-bold">Detalhes</h1>
           <Accordion

@@ -1,21 +1,25 @@
-import { getProductBySlug } from "@/config/pecas_dados"
-import CamisetaPage from "@/widgets/CamisetaPage"
-import { notFound } from "next/navigation"
+import { getProductBySlug } from "@/config/pecas_dados";
+import CamisetaPage from "@/widgets/CamisetaPage";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{
-    slug: string
-  }>
-}
+    slug: string;
+  }>;
+};
 
 export default async function ProductRoute({ params }: Props) {
-  const { slug } = await params
+  const { slug } = await params;
 
-  const product = getProductBySlug(slug)
+  const product = getProductBySlug(slug);
 
   if (!product) {
-    notFound()
+    notFound();
   }
 
-  return <CamisetaPage product={product} />
+  return (
+    <div className="relative">
+      <CamisetaPage product={product} />
+    </div>
+  );
 }

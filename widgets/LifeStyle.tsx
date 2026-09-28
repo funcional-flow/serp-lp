@@ -8,12 +8,35 @@ export default function LifeStyle() {
         background="bg-black overflow-x-hidden"
         images={lifestyleDados}
       />
-      <div className="bg-black text-white h-svh">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ut eos odio
-        voluptatum laudantium accusamus vero. Laudantium amet, tempora officiis
-        deserunt autem quibusdam debitis facere quod corporis saepe cupiditate
-        voluptates.
-      </div>
+      {/* <div className="relative flex h-[115svh] items-center bg-black text-white">
+        <div className="relative h-150 w-full">
+          <FlexCarousel
+            items={lifestyleDados}
+            // preset="arch"
+            // intro="rise"
+            // cardHeight={0.5}
+            // gap={12}
+            // squeeze={0.2}
+            // focusOnClick
+            // captions
+            // fit="natural"
+            // radius={0}
+            // lensWidth={0.74}
+            // lensHeight={1.18}
+            // tilt={62}
+            // roundness={1}
+            // bend={0.34}
+            // reach={0.38}
+            // curl="twist"
+            // dispersion={0.45}
+            // liquid={0}
+            // followCursor={false}
+            // autoplay={false}
+            // interval={4}
+            // captureWheel
+          />
+        </div>
+      </div> */}
     </div>
   );
 }
