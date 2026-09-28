@@ -1,10 +1,13 @@
 import { Tamanhos } from "@/types/pecas";
 
+import { Cor } from "@/types/pecas";
+
 interface ProdutoInfoProps {
   titulo: string;
   descricao: string;
   preco: number;
   tamanhos: Tamanhos[];
+  cores: Cor[];
 }
 
 export default function ProdutoInfo({
@@ -12,6 +15,7 @@ export default function ProdutoInfo({
   descricao,
   preco,
   tamanhos,
+  cores,
 }: ProdutoInfoProps) {
   const precoFinal = (preco / 100).toFixed(2).toString().replace(".", ",");
   return (
@@ -19,17 +23,48 @@ export default function ProdutoInfo({
       <h1 className="text-2xl font-bold uppercase">{titulo}</h1>
       <span className="text-gray-600">{descricao}</span>
       <div className="flex flex-col gap-3">
+        <span className="text-sm font-bold">Cores:</span>
+        <div className="flex gap-5">
+          {cores.map((cor, index) =>
+            cor.available ? (
+              <div key={index} className="flex flex-col items-center gap-2">
+                <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-gray-500">
+                  <div
+                    className={`absolute z-1 h-7 w-7 rounded-full ${cor.hex}`}
+                  />
+                </div>
+                <span className="text-sm text-gray-500">{cor.cor}</span>
+              </div>
+            ) : (
+              <div key={index} className="flex flex-col items-center gap-2">
+                <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-gray-500">
+                  <div
+                    className={`absolute z-1 h-7 w-7 rounded-full ${cor.hex}`}
+                  />
+                </div>
+                <span className="text-sm text-gray-500 line-through opacity-50">
+                  {cor.cor}
+                </span>
+              </div>
+            ),
+          )}
+        </div>
+      </div>
+      <div className="flex flex-col gap-3">
         <span className="text-sm font-bold">Selecione um tamanho:</span>
         <div className="flex gap-5">
           {tamanhos.map((tamanho, index) =>
             tamanho.available ? (
-              <span key={index} className="bg-gray-200 px-3 py-1 font-bold">
+              <span
+                key={index}
+                className="rounded-md bg-gray-200 px-3 py-1 font-bold"
+              >
                 {tamanho.tamanho}
               </span>
             ) : (
               <span
                 key={index}
-                className="bg-gray-200 px-3 py-1 font-bold line-through opacity-50"
+                className="rounded-md bg-gray-200 px-3 py-1 font-bold line-through opacity-50"
               >
                 {tamanho.tamanho}
               </span>
@@ -58,7 +93,7 @@ export default function ProdutoInfo({
         href="#"
         className="mt-5 flex w-full items-center justify-center rounded-lg bg-black py-3 text-white uppercase"
       >
-        Comprar Agora
+        Encomendar Agora
       </a>
       <div className="flex items-center gap-2">
         <div className="text-sm font-bold">Calcular Frete:</div>

@@ -55,11 +55,45 @@ export const products: Product[] = [
         available: true,
       },
     ],
-    details: {
-      material: "Algodão",
-      size: "M",
-      color: "Preto",
-    },
+    cores: [
+      {
+        cor: "Preta",
+        hex: "bg-[#000000]",
+        available: true,
+      },
+      {
+        cor: "Branca",
+        hex: "bg-[#FFFFFF]",
+        available: false,
+      },
+      {
+        cor: "Roxa",
+        hex: "bg-[#3a1f61]",
+        available: false,
+      },
+      {
+        cor: "Amarela",
+        hex: "bg-[#dc9f38]",
+        available: false,
+      },
+    ],
+    details: [
+      {
+        titulo: "Descrição",
+        texto:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      },
+      {
+        titulo: "Especificações",
+        texto:
+          "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      },
+      {
+        titulo: "Diferenciais",
+        texto:
+          "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      },
+    ],
   },
 ];
 

@@ -8,6 +8,12 @@ export type Tamanhos = {
   available: boolean;
 };
 
+export type Cor = {
+  cor: string;
+  hex: string;
+  available: boolean;
+}
+
 export type Product = {
   id: string;
   slug: string;
@@ -16,15 +22,16 @@ export type Product = {
   price: number;
   images: ProductImage[];
   sizes: Tamanhos[];
+  cores: Cor[];
 
   type: ProductType;
 
-  details: ProductDetails;
+  details: ProductDetails[];
 };
 
 export type ProductType =
   "clothing" | "shoes" | "accessories" | "electronics" | "furniture" | "other";
 
 export type ProductDetails = {
-  [key: string]: string | number | boolean;
+  [key: string]: string;
 };
