@@ -95,14 +95,36 @@ export default function ProdutoInfo({
       >
         Encomendar Agora
       </a>
-      <div className="flex items-center gap-2">
-        <div className="text-sm font-bold">Calcular Frete:</div>
-        <input
-          type="text"
-          placeholder="CEP"
-          maxLength={9}
-          className="font-montserrat w-28 rounded border border-gray-300 px-3 py-2 text-sm"
-        />
+      <div className="flex flex-col">
+        <div className="flex items-center gap-2">
+          <div className="text-sm font-bold">Calcular Frete:</div>
+          <input
+            type="text"
+            placeholder="CEP"
+            maxLength={9}
+            className="font-montserrat w-28 rounded border border-gray-300 px-3 py-2 text-sm"
+          />
+          <button className="rounded bg-gray-200 px-4 py-2 text-sm font-bold">
+            Calcular
+          </button>
+        </div>
+
+        {/* Frete */}
+        <div className="mt-3 flex w-full flex-col gap-2 rounded-2xl p-4">
+          <h1 className="mb-3 text-sm font-bold">
+            Opções de Frete Disponíveis:
+          </h1>
+          <div className="flex w-full bg-green-50 p-2">
+            <span className="w-1/3">Normal</span>
+            <span className="w-1/3">Em até 8 dias úteis</span>
+            <span className="font-montserrat w-1/3">R$ 14,90</span>
+          </div>
+          <div className="flex w-full bg-green-50 p-2">
+            <span className="w-1/3">Expresso</span>
+            <span className="w-1/3">Em até 4 dias úteis</span>
+            <span className="font-montserrat w-1/3">R$ 29,90</span>
+          </div>
+        </div>
       </div>
     </div>
   );

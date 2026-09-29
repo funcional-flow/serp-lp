@@ -30,11 +30,11 @@ export default function CamisetaPage({ product }: CamisetaPageProps) {
 
       <div className="mx-auto mt-15 flex flex-col gap-5 rounded-xl bg-white p-10">
         {/* Card inicial com foto e descrição do lado */}
-        <div className="flex">
+        <div className="flex gap-25">
           <div className="h-180 w-180">
             <ProdutoGaleria product={product} />
           </div>
-          <div className="w-2xl">
+          <div className="w-xl">
             <ProdutoInfo
               titulo={product.name}
               descricao={product.description}

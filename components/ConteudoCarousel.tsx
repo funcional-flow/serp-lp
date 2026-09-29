@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ScaleOnScroll from "./gsap/ScaleOnScroll";
+import Link from "next/link";
 interface ConteudoCarouselProps {
   src: string;
   width?: number;
@@ -84,7 +85,7 @@ export default function ConteudoCarousel({
             >
               <div className="absolute top-10 left-14 flex items-center gap-6">
                 <h1 className="font-metrim z-20 text-xl tracking-[0.15em] lg:tracking-[0.2em]">
-                  <a href="#final">SERPENTIZE</a>
+                  <Link href="#modelos">SERPENTIZE</Link>
                 </h1>
                 <div className={`hidden h-0.5 w-14 lg:block ${cor_detalhes}`} />
               </div>

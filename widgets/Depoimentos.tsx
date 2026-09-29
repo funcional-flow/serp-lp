@@ -10,14 +10,14 @@ export default function Depoimentos() {
           src="/chao2.jpg"
           alt="Chão"
           fill
-          className="object-cover opacity-15"
+          className="object-cover opacity-20"
         />
       </div>
       <div className="relative flex flex-col items-center gap-2 pb-10">
         <h1 className="font-metrim text-6xl uppercase">serpentize</h1>
         <span className="text-lg uppercase">MOVEMENT WITH INTENTION</span>
       </div>
-      <div className="relative h-auto w-full mb-3">
+      <div className="relative mb-3 h-auto w-full">
         <LogoLoop
           logos={[
             { node: <TestimonialsCard key="1" title="Depoimento Card 1" /> },
@@ -50,8 +50,8 @@ export default function Depoimentos() {
         />
       </div>
       <div className="relative">
-        <button className="rounded-lg mt-10 bg-white px-6 py-3 text-black transition-transform duration-200 hover:scale-105 hover:cursor-pointer">
-          QUERO FAZER PARTE DO MOVIMENTO
+        <button className="mt-20 rounded-xl bg-white px-16 py-4 text-lg font-bold text-black uppercase transition-transform duration-200 hover:scale-105 hover:cursor-pointer">
+          Lorem ipsum dolor
         </button>
       </div>
     </div>

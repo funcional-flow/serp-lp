@@ -91,7 +91,7 @@ export default function AnimatedTabs({
             onClick={() => {
               swiperInstance?.slideTo(index);
             }}
-            className={`relative text-sm ${tabsPosition === "top" ? "pb-4" : "pt-4"}`}
+            className={`relative text-sm hover:cursor-pointer ${tabsPosition === "top" ? "pb-4" : "pt-4"}`}
           >
             <span
               className={`transition-colors duration-300 ${

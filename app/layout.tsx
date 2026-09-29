@@ -31,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${montserrat.variable} ${metrimLetter.variable} ${actium.variable} h-full antialiased`}
     >
       <ReactLenis root>
-        <body className="font-actium tracking-wide flex min-h-full flex-col scroll-smooth">
+        <body className="font-actium tracking-wide flex min-h-full flex-col">
           {children}
         </body>
       </ReactLenis>
