@@ -47,7 +47,7 @@ export default function ConteudoCarousel({
 }: ConteudoCarouselProps) {
   return (
     <ScaleOnScroll>
-      <div className="relative min-h-svh select-none">
+      <div className="relative w-full min-h-svh select-none">
         <div ref={fadeRef} className="relative">
           {/* Logo Background */}
           <div className="absolute top-1/2 left-1/2 z-0 flex w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center">
@@ -62,10 +62,10 @@ export default function ConteudoCarousel({
             />
           </div>
           {/* Conteudo */}
-          <div className="relative flex min-h-svh w-full justify-between">
-            <div className={`relative flex justify-between ${cor_textos1}`}>
+          <div className="flex min-h-svh w-full justify-between">
+            <div className={`flex justify-between ${cor_textos1}`}>
               {/* Lado Esquerdo */}
-              <div className="relative flex flex-col pt-4 pl-4 lg:pt-10 lg:pl-14">
+              <div className="flex flex-col pt-4 pl-4 lg:pt-10 lg:pl-14">
                 <div className="flex items-center gap-6">
                   <Link
                     href="#modelos"
@@ -73,12 +73,11 @@ export default function ConteudoCarousel({
                   >
                     SERPENTIZE
                   </Link>
-
                   <div
                     className={`hidden lg:block lg:h-0.5 lg:w-14 ${cor_detalhes}`}
                   />
                 </div>
-                <div className="flex flex-col gap-2 pt-[7vh] lg:gap-6 lg:pt-80">
+                <div className="flex flex-col gap-2 pt-[7svh] lg:gap-6 lg:pt-[35svh]">
                   <h1 className="flex flex-col text-xl tracking-widest lg:text-3xl">
                     <span>MOVEMENT</span> <span>WITH INTENTION</span>
                   </h1>
@@ -93,7 +92,7 @@ export default function ConteudoCarousel({
             </div>
             {/* Lado Direito */}
             <div
-              className={`relative flex flex-col items-end pt-4.5 pr-4 lg:pt-10 lg:pr-14 ${cor_textos1}`}
+              className={`flex flex-col items-end pt-4.5 pr-4 lg:pt-10 lg:pr-14 ${cor_textos1}`}
             >
               <div
                 className={`flex flex-col items-end gap-1 text-xs tracking-[0.4em] ${cor_textos2}`}
@@ -101,7 +100,7 @@ export default function ConteudoCarousel({
                 <p>STREETWEAR</p> <p>ATHLETIC</p> <p>LIFESTYLE</p>
               </div>
               <div
-                className={`mt-[12vh] h-14 w-0.5 lg:mt-60 ${cor_detalhes}`}
+                className={`mt-[12svh] h-14 w-0.5 lg:mt-60 ${cor_detalhes}`}
               />
               <div className="relative mt-8 pt-5 pr-2">
                 <div
@@ -111,7 +110,7 @@ export default function ConteudoCarousel({
                   className={`absolute top-0 -left-1.75 h-0.5 w-4 ${cor_detalhes}`}
                 />
               </div>
-              <div className="flex flex-col items-end gap-1 pt-[40vh] text-[10px] tracking-[0.4em] lg:pt-20 lg:text-xs">
+              <div className="flex flex-col items-end gap-1 pt-[40svh] text-[10px] tracking-[0.4em] lg:pt-20 lg:text-xs">
                 <p>DISCIPLINA</p> <p>FOCO</p> <p>EVOLUÇÃO</p>
               </div>
             </div>

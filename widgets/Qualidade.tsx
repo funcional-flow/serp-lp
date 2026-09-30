@@ -14,9 +14,9 @@ export default function Qualidade() {
         to: "#000000",
       }}
       className="flex min-h-[120svh] w-full flex-col items-center bg-linear-to-t from-black to-zinc-600"
-      contentClassName=""
+    //   contentClassName=""
     >
-      <div className="relative h-auto w-400 pt-20">
+      <div className="relative h-auto xl:w-300 2xl:w-400 pt-20">
         <AnimatedTabs
           activeColor="bg-white"
           lineColor="border-white/20"

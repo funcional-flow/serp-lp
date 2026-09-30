@@ -29,7 +29,7 @@ export default function Home() {
     <>
       {/* {loading && <Preloader onComplete={() => setLoading(false)} />} */}
       {/* <header className="fixed top-0 left-0 w-full z-1000 bg-white">Dale</header> */}
-      <main>
+      <main className="w-full">
         <ScrollTransition
           background="bg-gray-400"
           transitionDuration={1250}
@@ -69,10 +69,16 @@ export default function Home() {
         <section id="serpvideo" className="relative z-1 hidden lg:block">
           <SerpVideo />
         </section>
-        <section id="faq" className="relative z-1 hidden lg:block">
+        <section
+          id="faq"
+          className="relative z-1 hidden overflow-hidden lg:block"
+        >
           <Faq />
         </section>
-        <section id="cta" className="relative z-1 hidden lg:block">
+        <section
+          id="cta"
+          className="relative z-1 hidden overflow-hidden lg:block"
+        >
           <Cta />
         </section>
         {/* <section
