@@ -33,7 +33,7 @@ export default function Home() {
         <ScrollTransition
           background="bg-gray-400"
           transitionDuration={1250}
-          className="hidden lg:block"
+          className="relative"
           //   scaleDownFrom={1.05}
           panels={[
             <section key="carousel" id="carousel" className="relative z-0">

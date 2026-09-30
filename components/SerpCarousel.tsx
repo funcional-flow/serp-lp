@@ -10,12 +10,12 @@ const slides = [
         img_background="/Hero/serp-marca-abreviada-preta1.png"
         w_img_background={618}
         h_img_background={343}
-        className_background="lg:w-4xl w-sm opacity-5 animate-image-pulse-reverse"
+        className_background="lg:w-4xl w-90 opacity-5 animate-image-pulse-reverse"
         // Modelo
         src="/Hero/modelo_woman21.png"
         width={216}
         height={847}
-        className_img="w-40 pt-50 lg:w-51 lg:pt-6 animate-image-pulse"
+        className_img="mt-[20vh] w-[18vh] lg:w-51 lg:pt-6 animate-image-pulse"
         // Card
         cor_card="bg-black"
         cor_card_secundaria="bg-white"
