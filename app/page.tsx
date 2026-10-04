@@ -32,7 +32,7 @@ export default function Home() {
       <main className="w-full">
         <ScrollTransition
           background="bg-gray-400"
-          transitionDuration={1250}
+          transitionDuration={1000}
           className="relative"
           //   scaleDownFrom={1.05}
           panels={[
