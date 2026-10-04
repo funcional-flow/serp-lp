@@ -1,4 +1,5 @@
 import CardModelo from "@/components/CardModelo";
+// import CardModeloDesk from "@/components/CardModeloDesk";
 import LogoLoop from "@/components/reactbits/LogoLoop";
 
 export default function Modelos() {
@@ -26,16 +27,18 @@ export default function Modelos() {
           className="bg-black"
         />
       </div>
-      <div className="relative flex h-svh">
+      <div className="relative flex min-h-svh flex-col lg:flex-row">
         {/* Primeira Sessão */}
-        <div className="relative flex w-1/2">
+        <div className="relative h-svh w-full lg:flex lg:h-auto lg:w-1/2">
           <CardModelo
             img_modelo_frente="/modelos/modelo_principal_frente_transparente.png"
             img_modelo_costas="/modelos/modelo_principal_costas_transparente.png"
             width={940}
             height={1672}
             contentAspect="portrait"
-            larguraImagem="w-sm"
+            larguraImagem="w-[35vh] lg:w-sm"
+            tamanhoImagem="h-[45vh] lg:h-auto"
+            classNameImage="object-top object-contain lg:object-cover"
             titulo="Minimal - boxy"
             texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
             imgAntes={true}
@@ -47,16 +50,19 @@ export default function Modelos() {
             lineColor="border-white/25"
             linkCamisa="/pecas/preta-boxy-serp"
             buttonTextColor="text-black"
+            // tabsPosition="bottom"
           />
         </div>
-        <div className="relative flex w-1/2">
+        <div className="relative h-svh w-full lg:flex lg:h-auto lg:w-1/2">
           <CardModelo
             img_modelo_frente="/modelos/modelo_principal_frente_transparente.png"
             img_modelo_costas="/modelos/modelo_principal_costas_transparente.png"
             width={940}
             height={1672}
             contentAspect="portrait"
-            larguraImagem="w-sm"
+            larguraImagem="w-[35vh] lg:w-sm"
+            tamanhoImagem="h-[45vh] lg:h-auto"
+            classNameImage="object-top object-contain lg:object-cover"
             titulo="Serp - boxy"
             texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
             imgAntes={false}
@@ -183,7 +189,7 @@ export default function Modelos() {
           />
         </div>
       </div> */}
-      
+
       <div className="relative">
         <LogoLoop
           logos={logosPreta}

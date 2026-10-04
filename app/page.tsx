@@ -36,7 +36,7 @@ export default function Home() {
           className="relative"
           //   scaleDownFrom={1.05}
           panels={[
-            <section key="carousel" id="carousel" className="relative z-0">
+            <section key="carousel" id="carousel" className="overflow-hidden relative z-0">
               <SerpCarousel />
             </section>,
             <section key="manifesto" id="manifesto" className="relative z-1">
@@ -44,10 +44,7 @@ export default function Home() {
             </section>,
           ]}
         />
-        <section
-          id="modelos"
-          className="bg-background relative z-1 hidden lg:block"
-        >
+        <section id="modelos" className="bg-background relative z-1">
           <Modelos />
         </section>
 
@@ -56,7 +53,7 @@ export default function Home() {
         </section> */}
         <section
           id="qualidade"
-          className="sticky top-0 z-1 overflow-hidden lg:overflow-visible"
+          className="sticky top-0 z-1 hidden overflow-hidden lg:block lg:overflow-visible"
         >
           <Qualidade />
         </section>
