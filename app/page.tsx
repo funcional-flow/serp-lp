@@ -54,7 +54,10 @@ export default function Home() {
         {/* <section id="diferenca" className="relative z-1 hidden lg:block lg:sticky lg:top-0">
           <DiferencaModelos />
         </section> */}
-        <section id="qualidade" className="sticky top-0 z-1 hidden lg:block">
+        <section
+          id="qualidade"
+          className="sticky top-0 z-1 overflow-hidden lg:overflow-visible"
+        >
           <Qualidade />
         </section>
         <section id="lifestyle" className="relative z-1 hidden lg:block">

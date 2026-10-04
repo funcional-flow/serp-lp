@@ -47,7 +47,7 @@ export default function ConteudoCarousel({
 }: ConteudoCarouselProps) {
   return (
     <ScaleOnScroll>
-      <div className="relative w-full min-h-svh select-none">
+      <div className="relative min-h-svh w-full select-none">
         <div ref={fadeRef} className="relative">
           {/* Logo Background */}
           <div className="absolute top-1/2 left-1/2 z-0 flex w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center">
@@ -110,7 +110,7 @@ export default function ConteudoCarousel({
                   className={`absolute top-0 -left-1.75 h-0.5 w-4 ${cor_detalhes}`}
                 />
               </div>
-              <div className="flex flex-col items-end gap-1 pt-[40svh] text-[10px] tracking-[0.4em] lg:pt-20 lg:text-xs">
+              <div className="flex flex-col items-end gap-1 pt-[40svh] text-[10px] tracking-[0.4em] lg:pt-[20svh] lg:text-xs">
                 <p>DISCIPLINA</p> <p>FOCO</p> <p>EVOLUÇÃO</p>
               </div>
             </div>

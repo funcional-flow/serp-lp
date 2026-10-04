@@ -15,7 +15,7 @@ const slides = [
         src="/Hero/modelo_woman21.png"
         width={216}
         height={847}
-        className_img="animate-image-pulse mt-[20svh] w-[18svh] lg:w-51 lg:mt-[5svh] xl:mt-[15svh] "
+        className_img="animate-image-pulse mt-[20svh] w-[18svh] lg:w-56 lg:mt-[5svh]"
         // Card
         cor_card="bg-black"
         cor_card_secundaria="bg-white"
@@ -39,12 +39,12 @@ const slides = [
         img_background="/Hero/serp-marca-abreviada-branca1.png"
         w_img_background={618}
         h_img_background={343}
-        className_background="lg:w-4xl w-sm opacity-5 animate-image-pulse"
+        className_background="lg:w-4xl w-90 opacity-5 animate-image-pulse-reverse"
         // Modelo
         src="/Hero/modelo_woman11.png"
         width={333}
         height={862}
-        className_img="w-50 ml-6 pt-50 lg:w-69 lg:pt-6 animate-image-pulse-reverse"
+        className_img="animate-image-pulse mt-[21svh] ml-[5vh] w-[25svh] lg:w-74 lg:ml-[7svh] lg:mt-[7svh]"
         // Card
         cor_card="bg-white"
         cor_card_secundaria="bg-gray-700"
