@@ -44,7 +44,7 @@ const slides = [
         src="/Hero/modelo_woman11.png"
         width={333}
         height={862}
-        className_img="animate-image-pulse mt-[21svh] ml-[5vh] w-[25svh] lg:w-[29vh] lg:ml-[7svh] lg:mt-[7svh]"
+        className_img="animate-image-pulse mt-[21svh] ml-[2vh] w-[24svh] lg:w-[29vh] lg:ml-[7svh] lg:mt-[7svh]"
         // Card
         cor_card="bg-white"
         cor_card_secundaria="bg-gray-700"
