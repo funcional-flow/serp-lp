@@ -258,7 +258,7 @@ export default function SerpCarousel() {
     );
   };
   return (
-    <div className="h-svh w-full overflow-hidden">
+    <div className="h-dvh w-full overflow-hidden">
       <div
         ref={backgroundCurrentRef}
         className={`absolute inset-0 z-0 ${slides[0].background}`}
