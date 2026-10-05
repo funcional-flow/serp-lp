@@ -27,9 +27,9 @@ export default function Modelos() {
           className="bg-black"
         />
       </div>
-      <div className="relative flex min-h-svh flex-col lg:flex-row">
+      <div className="relative flex min-h-lvh flex-col lg:flex-row">
         {/* Primeira Sessão */}
-        <div className="relative h-svh w-full lg:flex lg:h-auto lg:w-1/2">
+        <div className="relative h-lvh w-full lg:flex lg:h-auto lg:w-1/2">
           <CardModelo
             img_modelo_frente="/modelos/modelo_principal_frente_transparente.png"
             img_modelo_costas="/modelos/modelo_principal_costas_transparente.png"
@@ -53,7 +53,7 @@ export default function Modelos() {
             // tabsPosition="bottom"
           />
         </div>
-        <div className="relative h-svh w-full lg:flex lg:h-auto lg:w-1/2">
+        <div className="relative h-lvh w-full lg:flex lg:h-auto lg:w-1/2">
           <CardModelo
             img_modelo_frente="/modelos/modelo_principal_frente_transparente.png"
             img_modelo_costas="/modelos/modelo_principal_costas_transparente.png"
@@ -89,7 +89,7 @@ export default function Modelos() {
           direction="right"
         />
       </div>
-      <div className="relative flex h-svh">
+      <div className="relative flex h-lvh">
         <div className="relative order-2 flex w-1/2">
           <CardModelo
             img_modelo_frente="/modelos/modelo_principal_frente_transparente.png"
@@ -144,7 +144,7 @@ export default function Modelos() {
           className="bg-black"
         />
       </div>
-      <div className="relative flex h-svh">
+      <div className="relative flex h-lvh">
         <div className="relative flex w-1/2">
           <CardModelo
             img_modelo_frente="/modelos/modelo_principal_frente_transparente.png"
