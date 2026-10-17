@@ -55,7 +55,7 @@ export default function CardModelo({
 }: CardModeloProps) {
   return (
     <div
-      className={`group relative flex h-full w-full flex-col items-center justify-center gap-5 brightness-100 transition-all duration-500 select-none hover:brightness-100 lg:flex-row lg:brightness-80 ${background} px-12`}
+      className={`group relative flex h-full w-full flex-col items-center justify-center gap-5 brightness-100 transition-all duration-500 select-none hover:brightness-100 lg:flex-row lg:brightness-100 ${background} px-12`}
     >
       <h1
         className={`font-metrim z-10 text-center text-4xl tracking-widest uppercase lg:hidden ${textColor}`}

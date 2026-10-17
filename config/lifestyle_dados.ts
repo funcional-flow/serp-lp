@@ -8,7 +8,7 @@ export const lifestyleDados: LifeStyleItem[] = [
   {
     src: "/lifestyle/lifestyle_principal1.png",
     alt: "Modelo",
-    classNameImg: "object-cover",
+    classNameImg: "object-cover object-top",
   },
   {
     src: "/lifestyle/lifestyle1.jpg",

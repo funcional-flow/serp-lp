@@ -7,6 +7,7 @@ export default function LifeStyle() {
       <BentoGallery
         background="bg-black overflow-x-hidden"
         images={lifestyleDados}
+        reverse={true}
       />
       {/* <div className="relative flex h-[115svh] items-center bg-black text-white">
         <div className="relative h-150 w-full">

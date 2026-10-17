@@ -8,19 +8,21 @@ import Image from "next/image";
 gsap.registerPlugin(Flip, ScrollTrigger);
 
 type ImageItem = {
-    src: string;
-    alt: string;
-    classNameImg?: string;
-}
+  src: string;
+  alt: string;
+  classNameImg?: string;
+};
 
 interface BentoGalleryProps {
   background?: string;
   images: ImageItem[];
+  reverse?: boolean;
 }
 
 export default function BentoGallery({
   background = "bg-black",
   images,
+  reverse = false,
 }: BentoGalleryProps) {
   if (images.length === 0) {
     images = [
@@ -43,26 +45,25 @@ export default function BentoGallery({
     const ctx = gsap.context(() => {
       const items = gallery.querySelectorAll<HTMLElement>(".gallery__item");
       const createTween = () => {
-        /* * Remove qualquer animação/ScrollTrigger * criada anteriormente. */
         ScrollTrigger.getAll().forEach((trigger) => {
           if (trigger.trigger === gallery) {
             trigger.kill();
           }
         });
-        /* * Garante que começamos no estado Bento. */
-        gallery.classList.remove("gallery--final");
-        /* * Adiciona temporariamente o estado final * para capturar as posições. */ gallery.classList.add(
-          "gallery--final",
-        );
+
+        // Define o estado inicial da animação.
+        gallery.classList.toggle("gallery--final", reverse);
+
         const flipState = Flip.getState(items);
-        /* * Volta para o estado inicial. */
-        gallery.classList.remove("gallery--final");
-        /* * Cria a animação FLIP. */
-        const flip = Flip.to(flipState, {
+
+        // Define o estado de destino.
+        gallery.classList.toggle("gallery--final", !reverse);
+
+        const flip = Flip.from(flipState, {
           simple: true,
           ease: "expoScale(1, 5)",
         });
-        /* * Controla a animação através do scroll. */
+
         const timeline = gsap.timeline({
           scrollTrigger: {
             trigger: gallery,
@@ -73,6 +74,7 @@ export default function BentoGallery({
             invalidateOnRefresh: true,
           },
         });
+
         timeline.add(flip);
       };
       createTween();
@@ -95,7 +97,7 @@ export default function BentoGallery({
     return () => {
       ctx.revert();
     };
-  }, []);
+  }, [reverse]);
   return (
     <div
       ref={wrapRef}
@@ -107,7 +109,10 @@ export default function BentoGallery({
         className="gallery gallery--bento relative h-full w-full shrink-0"
       >
         {images.map((image) => (
-          <div key={image.src} className={`gallery__item relative overflow-hidden h-auto ${background}`}>
+          <div
+            key={image.src}
+            className={`gallery__item relative h-auto overflow-hidden ${background}`}
+          >
             {/* <img
               src={image}
               alt=""

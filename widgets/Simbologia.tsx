@@ -18,7 +18,7 @@ import "swiper/css";
 export default function Simbologia() {
   const [swiper, setSwiper] = useState<SwiperInstance | null>(null);
   return (
-    <div className="relative flex min-h-[110svh] w-full gap-10 bg-linear-to-b from-white to-gray-300 px-30">
+    <div className="relative flex min-h-[110svh] justify-center items-center w-full gap-10 bg-linear-to-b from-white to-gray-300 px-30">
       <div className="absolute inset-0 z-0 opacity-5">
         <Image
           //   src="/fundo1.jpg"
@@ -32,7 +32,7 @@ export default function Simbologia() {
       </div>
       <div className="absolute inset-0 z-0 opacity-5"></div>
       {/* Lado Esquerdo */}
-      <div className="relative z-1 mt-35 flex w-1/2 flex-col items-center">
+      <div className="relative z-1 flex w-1/2 flex-col items-center">
         <div className="group relative w-2xl">
           <div className="absolute -top-1 -right-1 -bottom-1 -left-1 rounded-2xl bg-black transition-all duration-300 group-hover:scale-101 group-hover:bg-linear-to-b group-hover:from-black group-hover:to-zinc-950 group-hover:shadow-lg group-hover:shadow-black" />
           <Swiper
@@ -89,7 +89,7 @@ export default function Simbologia() {
       </div>
 
       {/* Lado Direito */}
-      <div className="relative z-1 mt-47 flex w-full flex-col items-end gap-35 text-end">
+      <div className="relative z-1 mb-15 flex w-full flex-col items-end gap-35 text-end">
         <h2 className="text-5xl">Simbolo por trás do Serpentize</h2>
         <h2 className="text-5xl">
           Inspiração pelo movimento. <br /> A serpente representa a capacidade
