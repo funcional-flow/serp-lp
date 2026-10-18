@@ -96,9 +96,9 @@ export default function CardCta({
           className={`relative order-3 flex w-1/3 flex-1 items-center justify-center gap-3`}
         >
           {/* coluna 1 */}
-          <div className="relative flex flex-col gap-3">
+          <div className="relative flex flex-col gap-5">
             <div
-              className={`relative h-120 w-55 overflow-hidden rounded-2xl border-5 ${borderColor}`}
+              className={`relative h-120 w-55 overflow-hidden rounded-2xl border-5 transition-transform duration-200 hover:scale-105 ${borderColor}`}
             >
               <Image
                 src={img_secundaria1}
@@ -110,7 +110,7 @@ export default function CardCta({
               />
             </div>
             <div
-              className={`relative h-62 w-55 overflow-hidden rounded-2xl border-5 ${borderColor}`}
+              className={`relative h-62 w-55 overflow-hidden rounded-2xl border-5 transition-transform duration-200 hover:scale-105 ${borderColor}`}
             >
               <Image
                 src={img_secundaria2}
@@ -123,9 +123,9 @@ export default function CardCta({
             </div>
           </div>
           {/* coluna 2 */}
-          <div className="relative flex flex-col gap-3">
+          <div className="relative flex flex-col gap-5">
             <div
-              className={`relative h-90 w-55 overflow-hidden rounded-2xl border-5 ${borderColor}`}
+              className={`relative h-90 w-55 overflow-hidden rounded-2xl border-5 transition-transform duration-200 hover:scale-105 ${borderColor}`}
             >
               <Image
                 src={img_secundaria3}
@@ -137,7 +137,7 @@ export default function CardCta({
               />
             </div>
             <div
-              className={`relative h-92 w-55 overflow-hidden rounded-2xl border-5 ${borderColor}`}
+              className={`relative h-92 w-55 overflow-hidden rounded-2xl border-5 transition-transform duration-200 hover:scale-105 ${borderColor}`}
             >
               <Image
                 src={img_secundaria4}
