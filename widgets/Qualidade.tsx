@@ -4,7 +4,7 @@ import QualidadeCard from "@/components/QualidadeCard";
 
 export default function Qualidade() {
   return (
-    <div className="flex min-h-[120svh] w-full flex-col items-center ">
+    <div className="flex min-h-[120svh] w-full flex-col items-center">
       <div className="relative h-auto pt-20 xl:w-300 2xl:w-400">
         <AnimatedTabs
           activeColor="bg-white"

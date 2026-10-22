@@ -34,7 +34,7 @@ export default function Home() {
           scrub={true}
           background="transparent"
           className="z-0"
-          images={[...video_serp_1.slice(50, 120), ...video_serp_2.slice(80)]}
+          images={[...video_serp_1.slice(0), ...video_serp_2.slice(0)]} // o slice é o intervalo que quer os frames, poderia ser slice(50,120) - primeiro e ultimo-1
           canvasWidth={1080}
           canvasHeight={1920}
           canvasClassName="w-full"
@@ -46,14 +46,28 @@ export default function Home() {
               peak: 3300,
               holdEnd: 3400,
               end: 3450,
-              color: "#000000"
+              color: "#000000",
+            },
+            {
+              start: 3500,
+              peak: 3550,
+              holdEnd: 3650,
+              end: 4000,
+              color: "#FFFFFF",
             },
             {
               start: 5300,
               peak: 5800,
               holdEnd: 6000,
               end: 6800,
-              color: "#000000",
+              color: "#18181b",
+            },
+            {
+              start: 7700,
+              peak: 8200,
+              holdEnd: 12000,
+              end: 12011,
+              color: "#EBEBEB",
             },
           ]}
         />
@@ -116,7 +130,7 @@ export default function Home() {
 
         <section
           id="faq"
-          className="relative z-1 hidden overflow-hidden lg:block"
+          className="sticky top-0 z-1 hidden overflow-hidden lg:block"
         >
           <Faq />
         </section>

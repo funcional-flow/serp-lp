@@ -18,8 +18,8 @@ import "swiper/css";
 export default function Simbologia() {
   const [swiper, setSwiper] = useState<SwiperInstance | null>(null);
   return (
-    <div className="relative flex min-h-[110svh] justify-center items-center w-full gap-10 bg-linear-to-b from-white to-gray-300 px-30">
-      <div className="absolute inset-0 z-0 opacity-5">
+    <div className="relative flex min-h-[110svh] justify-center items-center w-full gap-10 px-30">
+      {/* <div className="absolute inset-0 z-0 opacity-5">
         <Image
           //   src="/fundo1.jpg"
           src="/simbologia/urban3.jpg"
@@ -29,7 +29,7 @@ export default function Simbologia() {
           onContextMenu={(e) => e.preventDefault()}
           className="h-full w-full object-cover object-top"
         />
-      </div>
+      </div> */}
       <div className="absolute inset-0 z-0 opacity-5"></div>
       {/* Lado Esquerdo */}
       <div className="relative z-1 flex w-1/2 flex-col items-center">
