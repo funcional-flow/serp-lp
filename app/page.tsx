@@ -15,21 +15,11 @@ import Simbologia from "@/widgets/Simbologia";
 import SerpVideo from "@/widgets/SerpVideo";
 import ImageSequence from "@/components/gsap/ImageSequence";
 import ImageSequenceFixed from "@/components/gsap/ImageSequenceFixed";
+import ScaleOnScroll from "@/components/gsap/ScaleOnScroll";
+import { video_serp_1, video_serp_2 } from "@/config/videos_frames";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
-  const video_serp_1 = Array.from({ length: 120 }, (_, index) => {
-    //   const frame = String(index + 1);
-    const frame = String(index + 1).padStart(3, "0");
-
-    return `/video_serp_1/frame_${frame}.jpg`;
-  });
-  const video_serp_2 = Array.from({ length: 118 }, (_, index) => {
-    const frame = String(index + 1);
-    // const frame = String(index + 1).padStart(3, "0");
-
-    return `/video_serp_2/frame (${frame}).jpg`;
-  });
 
   //   effect gl (1000ms):fade, wave-x, peel-x, stretch, ripple, morph-y
 
@@ -39,17 +29,33 @@ export default function Home() {
       {/* <header className="fixed top-0 left-0 w-full z-1000 bg-white">Dale</header> */}
       <main className="w-full">
         <ImageSequenceFixed
-          duration={8000}
+          duration={9000}
           fullPageScroll={false}
           scrub={true}
-          background="#000"
+          background="transparent"
           className="z-0"
-          images={[...video_serp_1, ...video_serp_2]}
+          images={[...video_serp_1.slice(50, 120), ...video_serp_2.slice(80)]}
           canvasWidth={1080}
           canvasHeight={1920}
           canvasClassName="w-full"
           fit="cover"
           objectPosition="top"
+          overlayIntervals={[
+            {
+              start: 2750,
+              peak: 3300,
+              holdEnd: 3400,
+              end: 3450,
+              color: "#000000"
+            },
+            {
+              start: 5300,
+              peak: 5800,
+              holdEnd: 6000,
+              end: 6800,
+              color: "#000000",
+            },
+          ]}
         />
         <ScrollTransition
           background="bg-gray-400"
@@ -70,17 +76,9 @@ export default function Home() {
           ]}
         />
 
-        {/* <section
-          id="divisao1"
-          className="relative h-screen w-full bg-linear-to-b from-gray-300 to-transparent"
-        /> */}
         <section
           id="divisao11"
-          className="relative h-screen w-full bg-transparent"
-        />
-        <section
-          id="divisao12"
-          className="relative h-screen w-full bg-linear-to-b from-transparent to-black"
+          className="relative h-[150vh] w-full bg-transparent"
         />
 
         <section id="modelos" className="bg-background relative z-1">
@@ -89,18 +87,23 @@ export default function Home() {
 
         <section
           id="divisao21"
-          className="relative h-screen w-full bg-transparent"
-        />
-        <section
-          id="divisao22"
-          className="relative h-screen w-full bg-linear-to-b from-transparent to-zinc-600"
+          className="relative h-[150vh] w-full bg-transparent"
         />
 
         <section
           id="qualidade"
-          className="sticky top-0 z-1 hidden overflow-hidden lg:block lg:overflow-visible"
+          className="relative z-1 hidden overflow-hidden lg:block lg:overflow-visible"
         >
           <Qualidade />
+        </section>
+
+        <section
+          id="divisao21"
+          className="relative h-[150vh] w-full bg-transparent"
+        />
+
+        <section id="simbologia" className="relative z-1 hidden lg:block">
+          <Simbologia />
         </section>
 
         <section id="lifestyle" className="relative z-1 hidden lg:block">
@@ -110,14 +113,6 @@ export default function Home() {
         <section id="depoimentos" className="relative z-1 hidden lg:block">
           <Depoimentos />
         </section>
-
-        <section id="simbologia" className="relative z-1 hidden lg:block">
-          <Simbologia />
-        </section>
-
-        {/* <section id="serpvideo" className="relative z-1 hidden lg:block">
-          <SerpVideo />
-        </section> */}
 
         <section
           id="faq"

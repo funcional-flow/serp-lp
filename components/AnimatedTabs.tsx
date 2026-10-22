@@ -22,8 +22,12 @@ type TabsAlign = "left" | "center" | "right";
 
 type TabsPosition = "top" | "bottom";
 
+type LabelSize = "text-sm" | "text-base" | "text-lg" | "text-xl";
+
 interface AnimatedTabsProps {
   tabs: Tab[];
+
+  labelSize?: LabelSize;
 
   animation?: AnimationType;
 
@@ -46,6 +50,8 @@ interface AnimatedTabsProps {
 
 export default function AnimatedTabs({
   tabs,
+
+  labelSize = "text-sm",
 
   animation = "slide",
 
@@ -91,7 +97,7 @@ export default function AnimatedTabs({
             onClick={() => {
               swiperInstance?.slideTo(index);
             }}
-            className={`relative text-sm hover:cursor-pointer ${tabsPosition === "top" ? "pb-4" : "pt-4"}`}
+            className={`relative ${labelSize} hover:cursor-pointer ${tabsPosition === "top" ? "pb-4" : "pt-4"}`}
           >
             <span
               className={`transition-colors duration-300 ${

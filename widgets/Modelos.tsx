@@ -39,7 +39,7 @@ export default function Modelos() {
             larguraImagem="w-[35vh] lg:w-sm"
             tamanhoImagem="h-[45vh] lg:h-auto"
             classNameImage="object-top object-contain lg:object-cover"
-            titulo="Minimal - boxy"
+            titulo="serp - boxy"
             texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
             imgAntes={true}
             background="bg-linear-to-b from-zinc-800 to-zinc-950"
@@ -63,7 +63,7 @@ export default function Modelos() {
             larguraImagem="w-[35vh] lg:w-sm"
             tamanhoImagem="h-[45vh] lg:h-auto"
             classNameImage="object-top object-contain lg:object-cover"
-            titulo="Serp - boxy"
+            titulo="minimal - boxy"
             texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
             imgAntes={false}
             background="bg-linear-to-b from-white to-zinc-300"

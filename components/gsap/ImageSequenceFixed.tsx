@@ -7,6 +7,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+interface OverlayInterval {
+  start: number;
+  peak: number;
+  holdEnd: number;
+  end: number;
+  color?: string;
+}
+
 interface ImageSequenceFixedProps {
   images?: string[]; // array de URLs
 
@@ -39,6 +47,8 @@ interface ImageSequenceFixedProps {
 
   fixedBackground?: boolean;
 
+  overlayIntervals?: OverlayInterval[];
+
   onFrameChange?: (frame: number, image: HTMLImageElement) => void; // callback para reagir à mudança de frame
 }
 
@@ -55,7 +65,7 @@ export default function ImageSequenceFixed({
   canvasWidth = 1158,
   canvasHeight = 770,
 
-  background = "#000",
+  background = "transparent",
 
   start = "top top",
 
@@ -70,11 +80,17 @@ export default function ImageSequenceFixed({
   canvasStyle,
   fixedBackground = true,
 
+  overlayIntervals,
+
   onFrameChange,
 }: ImageSequenceFixedProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  const overlayRef = useRef<HTMLDivElement>(null);
+
+  const overlayRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   /*
    * Caso nenhuma imagem seja passada,
@@ -382,6 +398,52 @@ export default function ImageSequenceFixed({
 
     /*
      * -----------------------------------------
+     * overlay do background escuro
+     * -----------------------------------------
+     */
+    const overlayTimelines: gsap.core.Timeline[] = [];
+
+    if (fixedBackground) {
+      overlayIntervals?.forEach(({ start, peak, holdEnd, end }, index) => {
+        const overlay = overlayRefs.current[index];
+
+        if (!overlay) return;
+
+        gsap.set(overlay, { opacity: 0 });
+
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            start,
+            end,
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        timeline
+          .to(overlay, {
+            opacity: 1,
+            duration: peak - start,
+            ease: "none",
+          })
+          .to(overlay, {
+            opacity: 1,
+            duration: holdEnd - peak,
+            ease: "none",
+          })
+          .to(overlay, {
+            opacity: 0,
+            duration: end - holdEnd,
+            ease: "none",
+          });
+
+        overlayTimelines.push(timeline);
+      });
+    }
+
+    ScrollTrigger.refresh();
+    /*
+     * -----------------------------------------
      * CLEANUP
      * -----------------------------------------
      */
@@ -391,6 +453,15 @@ export default function ImageSequenceFixed({
       animation.kill();
 
       animation.scrollTrigger?.kill();
+
+      overlayTimelines.forEach((timeline) => {
+        timeline.scrollTrigger?.kill();
+        timeline.kill();
+      });
+
+      if (overlayRef.current) {
+        gsap.set(overlayRef.current, { opacity: 0 });
+      }
     };
   }, [
     images,
@@ -403,6 +474,8 @@ export default function ImageSequenceFixed({
     onFrameChange,
     fixedBackground,
     fullPageScroll,
+    overlayIntervals,
+    objectPosition,
   ]);
 
   return (
@@ -420,6 +493,20 @@ export default function ImageSequenceFixed({
         className={`absolute inset-0 h-full w-full ${canvasClassName} `}
         style={canvasStyle}
       />
+      {fixedBackground &&
+        overlayIntervals?.map((interval, index) => (
+          <div
+            key={`${interval.start}-${index}`}
+            ref={(element) => {
+              overlayRefs.current[index] = element;
+            }}
+            className="pointer-events-none absolute inset-0"
+            style={{
+              backgroundColor: interval.color ?? "#000000",
+              opacity: 0,
+            }}
+          />
+        ))}
     </section>
   );
 }
