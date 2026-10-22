@@ -18,6 +18,8 @@ interface OverlayInterval {
 interface ImageSequenceFixedProps {
   images?: string[]; // array de URLs
 
+  animationStart?: number; // posição inicial da animação
+
   duration?: number; // quanto de scroll a sequência consome
 
   fullPageScroll?: boolean;
@@ -55,6 +57,7 @@ interface ImageSequenceFixedProps {
 export default function ImageSequenceFixed({
   images = [],
 
+  animationStart = 0,
   duration = 2000,
 
   fullPageScroll = true,
@@ -369,7 +372,6 @@ export default function ImageSequenceFixed({
      */
     const animation = gsap.to(playhead, {
       frame: loadedImages.length - 1,
-
       ease: "none",
 
       scrollTrigger: {
@@ -378,18 +380,20 @@ export default function ImageSequenceFixed({
             ? document.documentElement
             : section,
 
-        start: fullPageScroll || fixedBackground ? "top top" : start,
+        start: fullPageScroll || fixedBackground ? animationStart : start,
 
         end: fullPageScroll
           ? () =>
               `+=${Math.max(
-                0,
-                document.documentElement.scrollHeight - window.innerHeight,
+                1,
+                document.documentElement.scrollHeight -
+                  window.innerHeight -
+                  animationStart,
               )}`
           : `+=${duration}`,
 
         scrub,
-        pin: fixedBackground ? false : pin,
+        pin: fixedBackground || fullPageScroll ? false : pin,
         invalidateOnRefresh: true,
       },
 

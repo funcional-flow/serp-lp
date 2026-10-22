@@ -16,7 +16,7 @@ import SerpVideo from "@/widgets/SerpVideo";
 import ImageSequence from "@/components/gsap/ImageSequence";
 import ImageSequenceFixed from "@/components/gsap/ImageSequenceFixed";
 import ScaleOnScroll from "@/components/gsap/ScaleOnScroll";
-import { video_serp_1, video_serp_2 } from "@/config/videos_frames";
+import { video_serp_1, video_serp_2, video_serp_3 } from "@/config/videos_frames";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -30,11 +30,12 @@ export default function Home() {
       <main className="w-full">
         <ImageSequenceFixed
           duration={9000}
+          animationStart={0}
           fullPageScroll={false}
           scrub={true}
           background="transparent"
           className="z-0"
-          images={[...video_serp_1.slice(0), ...video_serp_2.slice(0)]} // o slice é o intervalo que quer os frames, poderia ser slice(50,120) - primeiro e ultimo-1
+          images={[...video_serp_1.slice(40), ...video_serp_2.slice(60, 120), ...video_serp_3.slice(104)]} // o slice é o intervalo que quer os frames, poderia ser slice(50,120) - primeiro e ultimo-1
           canvasWidth={1080}
           canvasHeight={1920}
           canvasClassName="w-full"
