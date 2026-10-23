@@ -65,7 +65,7 @@ export default function Home() {
             },
             {
               start: 7700,
-              peak: 8200,
+              peak: 8250,
               holdEnd: 12000,
               end: 12011,
               color: "#EBEBEB",
