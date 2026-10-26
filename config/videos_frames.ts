@@ -14,7 +14,7 @@ const video_serp_2 = Array.from({ length: 192 }, (_, index) => {
 });
 
 
-const video_serp_3 = Array.from({ length: 176 }, (_, index) => {
+const video_serp_3 = Array.from({ length: 172 }, (_, index) => {
   const frame = String(index + 1);
   // const frame = String(index + 1).padStart(3, "0");
 

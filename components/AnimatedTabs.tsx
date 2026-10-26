@@ -22,12 +22,10 @@ type TabsAlign = "left" | "center" | "right";
 
 type TabsPosition = "top" | "bottom";
 
-type LabelSize = "text-sm" | "text-base" | "text-lg" | "text-xl";
-
 interface AnimatedTabsProps {
   tabs: Tab[];
 
-  labelSize?: LabelSize;
+  labelSize?: string; // "text-sm" | "text-base" | "text-lg" | "text-xl";
 
   animation?: AnimationType;
 
