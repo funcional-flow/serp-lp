@@ -525,6 +525,7 @@ export default function ImageSequenceFixed({
           const startFrame = activeVideoSegments!
             .slice(0, index)
             .reduce((sum, item) => sum + item.images.length, 0);
+
           const endFrame = startFrame + segment.images.length - 1;
 
           return {
@@ -534,6 +535,7 @@ export default function ImageSequenceFixed({
             endOffset: Math.max(0, segment.end.afterFrames ?? 0),
             startFrame,
             endFrame,
+            frameCount: segment.images.length,
             startTrigger: segment.start.trigger,
             endTrigger: segment.end.trigger,
           };
@@ -543,42 +545,75 @@ export default function ImageSequenceFixed({
         );
 
       if (segments.length === activeVideoSegments!.length) {
-        const sequenceStart = getSequenceStart();
-        const baseEnd = getBaseSequenceEnd();
-        const totalFrames = Math.max(1, effectiveImages.length - 1);
-        const baseDistance =
-          baseEnd === null
-            ? Math.max(1, activeDuration)
-            : Math.max(1, baseEnd - sequenceStart);
-        const scrollPerFrame = baseDistance / totalFrames;
-
+        /**
+         * Retorna a posição de entrada da seção no scroll.
+         * Equivale ao alinhamento "top bottom".
+         */
         const getEntryScrollY = (element: Element) =>
           element.getBoundingClientRect().top +
           window.scrollY -
           window.innerHeight;
 
+        /**
+         * Calcula os limites de cada vídeo independentemente.
+         *
+         * A velocidade de referência é baseada na distância entre
+         * as seções daquele vídeo, e não em `duration`.
+         *
+         * Portanto, alterar `duration` não antecipa o término
+         * dos vídeos configurados em `videoSegments`.
+         */
         const getPositions = () =>
-          segments.map((segment) => ({
-            start:
-              getEntryScrollY(segment.startElement) +
-              segment.startOffset * scrollPerFrame,
-            end:
-              getEntryScrollY(segment.endElement) +
-              segment.endOffset * scrollPerFrame,
-            startFrame: segment.startFrame,
-            endFrame: segment.endFrame,
-            startTrigger: segment.startTrigger,
-            endTrigger: segment.endTrigger,
-          }));
+          segments.map((segment) => {
+            const sectionStart = getEntryScrollY(segment.startElement);
+            const sectionEnd = getEntryScrollY(segment.endElement);
 
+            const sectionDistance = sectionEnd - sectionStart;
+
+            if (sectionDistance <= 0) {
+              console.warn(
+                `[ImageSequenceFixed] A seção final "${segment.endTrigger}" precisa estar depois da seção inicial "${segment.startTrigger}".`,
+              );
+            }
+
+            // Distância de scroll de referência por frame deste vídeo.
+            const scrollPerFrame =
+              Math.max(1, sectionDistance) /
+              Math.max(1, segment.frameCount - 1);
+
+            // O início pode ter um offset opcional em frames.
+            const start = sectionStart + segment.startOffset * scrollPerFrame;
+
+            // O vídeo termina no ponto da seção final acrescido
+            // do offset configurado em end.afterFrames.
+            const end = sectionEnd + segment.endOffset * scrollPerFrame;
+
+            return {
+              start,
+              end,
+              startFrame: segment.startFrame,
+              endFrame: segment.endFrame,
+              startTrigger: segment.startTrigger,
+              endTrigger: segment.endTrigger,
+            };
+          });
+
+        /**
+         * Atualiza o frame de acordo com a posição do scroll.
+         * Todos os frames do segmento são interpolados entre
+         * os limites calculados para ele.
+         */
         const updateSegmentedSequence = (scrollY: number) => {
           const positions = getPositions();
           let activeIndex = -1;
 
-          // videoSegments devem ser declarados na ordem em que aparecem na página.
+          // Os segmentos devem estar na ordem em que aparecem na página.
           for (let index = 0; index < positions.length; index += 1) {
-            if (scrollY >= positions[index].start) activeIndex = index;
-            else break;
+            if (scrollY >= positions[index].start) {
+              activeIndex = index;
+            } else {
+              break;
+            }
           }
 
           if (activeIndex < 0) {
@@ -588,17 +623,14 @@ export default function ImageSequenceFixed({
           }
 
           const segment = positions[activeIndex];
+
           if (segment.end <= segment.start) {
-            console.warn(
-              `[ImageSequenceFixed] O fim do segmento "${segment.endTrigger}" precisa estar depois do início "${segment.startTrigger}".`,
-            );
             playhead.frame = segment.endFrame;
             updateImage();
             return;
           }
 
-          // Entre o fim de um vídeo e o início do próximo, mantém o último frame
-          // do segmento anterior. Dentro do intervalo, interpola seus próprios frames.
+          // Progresso de 0 a 1 entre o início e o fim deste vídeo.
           const progress = Math.max(
             0,
             Math.min(
@@ -606,9 +638,11 @@ export default function ImageSequenceFixed({
               (scrollY - segment.start) / (segment.end - segment.start),
             ),
           );
+
           playhead.frame =
             segment.startFrame +
             (segment.endFrame - segment.startFrame) * progress;
+
           updateImage();
         };
 
@@ -620,6 +654,7 @@ export default function ImageSequenceFixed({
           onUpdate: (self) => updateSegmentedSequence(self.scroll()),
           onRefresh: (self) => updateSegmentedSequence(self.scroll()),
         });
+
         updateSegmentedSequence(window.scrollY);
       }
     } else {

@@ -83,14 +83,14 @@ export default function Home() {
             desktop: imageSequenceDesktop,
             mobile: imageSequenceMobile,
           }}
-        //   onFrameChange={(frame) => {
-        //     console.log({
-        //       scrollY: Math.round(window.scrollY),
-        //       frame,
-        //       viewportHeight: window.innerHeight,
-        //       documentHeight: document.documentElement.scrollHeight,
-        //     });
-        //   }}
+          //   onFrameChange={(frame) => {
+          //     console.log({
+          //       scrollY: Math.round(window.scrollY),
+          //       frame,
+          //       viewportHeight: window.innerHeight,
+          //       documentHeight: document.documentElement.scrollHeight,
+          //     });
+          //   }}
         />
         <ScrollTransition
           background="bg-gray-400"
@@ -125,6 +125,7 @@ export default function Home() {
               logos={logosBranca}
               fadeOut
               logoHeight={40}
+              gap={40}
               fadeOutColor="var(--color-black)"
               ariaLabel="Serpentize"
               className="bg-black"
@@ -145,6 +146,7 @@ export default function Home() {
               logos={logosPreta}
               fadeOut
               logoHeight={40}
+              gap={40}
               fadeOutColor="var(--color-white)"
               ariaLabel="Serpentize"
               className="bg-white"
@@ -204,6 +206,11 @@ export default function Home() {
           className="relative h-[150vh] w-full bg-transparent"
         />
 
+        <section id="final" className="relative z-1 flex h-lvh w-full flex-col items-center justify-center gap-2 bg-black text-white">
+          <h2 className="font-metrim text-3xl uppercase">serpentize</h2>
+          <span className="text-xl">Em construção...</span>
+        </section>
+
         <section id="simbologia" className="relative z-1 hidden lg:block">
           <Simbologia />
         </section>
@@ -215,11 +222,6 @@ export default function Home() {
         <section id="depoimentos" className="relative z-1 hidden lg:block">
           <Depoimentos />
         </section>
-
-        <section
-          id="divisao21"
-          className="relative h-[150vh] w-full bg-transparent"
-        />
 
         <section
           id="faq"

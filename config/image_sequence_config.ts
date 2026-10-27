@@ -52,7 +52,7 @@ export const imageSequenceDesktop = {
 } satisfies ImageSequenceConfig;
 
 export const imageSequenceMobile = {
-  duration: 50000,
+  duration: 1000000,
   animationStart: 0,
   fullPageScroll: false,
   scrub: true,
@@ -76,8 +76,8 @@ export const imageSequenceMobile = {
     {
       trigger: "#qualidade1",
       start: 25,
-      peak: 60,
-      holdEnd: 80,
+      peak: 70,
+      holdEnd: 110,
       end: 150,
       unit: "section",
       color: "#EBEBEB",
@@ -85,8 +85,8 @@ export const imageSequenceMobile = {
     {
       trigger: "#qualidade2",
       start: 25,
-      peak: 60,
-      holdEnd: 80,
+      peak: 70,
+      holdEnd: 110,
       end: 150,
       unit: "section",
       color: "#18181b",
@@ -94,8 +94,8 @@ export const imageSequenceMobile = {
     {
       trigger: "#qualidade3",
       start: 25,
-      peak: 60,
-      holdEnd: 80,
+      peak: 70,
+      holdEnd: 110,
       end: 150,
       unit: "section",
       color: "#EBEBEB",
@@ -109,7 +109,7 @@ export const imageSequenceMobile = {
       },
       end: {
         trigger: "#modelos",
-        afterFrames: 5,
+        afterFrames: 30,
       },
     },
     {
@@ -118,8 +118,8 @@ export const imageSequenceMobile = {
         trigger: "#faixaInferior",
       },
       end: {
-        trigger: "#qualidade3",
-        afterFrames: 5,
+        trigger: "#final",
+        afterFrames: 30,
       },
     },
   ],
