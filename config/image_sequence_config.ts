@@ -52,7 +52,7 @@ export const imageSequenceDesktop = {
 export const imageSequenceMobile = {
   duration: 16000,
   animationStart: 970,
-  fullPageScroll: true,
+  fullPageScroll: false,
   scrub: true,
   background: "transparent",
   className: "z-0",
