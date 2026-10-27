@@ -1,13 +1,11 @@
 import AnimatedTabs from "@/components/AnimatedTabs";
 // import ScaleOnScroll from "@/components/gsap/ScaleOnScroll";
 import QualidadeCard from "@/components/QualidadeCard";
-import QualidadeCardMobile from "@/components/QualidadeCardMobile";
 
 export default function Qualidade() {
   return (
     <div className="flex w-full flex-col items-center">
-      {/* Desktop */}
-      <div className="relative hidden min-h-[120svh] w-sm pt-20 lg:block xl:w-300 2xl:w-400">
+      <div className="relative min-h-[120svh] w-sm pt-20 xl:w-300 2xl:w-400">
         <AnimatedTabs
           activeColor="bg-white"
           lineColor="border-white/20"
@@ -49,24 +47,6 @@ export default function Qualidade() {
             },
           ]}
         />
-      </div>
-
-      {/* Mobile */}
-      <div className="flex w-full flex-col lg:hidden">
-        <div className="h-svh">
-          <QualidadeCardMobile title="Modelo Boxy" />
-        </div>
-        <div className="h-svh">
-          <QualidadeCardMobile
-            title="Modelo Classica"
-            backgroundColor="bg-white"
-            titleColor="text-black"
-            textColor="text-white"
-          />
-        </div>
-        <div className="h-svh">
-          <QualidadeCardMobile title="Modelo Regata" />
-        </div>
       </div>
     </div>
   );

@@ -20,14 +20,13 @@ type ImageFit = "contain" | "cover" | "stretch";
 
 type ObjectPosition = "top" | "center" | "bottom";
 
-interface OverlayInterval {
-  /**
-   * Posições absolutas de scroll em pixels.
-   */
-  start: number;
-  peak: number;
-  holdEnd: number;
-  end: number;
+export interface OverlayInterval {
+  trigger: string; // Seletor da seção, ex.: "#divisao11"
+  start: number; // Distância do topo da seção até começar o fade-in
+  peak: number; // Distância em que a opacidade chega a 1
+  holdEnd: number; // Distância até onde mantém opacidade 1
+  end: number; // Distância em que termina o fade-out
+  unit?: "px" | "vh" | "section"; // section = porcentagem da altura da seção; px é o padrão
   color?: string;
 }
 
@@ -60,7 +59,6 @@ export interface ImageSequenceConfig {
   className?: string;
   canvasClassName?: string;
   canvasStyle?: CSSProperties;
-  fixedBackground?: boolean;
   overlayIntervals?: OverlayInterval[];
 }
 
@@ -93,7 +91,7 @@ export interface ImageSequenceFixedProps extends Omit<
   /**
    * Compatibilidade com a API antiga de overlays globais responsivos.
    */
-  overlayIntervals?: ResponsiveOverlayIntervals;
+  overlayIntervals?: ResponsiveOverlayIntervals | OverlayInterval[];
 }
 
 const DEFAULT_IMAGES = Array.from({ length: 147 }, (_, index) => {
@@ -101,8 +99,6 @@ const DEFAULT_IMAGES = Array.from({ length: 147 }, (_, index) => {
 
   return `https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/${frame}.jpg`;
 });
-
-const BREAKPOINTS: Breakpoint[] = ["desktop", "tablet", "mobile"];
 
 function getBreakpoint(): Breakpoint {
   if (typeof window === "undefined") return "desktop";
@@ -130,7 +126,6 @@ export default function ImageSequenceFixed({
   className = "",
   canvasClassName = "",
   canvasStyle,
-  fixedBackground = true,
   overlayIntervals,
   responsive,
   onFrameChange,
@@ -214,8 +209,9 @@ export default function ImageSequenceFixed({
     className,
     canvasClassName,
     canvasStyle,
-    fixedBackground,
-    overlayIntervals: overlayIntervals?.[breakpoint],
+    overlayIntervals: Array.isArray(overlayIntervals)
+      ? overlayIntervals
+      : overlayIntervals?.[breakpoint],
   };
 
   const activeConfig: ImageSequenceConfig = {
@@ -231,16 +227,13 @@ export default function ImageSequenceFixed({
     canvasWidth: activeCanvasWidth = 1158,
     canvasHeight: activeCanvasHeight = 770,
     background: activeBackground = "transparent",
-    start: activeStart = "top top",
     scrub: activeScrub = true,
-    pin: activePin = true,
     clear: activeClear = true,
     fit: activeFit = "contain",
     objectPosition: activeObjectPosition = "center",
     className: activeClassName = "",
     canvasClassName: activeCanvasClassName = "",
     canvasStyle: activeCanvasStyle,
-    fixedBackground: activeFixedBackground = true,
     overlayIntervals: activeOverlayIntervals = [],
   } = activeConfig;
 
@@ -411,15 +404,9 @@ export default function ImageSequenceFixed({
       frame: effectiveImages.length - 1,
       ease: "none",
       scrollTrigger: {
-        trigger:
-          activeFullPageScroll || activeFixedBackground
-            ? document.documentElement
-            : section,
-
-        start:
-          activeFullPageScroll || activeFixedBackground
-            ? activeAnimationStart
-            : activeStart,
+        // O fundo é sempre fixo; a sequência acompanha o scroll da página.
+        trigger: document.documentElement,
+        start: activeAnimationStart,
 
         end: useFullPageDistance
           ? () =>
@@ -433,7 +420,7 @@ export default function ImageSequenceFixed({
 
         scrub: activeScrub,
 
-        pin: activeFixedBackground || activeFullPageScroll ? false : activePin,
+        pin: false,
 
         invalidateOnRefresh: true,
       },
@@ -443,61 +430,88 @@ export default function ImageSequenceFixed({
 
     /**
      * Cria os overlays do breakpoint ativo.
-     * As posições start/peak/holdEnd/end são absolutas
-     * em relação ao scroll, em pixels.
+     *
+     * unit: "px" usa distâncias fixas em pixels.
+     * unit: "vh" usa porcentagem da altura da viewport.
+     * unit: "section" usa porcentagem da altura da própria seção,
+     * para manter o ponto visual proporcional em telefones diferentes.
      */
     const overlayTimelines: gsap.core.Timeline[] = [];
 
-    if (activeFixedBackground) {
-      activeOverlayIntervals.forEach((interval, index) => {
-        const overlay = overlayRefs.current[breakpoint][index];
+    activeOverlayIntervals.forEach((interval, index) => {
+      const overlay = overlayRefs.current[breakpoint][index];
+      const triggerElement = document.querySelector(interval.trigger);
 
-        if (!overlay) return;
+      if (!overlay || !triggerElement) {
+        console.warn(
+          `[ImageSequenceFixed] Não foi possível encontrar o overlay ${index} ou sua seção "${interval.trigger}".`,
+        );
+        return;
+      }
 
-        if (
-          interval.peak < interval.start ||
-          interval.holdEnd < interval.peak ||
-          interval.end < interval.holdEnd
-        ) {
-          console.warn(
-            `Overlay ${breakpoint}[${index}] tem tempos inválidos.`,
-            interval,
-          );
-          return;
-        }
+      const { start, peak, holdEnd, end } = interval;
+      const unit = interval.unit ?? "px";
 
-        gsap.set(overlay, { opacity: 0 });
+      if (
+        ![start, peak, holdEnd, end].every(Number.isFinite) ||
+        !(0 <= start && start < peak && peak <= holdEnd && holdEnd < end) ||
+        !(unit === "px" || unit === "vh" || unit === "section")
+      ) {
+        console.warn(
+          `[ImageSequenceFixed] Intervalo inválido para "${interval.trigger}".`,
+        );
+        return;
+      }
 
-        const timeline = gsap.timeline({
-          scrollTrigger: {
-            trigger: document.documentElement,
-            start: interval.start,
-            end: interval.end,
-            scrub: true,
-            invalidateOnRefresh: true,
+      gsap.set(overlay, { opacity: 0 });
+
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: triggerElement,
+          start: "top bottom",
+          // Recalcula a distância a cada refresh, usando a unidade escolhida.
+          end: () => {
+            if (unit === "vh") {
+              return `+=${(end * window.innerHeight) / 100}`;
+            }
+
+            if (unit === "section") {
+              const sectionHeight =
+                triggerElement.getBoundingClientRect().height;
+              return `+=${(end * sectionHeight) / 100}`;
+            }
+
+            return `+=${end}`;
           },
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      timeline
+        .to(overlay, {
+          opacity: 0,
+          duration: interval.start,
+          ease: "none",
+        })
+        .to(overlay, {
+          opacity: 1,
+          duration: interval.peak - interval.start,
+          ease: "none",
+        })
+        .to(overlay, {
+          opacity: 1,
+          duration: interval.holdEnd - interval.peak,
+          ease: "none",
+        })
+        .to(overlay, {
+          opacity: 0,
+          duration: interval.end - interval.holdEnd,
+          ease: "none",
         });
 
-        timeline
-          .to(overlay, {
-            opacity: 1,
-            duration: Math.max(0, interval.peak - interval.start),
-            ease: "none",
-          })
-          .to(overlay, {
-            opacity: 1,
-            duration: Math.max(0, interval.holdEnd - interval.peak),
-            ease: "none",
-          })
-          .to(overlay, {
-            opacity: 0,
-            duration: Math.max(0, interval.end - interval.holdEnd),
-            ease: "none",
-          });
-
-        overlayTimelines.push(timeline);
-      });
-    }
+      overlayTimelines.push(timeline);
+    });
 
     ScrollTrigger.refresh();
 
@@ -524,46 +538,19 @@ export default function ImageSequenceFixed({
     activeAnimationStart,
     activeDuration,
     activeFullPageScroll,
-    activeStart,
     activeScrub,
-    activePin,
     activeClear,
     activeFit,
     activeObjectPosition,
-    activeFixedBackground,
     activeOverlayIntervals,
     responsive,
   ]);
 
-  /**
-   * Prepara as camadas de overlay para cada breakpoint.
-   *
-   * Os overlays responsivos têm prioridade sobre os overlays
-   * globais antigos para o mesmo breakpoint.
-   */
-  const getOverlaysForBreakpoint = (name: Breakpoint) => {
-    const responsiveOverlays = responsive?.[name]?.overlayIntervals;
-
-    if (responsiveOverlays !== undefined) {
-      return responsiveOverlays;
-    }
-
-    return overlayIntervals?.[name] ?? [];
-  };
-
   return (
     <section
       ref={sectionRef}
-      className={`${
-        activeFixedBackground
-          ? "pointer-events-none fixed inset-0 z-0"
-          : "relative"
-      } h-screen w-full overflow-hidden ${activeClassName}`}
-      style={
-        activeFixedBackground
-          ? { backgroundColor: activeBackground }
-          : { backgroundColor: activeBackground }
-      }
+      className={`pointer-events-none fixed inset-0 z-0 h-screen w-full overflow-hidden ${activeClassName}`}
+      style={{ backgroundColor: activeBackground }}
     >
       <canvas
         ref={canvasRef}
@@ -573,24 +560,19 @@ export default function ImageSequenceFixed({
         style={activeCanvasStyle}
       />
 
-      {activeFixedBackground &&
-        BREAKPOINTS.map((name) =>
-          getOverlaysForBreakpoint(name).map((interval, index) => (
-            <div
-              key={`${name}-${interval.start}-${index}`}
-              ref={(element) => {
-                overlayRefs.current[name][index] = element;
-              }}
-              className={`pointer-events-none absolute inset-0 ${
-                name === breakpoint ? "" : "hidden"
-              }`}
-              style={{
-                backgroundColor: interval.color ?? "#000000",
-                opacity: 0,
-              }}
-            />
-          )),
-        )}
+      {activeOverlayIntervals.map((interval, index) => (
+        <div
+          key={`${interval.trigger}-${index}`}
+          ref={(element) => {
+            overlayRefs.current[breakpoint][index] = element;
+          }}
+          className="absolute inset-0"
+          style={{
+            backgroundColor: interval.color ?? "#000000",
+            opacity: 0,
+          }}
+        />
+      ))}
     </section>
   );
 }

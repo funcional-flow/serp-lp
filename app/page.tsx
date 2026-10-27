@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Preloader from "@/components/Preloader";
 import SerpCarousel from "@/components/SerpCarousel";
 import ScrollTransition from "@/components/gsap/ScrollTransition";
@@ -25,11 +25,51 @@ import {
   imageSequenceDesktop,
   imageSequenceMobile,
 } from "@/config/image_sequence_config";
+import QualidadeCardMobile from "@/components/QualidadeCardMobile";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
 
   //   effect gl (1000ms):fade, wave-x, peel-x, stretch, ripple, morph-y
+
+  //   useEffect(() => {
+  //     const section = document.querySelector("#divisao11");
+  //     if (!section) {
+  //       console.log("Seção #divisao11 não encontrada");
+  //       return;
+  //     }
+
+  //     const rect = section.getBoundingClientRect();
+
+  //     console.table({
+  //       scrollY: window.scrollY,
+  //       sectionTop: rect.top,
+  //       sectionDocumentTop: rect.top + window.scrollY,
+  //       sectionHeight: rect.height,
+  //       viewportHeight: window.innerHeight,
+  //       scrollHeight: document.documentElement.scrollHeight,
+  //     });
+
+  //     const logPosition = () => {
+  //       const rect = section.getBoundingClientRect();
+
+  //       console.table({
+  //         scrollY: window.scrollY,
+  //         sectionTop: rect.top,
+  //         sectionDocumentTop: rect.top + window.scrollY,
+  //         sectionHeight: rect.height,
+  //         viewportHeight: window.innerHeight,
+  //         scrollHeight: document.documentElement.scrollHeight,
+  //       });
+  //     };
+
+  //     window.addEventListener("scroll", logPosition, { passive: true });
+  //     logPosition();
+
+  //     return () => {
+  //       window.removeEventListener("scroll", logPosition);
+  //     };
+  //   }, []);
 
   return (
     <>
@@ -41,11 +81,14 @@ export default function Home() {
             desktop: imageSequenceDesktop,
             mobile: imageSequenceMobile,
           }}
-          onFrameChange={(frame, image) => {
-            console.log("Scroll Y:", Math.round(window.scrollY));
-            console.log("Frame atual:", frame);
-            console.log("Imagem:", image.src);
-          }}
+          //   onFrameChange={(frame) => {
+          //     console.log({
+          //       scrollY: Math.round(window.scrollY),
+          //       frame,
+          //       viewportHeight: window.innerHeight,
+          //       documentHeight: document.documentElement.scrollHeight,
+          //     });
+          //   }}
         />
         <ScrollTransition
           background="bg-gray-400"
@@ -68,7 +111,7 @@ export default function Home() {
 
         <section
           id="divisao11"
-          className="relative h-[250svh] w-full bg-transparent lg:h-[150vh]"
+          className="relative h-[250lvh] w-full bg-transparent lg:h-[150vh]"
         />
 
         <section id="modelos" className="bg-background relative z-1">
@@ -81,10 +124,44 @@ export default function Home() {
         />
 
         <section
-          id="qualidade"
-          className="relative z-1 overflow-hidden lg:block lg:overflow-visible"
+          id="qualidade1"
+          className="relative z-1 overflow-hidden lg:overflow-visible"
         >
-          <Qualidade />
+          <div className="hidden lg:block">
+            <Qualidade />
+          </div>
+          <div className="h-lvh lg:hidden">
+            <QualidadeCardMobile
+              title="Modelo Classica"
+              backgroundColor="bg-black"
+              titleColor="text-white"
+              textColor="text-black"
+            />
+          </div>
+        </section>
+
+        <section
+          id="qualidade2"
+          className="h-lvh relative z-1 overflow-hidden lg:hidden lg:overflow-visible"
+        >
+          <QualidadeCardMobile
+            title="Modelo Classica"
+            backgroundColor="bg-white"
+            titleColor="text-black"
+            textColor="text-white"
+          />
+        </section>
+
+        <section
+          id="qualidade3"
+          className="h-lvh relative z-1 overflow-hidden lg:hidden lg:overflow-visible"
+        >
+          <QualidadeCardMobile
+            title="Modelo Classica"
+            backgroundColor="bg-black"
+            titleColor="text-white"
+            textColor="text-black"
+          />
         </section>
 
         <section
