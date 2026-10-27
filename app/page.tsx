@@ -21,6 +21,10 @@ import {
   video_serp_2,
   video_serp_3,
 } from "@/config/videos_frames";
+import {
+  imageSequenceDesktop,
+  imageSequenceMobile,
+} from "@/config/image_sequence_config";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -34,88 +38,13 @@ export default function Home() {
       <main className="w-full">
         <ImageSequenceFixed
           responsive={{
-            desktop: {
-              duration: 9000,
-              animationStart: 0,
-              fullPageScroll: false,
-              scrub: true,
-              background: "transparent",
-              className: "z-0",
-              images: [
-                ...video_serp_1.slice(40),
-                ...video_serp_2.slice(65, 120),
-                ...video_serp_3.slice(104),
-              ], // o slice é o intervalo que quer os frames, poderia ser slice(50,120) - primeiro e ultimo-1
-              canvasWidth: 1080,
-              canvasHeight: 1920,
-              canvasClassName: "w-full",
-              fit: "cover",
-              objectPosition: "top",
-              overlayIntervals: [
-                {
-                  start: 2750,
-                  peak: 3300,
-                  holdEnd: 3400,
-                  end: 3450,
-                  color: "#000000",
-                },
-                {
-                  start: 5300,
-                  peak: 5750,
-                  holdEnd: 5900,
-                  end: 6600,
-                  color: "#18181b",
-                },
-                {
-                  start: 7700,
-                  peak: 8250,
-                  holdEnd: 9500,
-                  end: 9600,
-                  color: "#EBEBEB",
-                },
-              ],
-            },
-            mobile: {
-              duration: 11500,
-              fullPageScroll: false,
-              overlayIntervals: [
-                {
-                  start: 2750,
-                  peak: 3300,
-                  holdEnd: 3400,
-                  end: 3450,
-                  color: "#000000",
-                },
-                {
-                  start: 6000,
-                  peak: 6450,
-                  holdEnd: 6700,
-                  end: 7100,
-                  color: "#EBEBEB",
-                },
-                {
-                  start: 7101,
-                  peak: 7450,
-                  holdEnd: 7700,
-                  end: 8100,
-                  color: "#18181b",
-                },
-                {
-                  start: 7101,
-                  peak: 7450,
-                  holdEnd: 7700,
-                  end: 8100,
-                  color: "#18181b",
-                },
-                {
-                  start: 7700,
-                  peak: 8250,
-                  holdEnd: 8450,
-                  end: 9000,
-                  color: "#EBEBEB",
-                },
-              ],
-            },
+            desktop: imageSequenceDesktop,
+            mobile: imageSequenceMobile,
+          }}
+          onFrameChange={(frame, image) => {
+            console.log("Scroll Y:", Math.round(window.scrollY));
+            console.log("Frame atual:", frame);
+            console.log("Imagem:", image.src);
           }}
         />
         <ScrollTransition
@@ -139,7 +68,7 @@ export default function Home() {
 
         <section
           id="divisao11"
-          className="relative h-[150vh] w-full bg-transparent"
+          className="relative h-[250svh] w-full bg-transparent lg:h-[150vh]"
         />
 
         <section id="modelos" className="bg-background relative z-1">

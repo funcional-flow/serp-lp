@@ -64,6 +64,9 @@ export default function Qualidade() {
             textColor="text-white"
           />
         </div>
+        <div className="h-svh">
+          <QualidadeCardMobile title="Modelo Regata" />
+        </div>
       </div>
     </div>
   );
