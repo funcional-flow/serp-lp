@@ -1,24 +1,13 @@
 import CardModelo from "@/components/CardModelo";
 // import CardModeloDesk from "@/components/CardModeloDesk";
 import LogoLoop from "@/components/reactbits/LogoLoop";
+import { logosBranca, logosPreta } from "@/config/logos";
 
 export default function Modelos() {
-  const logosPreta = [
-    { src: "/logo_loop/preta/logo_loop_preta (1).png", alt: "Tech 1" },
-    { src: "/logo_loop/preta/logo_loop_preta (2).png", alt: "Tech 2" },
-    { src: "/logo_loop/preta/logo_loop_preta (3).png", alt: "Tech 3" },
-    { src: "/logo_loop/preta/logo_loop_preta (4).png", alt: "Tech 4" },
-  ];
-  const logosBranca = [
-    { src: "/logo_loop/branca/logo_loop_branca (1).png", alt: "Tech 1" },
-    { src: "/logo_loop/branca/logo_loop_branca (2).png", alt: "Tech 2" },
-    { src: "/logo_loop/branca/logo_loop_branca (3).png", alt: "Tech 3" },
-    { src: "/logo_loop/branca/logo_loop_branca (4).png", alt: "Tech 4" },
-  ];
 
   return (
     <div className="relative flex h-auto w-full flex-col bg-black">
-      <div className="relative">
+      {/* <div className="relative">
         <LogoLoop
           logos={logosBranca}
           fadeOut
@@ -26,7 +15,7 @@ export default function Modelos() {
           ariaLabel="Serpentize"
           className="bg-black"
         />
-      </div>
+      </div> */}
       <div className="relative flex min-h-lvh flex-col lg:flex-row">
         {/* Primeira Sessão */}
         <div className="relative h-lvh w-full lg:flex lg:h-auto lg:w-1/2">
@@ -190,7 +179,7 @@ export default function Modelos() {
         </div>
       </div> */}
 
-      <div className="relative">
+      {/* <div className="relative">
         <LogoLoop
           logos={logosPreta}
           fadeOut
@@ -199,7 +188,7 @@ export default function Modelos() {
           className="bg-white"
           direction="right"
         />
-      </div>
+      </div> */}
     </div>
   );
 }

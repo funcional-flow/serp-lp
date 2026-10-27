@@ -3,6 +3,7 @@
 import {
   useEffect,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
   type CSSProperties,
@@ -19,6 +20,28 @@ type ResponsiveDuration = Partial<Record<Breakpoint, number>>;
 type ImageFit = "contain" | "cover" | "stretch";
 
 type ObjectPosition = "top" | "center" | "bottom";
+
+export interface VideoSegmentPoint {
+  /** Seletor da seção que ancora este ponto, ex.: "#divisao11". */
+  trigger: string;
+  /** Offset opcional, em frames, após o topo da seção chegar à borda inferior da viewport. */
+  afterFrames?: number;
+}
+
+export interface VideoSegmentConfig {
+  /** Array de frames deste vídeo, por exemplo video_serp_1. */
+  images: string[];
+  /** Onde começa a reprodução deste array. */
+  start: VideoSegmentPoint;
+  /** Onde termina a reprodução deste array. */
+  end: VideoSegmentPoint;
+}
+
+/** @deprecated Use videoSegments para definir o início e o fim de cada vídeo. */
+export interface FrameTransition {
+  trigger: string;
+  afterFrames: number;
+}
 
 export interface OverlayInterval {
   trigger: string; // Seletor da seção, ex.: "#divisao11"
@@ -43,7 +66,12 @@ interface ResponsiveOverlayIntervals {
  * já pertence a um breakpoint específico.
  */
 export interface ImageSequenceConfig {
+  /** Lista plana de frames, para compatibilidade com a API existente. */
   images?: string[];
+  /** Cada array de vídeo recebe sua própria seção de início e de fim. */
+  videoSegments?: VideoSegmentConfig[];
+  /** @deprecated API anterior; prefira videoSegments. */
+  imageSequences?: string[][];
   animationStart?: number;
   duration?: number;
   fullPageScroll?: boolean;
@@ -60,6 +88,8 @@ export interface ImageSequenceConfig {
   canvasClassName?: string;
   canvasStyle?: CSSProperties;
   overlayIntervals?: OverlayInterval[];
+  /** @deprecated API anterior; prefira videoSegments. */
+  frameTransitions?: FrameTransition[];
 }
 
 export interface ResponsiveImageSequenceConfig {
@@ -111,6 +141,8 @@ function getBreakpoint(): Breakpoint {
 
 export default function ImageSequenceFixed({
   images,
+  videoSegments,
+  imageSequences,
   animationStart = 0,
   duration = 2000,
   fullPageScroll = true,
@@ -127,6 +159,7 @@ export default function ImageSequenceFixed({
   canvasClassName = "",
   canvasStyle,
   overlayIntervals,
+  frameTransitions,
   responsive,
   onFrameChange,
 }: ImageSequenceFixedProps) {
@@ -194,6 +227,8 @@ export default function ImageSequenceFixed({
 
   const globalConfig: ImageSequenceConfig = {
     images,
+    videoSegments,
+    imageSequences,
     animationStart,
     duration: globalDuration,
     fullPageScroll,
@@ -212,6 +247,7 @@ export default function ImageSequenceFixed({
     overlayIntervals: Array.isArray(overlayIntervals)
       ? overlayIntervals
       : overlayIntervals?.[breakpoint],
+    frameTransitions,
   };
 
   const activeConfig: ImageSequenceConfig = {
@@ -221,6 +257,8 @@ export default function ImageSequenceFixed({
 
   const {
     images: activeImagesProp,
+    videoSegments: activeVideoSegments,
+    imageSequences: activeImageSequences,
     animationStart: activeAnimationStart = 0,
     duration: activeDuration = 2000,
     fullPageScroll: activeFullPageScroll = true,
@@ -235,11 +273,20 @@ export default function ImageSequenceFixed({
     canvasClassName: activeCanvasClassName = "",
     canvasStyle: activeCanvasStyle,
     overlayIntervals: activeOverlayIntervals = [],
+    frameTransitions: activeFrameTransitions = [],
   } = activeConfig;
 
-  const effectiveImages = activeImagesProp?.length
-    ? activeImagesProp
-    : DEFAULT_IMAGES;
+  const effectiveImages = useMemo(
+    () =>
+      activeVideoSegments?.length
+        ? activeVideoSegments.flatMap((segment) => segment.images)
+        : activeImageSequences?.length
+          ? activeImageSequences.flat()
+          : activeImagesProp?.length
+            ? activeImagesProp
+            : DEFAULT_IMAGES,
+    [activeVideoSegments, activeImageSequences, activeImagesProp],
+  );
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
@@ -400,41 +447,311 @@ export default function ImageSequenceFixed({
 
     const useFullPageDistance = activeFullPageScroll && !hasResponsiveDuration;
 
-    const trigger = gsap.to(playhead, {
-      frame: effectiveImages.length - 1,
-      ease: "none",
-      scrollTrigger: {
-        // O fundo é sempre fixo; a sequência acompanha o scroll da página.
-        trigger: document.documentElement,
-        start: activeAnimationStart,
+    const sequenceTweens: gsap.core.Tween[] = [];
+    let segmentedSequenceTrigger: ScrollTrigger | null = null;
 
-        end: useFullPageDistance
-          ? () =>
-              `+=${Math.max(
-                1,
-                document.documentElement.scrollHeight -
-                  window.innerHeight -
-                  activeAnimationStart,
-              )}`
-          : () => `+=${Math.max(1, activeDuration)}`,
+    // Mantém o cálculo do fim original da sequência, mas permite inserir
+    // pontos de troca alinhados ao pico de opacidade dos overlays.
+    const getBaseSequenceEnd = () => {
+      if (useFullPageDistance && typeof activeAnimationStart === "number") {
+        return Math.max(
+          activeAnimationStart + 1,
+          document.documentElement.scrollHeight - window.innerHeight,
+        );
+      }
 
-        scrub: activeScrub,
+      if (typeof activeAnimationStart === "number") {
+        return activeAnimationStart + Math.max(1, activeDuration);
+      }
 
-        pin: false,
+      return null;
+    };
 
-        invalidateOnRefresh: true,
-      },
+    const getSectionEntryScrollY = (transition: FrameTransition) => {
+      const triggerElement = document.querySelector(transition.trigger);
 
-      onUpdate: updateImage,
-    });
+      if (!triggerElement) {
+        console.warn(
+          `[ImageSequenceFixed] Não foi encontrada a seção "${transition.trigger}" para sincronizar a troca de frames.`,
+        );
+        return null;
+      }
+
+      // A contagem começa quando o topo da seção chega à borda inferior
+      // da viewport (equivalente a "top bottom" no ScrollTrigger).
+      return (
+        triggerElement.getBoundingClientRect().top +
+        window.scrollY -
+        window.innerHeight
+      );
+    };
+
+    const getSequenceStart = () =>
+      typeof activeAnimationStart === "number" ? activeAnimationStart : 0;
+
+    const getTransitionScrollY = (transition: FrameTransition) => {
+      const sectionEntry = getSectionEntryScrollY(transition);
+      const sequenceEnd = getBaseSequenceEnd();
+      const sequenceStart = getSequenceStart();
+
+      if (sectionEntry === null || sequenceEnd === null) return null;
+
+      const totalFrames = Math.max(1, effectiveImages.length - 1);
+      const scrollPerFrame = Math.max(
+        1,
+        (sequenceEnd - sequenceStart) / totalFrames,
+      );
+
+      // afterFrames converte a espera em frames para a distância de scroll
+      // equivalente à velocidade-base da sequência.
+      return sectionEntry + transition.afterFrames * scrollPerFrame;
+    };
+
+    const hasVideoSegments = Boolean(activeVideoSegments?.length);
+
+    if (hasVideoSegments) {
+      const segments = activeVideoSegments!
+        .map((segment, index) => {
+          const startElement = document.querySelector(segment.start.trigger);
+          const endElement = document.querySelector(segment.end.trigger);
+
+          if (!startElement || !endElement) {
+            console.warn(
+              `[ImageSequenceFixed] Segmento ${index + 1}: não foi encontrada a seção de início "${segment.start.trigger}" ou de fim "${segment.end.trigger}".`,
+            );
+            return null;
+          }
+
+          const startFrame = activeVideoSegments!
+            .slice(0, index)
+            .reduce((sum, item) => sum + item.images.length, 0);
+          const endFrame = startFrame + segment.images.length - 1;
+
+          return {
+            startElement,
+            endElement,
+            startOffset: Math.max(0, segment.start.afterFrames ?? 0),
+            endOffset: Math.max(0, segment.end.afterFrames ?? 0),
+            startFrame,
+            endFrame,
+            startTrigger: segment.start.trigger,
+            endTrigger: segment.end.trigger,
+          };
+        })
+        .filter(
+          (segment): segment is NonNullable<typeof segment> => segment !== null,
+        );
+
+      if (segments.length === activeVideoSegments!.length) {
+        const sequenceStart = getSequenceStart();
+        const baseEnd = getBaseSequenceEnd();
+        const totalFrames = Math.max(1, effectiveImages.length - 1);
+        const baseDistance =
+          baseEnd === null
+            ? Math.max(1, activeDuration)
+            : Math.max(1, baseEnd - sequenceStart);
+        const scrollPerFrame = baseDistance / totalFrames;
+
+        const getEntryScrollY = (element: Element) =>
+          element.getBoundingClientRect().top +
+          window.scrollY -
+          window.innerHeight;
+
+        const getPositions = () =>
+          segments.map((segment) => ({
+            start:
+              getEntryScrollY(segment.startElement) +
+              segment.startOffset * scrollPerFrame,
+            end:
+              getEntryScrollY(segment.endElement) +
+              segment.endOffset * scrollPerFrame,
+            startFrame: segment.startFrame,
+            endFrame: segment.endFrame,
+            startTrigger: segment.startTrigger,
+            endTrigger: segment.endTrigger,
+          }));
+
+        const updateSegmentedSequence = (scrollY: number) => {
+          const positions = getPositions();
+          let activeIndex = -1;
+
+          // videoSegments devem ser declarados na ordem em que aparecem na página.
+          for (let index = 0; index < positions.length; index += 1) {
+            if (scrollY >= positions[index].start) activeIndex = index;
+            else break;
+          }
+
+          if (activeIndex < 0) {
+            playhead.frame = 0;
+            updateImage();
+            return;
+          }
+
+          const segment = positions[activeIndex];
+          if (segment.end <= segment.start) {
+            console.warn(
+              `[ImageSequenceFixed] O fim do segmento "${segment.endTrigger}" precisa estar depois do início "${segment.startTrigger}".`,
+            );
+            playhead.frame = segment.endFrame;
+            updateImage();
+            return;
+          }
+
+          // Entre o fim de um vídeo e o início do próximo, mantém o último frame
+          // do segmento anterior. Dentro do intervalo, interpola seus próprios frames.
+          const progress = Math.max(
+            0,
+            Math.min(
+              1,
+              (scrollY - segment.start) / (segment.end - segment.start),
+            ),
+          );
+          playhead.frame =
+            segment.startFrame +
+            (segment.endFrame - segment.startFrame) * progress;
+          updateImage();
+        };
+
+        segmentedSequenceTrigger = ScrollTrigger.create({
+          trigger: document.documentElement,
+          start: 0,
+          end: () => Math.max(1, ScrollTrigger.maxScroll(window)),
+          invalidateOnRefresh: true,
+          onUpdate: (self) => updateSegmentedSequence(self.scroll()),
+          onRefresh: (self) => updateSegmentedSequence(self.scroll()),
+        });
+        updateSegmentedSequence(window.scrollY);
+      }
+    } else {
+      const validTransitions = activeFrameTransitions.filter(
+        (item) =>
+          typeof item.trigger === "string" &&
+          item.trigger.length > 0 &&
+          Number.isFinite(item.afterFrames) &&
+          item.afterFrames >= 0,
+      );
+
+      const hasSeparateSequences = Boolean(activeImageSequences?.length);
+      const expectedTransitionCount = hasSeparateSequences
+        ? Math.max(0, activeImageSequences!.length - 1)
+        : 0;
+
+      if (validTransitions.length > 0 && !hasSeparateSequences) {
+        console.warn(
+          "[ImageSequenceFixed] Para sincronizar trocas de vídeo sem informar índices de frames, passe os vídeos separados em imageSequences (um array por vídeo). Com apenas images plano, os limites entre os vídeos não podem ser inferidos.",
+        );
+      }
+
+      if (
+        hasSeparateSequences &&
+        validTransitions.length === expectedTransitionCount &&
+        typeof activeAnimationStart === "number"
+      ) {
+        // Calcula automaticamente o frame de cada troca a partir do tamanho
+        // das sequências. O usuário só precisa indicar seção + afterFrames.
+        let cumulativeFrames = 0;
+        const transitionBoundaries = validTransitions.map(
+          (transition, index) => {
+            cumulativeFrames += activeImageSequences![index].length;
+            return {
+              frame: cumulativeFrames,
+              getPosition: () => getTransitionScrollY(transition),
+            };
+          },
+        );
+
+        const boundaries: Array<{
+          frame: number;
+          getPosition: () => number | null;
+        }> = [
+          { frame: 0, getPosition: () => getSequenceStart() },
+          ...transitionBoundaries,
+          {
+            frame: effectiveImages.length - 1,
+            getPosition: () => getBaseSequenceEnd(),
+          },
+        ];
+
+        // Cada segmento de vídeo é interpolado até a próxima troca. A posição
+        // de scroll é recalculada quando ScrollTrigger faz refresh/resizing.
+        for (let index = 0; index < boundaries.length - 1; index += 1) {
+          const from = boundaries[index];
+          const to = boundaries[index + 1];
+
+          const startPosition = () => from.getPosition() ?? getSequenceStart();
+          const endPosition = () => {
+            const startY = startPosition();
+            const endY = to.getPosition();
+            if (endY === null) return startY + 1;
+            return Math.max(startY + 1, endY);
+          };
+
+          const tween = gsap.fromTo(
+            playhead,
+            { frame: from.frame },
+            {
+              frame: to.frame,
+              ease: "none",
+              scrollTrigger: {
+                trigger: document.documentElement,
+                start: startPosition,
+                end: endPosition,
+                scrub: activeScrub,
+                pin: false,
+                invalidateOnRefresh: true,
+              },
+              onUpdate: updateImage,
+            },
+          );
+
+          sequenceTweens.push(tween);
+        }
+      } else {
+        if (
+          hasSeparateSequences &&
+          validTransitions.length !== expectedTransitionCount
+        ) {
+          console.warn(
+            `[ImageSequenceFixed] Você forneceu ${validTransitions.length} frameTransitions, mas ${activeImageSequences!.length} sequências exigem ${expectedTransitionCount} pontos de troca. Adicione exatamente um frameTransition para cada limite entre vídeos.`,
+          );
+        }
+
+        // Sem uma configuração completa de trocas, preserva a animação global.
+        const tween = gsap.to(playhead, {
+          frame: effectiveImages.length - 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: document.documentElement,
+            start: activeAnimationStart,
+            end: useFullPageDistance
+              ? () =>
+                  `+=${Math.max(
+                    1,
+                    document.documentElement.scrollHeight -
+                      window.innerHeight -
+                      (typeof activeAnimationStart === "number"
+                        ? activeAnimationStart
+                        : 0),
+                  )}`
+              : () => `+=${Math.max(1, activeDuration)}`,
+            scrub: activeScrub,
+            pin: false,
+            invalidateOnRefresh: true,
+          },
+          onUpdate: updateImage,
+        });
+        sequenceTweens.push(tween);
+      }
+    }
 
     /**
      * Cria os overlays do breakpoint ativo.
      *
      * unit: "px" usa distâncias fixas em pixels.
      * unit: "vh" usa porcentagem da altura da viewport.
-     * unit: "section" usa porcentagem da altura da própria seção,
-     * para manter o ponto visual proporcional em telefones diferentes.
+     * unit: "section" usa porcentagem da altura da própria seção.
+     * Para alinhar visualmente em telefones de alturas diferentes, prefira
+     * "section"; os offsets são recalculados no refresh/resizing.
      */
     const overlayTimelines: gsap.core.Timeline[] = [];
 
@@ -463,26 +780,30 @@ export default function ImageSequenceFixed({
         return;
       }
 
+      // Converte cada offset para pixels usando a unidade escolhida.
+      // "section" é a opção recomendada para manter os pontos proporcionais
+      // à própria seção em telefones com alturas diferentes.
+      const getSectionHeight = () =>
+        Math.max(1, triggerElement.getBoundingClientRect().height);
+
+      const toPixels = (value: number) => {
+        if (unit === "vh") return (value * window.innerHeight) / 100;
+        if (unit === "section") return (value * getSectionHeight()) / 100;
+        return value;
+      };
+
       gsap.set(overlay, { opacity: 0 });
 
+      // O próprio ScrollTrigger começa no offset start da seção. Não há uma
+      // fase invisível dentro da timeline, que poderia dar a impressão de
+      // atraso quando a altura da viewport muda.
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: triggerElement,
-          start: "top bottom",
-          // Recalcula a distância a cada refresh, usando a unidade escolhida.
-          end: () => {
-            if (unit === "vh") {
-              return `+=${(end * window.innerHeight) / 100}`;
-            }
-
-            if (unit === "section") {
-              const sectionHeight =
-                triggerElement.getBoundingClientRect().height;
-              return `+=${(end * sectionHeight) / 100}`;
-            }
-
-            return `+=${end}`;
-          },
+          // A seção começa a ser medida quando seu topo encontra a borda
+          // inferior da viewport, consistente com os pontos de troca.
+          start: () => `top+=${toPixels(start)} bottom`,
+          end: () => `top+=${toPixels(end)} bottom`,
           scrub: true,
           invalidateOnRefresh: true,
         },
@@ -490,23 +811,18 @@ export default function ImageSequenceFixed({
 
       timeline
         .to(overlay, {
-          opacity: 0,
-          duration: interval.start,
+          opacity: 1,
+          duration: peak - start,
           ease: "none",
         })
         .to(overlay, {
           opacity: 1,
-          duration: interval.peak - interval.start,
-          ease: "none",
-        })
-        .to(overlay, {
-          opacity: 1,
-          duration: interval.holdEnd - interval.peak,
+          duration: holdEnd - peak,
           ease: "none",
         })
         .to(overlay, {
           opacity: 0,
-          duration: interval.end - interval.holdEnd,
+          duration: end - holdEnd,
           ease: "none",
         });
 
@@ -519,8 +835,11 @@ export default function ImageSequenceFixed({
       isDisposed = true;
       resizeObserver.disconnect();
 
-      trigger.scrollTrigger?.kill();
-      trigger.kill();
+      sequenceTweens.forEach((tween) => {
+        tween.scrollTrigger?.kill();
+        tween.kill();
+      });
+      segmentedSequenceTrigger?.kill();
 
       overlayTimelines.forEach((timeline) => {
         timeline.scrollTrigger?.kill();
@@ -543,6 +862,9 @@ export default function ImageSequenceFixed({
     activeFit,
     activeObjectPosition,
     activeOverlayIntervals,
+    activeFrameTransitions,
+    activeVideoSegments,
+    activeImageSequences,
     responsive,
   ]);
 

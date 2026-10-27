@@ -48,12 +48,12 @@ export const imageSequenceDesktop = {
     ...video_serp_1.slice(40),
     ...video_serp_2.slice(65, 120),
     ...video_serp_3.slice(104),
-  ]
+  ],
 } satisfies ImageSequenceConfig;
 
 export const imageSequenceMobile = {
-  duration: 15000,
-  animationStart: 900,
+  duration: 50000,
+  animationStart: 0,
   fullPageScroll: false,
   scrub: true,
   background: "transparent",
@@ -101,11 +101,34 @@ export const imageSequenceMobile = {
       color: "#EBEBEB",
     },
   ],
+  videoSegments: [
+    {
+      images: video_serp_1,
+      start: {
+        trigger: "#manifesto",
+      },
+      end: {
+        trigger: "#modelos",
+        afterFrames: 5,
+      },
+    },
+    {
+      images: video_serp_2,
+      start: {
+        trigger: "#faixaInferior",
+      },
+      end: {
+        trigger: "#qualidade3",
+        afterFrames: 5,
+      },
+    },
+  ],
   // o slice é o intervalo que quer os frames, poderia ser slice(50,120) - primeiro e ultimo-1.
   // E se for o numero sozinho slice(30) significa que começa a partir dele até o final do array.
-  images: [
-    ...video_serp_1.slice(44),
-    ...video_serp_2.slice(0),
-    ...video_serp_3.slice(104),
-  ],
+  //   images: [
+  //     ...video_serp_1.slice(0,120),
+  //     ...video_serp_2.slice(0,120),
+  //     ...video_serp_3.slice(0,120),
+  // ...video_serp_3.slice(104),
+  //   ],
 } satisfies ImageSequenceConfig;

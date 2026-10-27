@@ -26,6 +26,8 @@ import {
   imageSequenceMobile,
 } from "@/config/image_sequence_config";
 import QualidadeCardMobile from "@/components/QualidadeCardMobile";
+import LogoLoop from "@/components/reactbits/LogoLoop";
+import { logosBranca, logosPreta } from "@/config/logos";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -81,14 +83,14 @@ export default function Home() {
             desktop: imageSequenceDesktop,
             mobile: imageSequenceMobile,
           }}
-          //   onFrameChange={(frame) => {
-          //     console.log({
-          //       scrollY: Math.round(window.scrollY),
-          //       frame,
-          //       viewportHeight: window.innerHeight,
-          //       documentHeight: document.documentElement.scrollHeight,
-          //     });
-          //   }}
+        //   onFrameChange={(frame) => {
+        //     console.log({
+        //       scrollY: Math.round(window.scrollY),
+        //       frame,
+        //       viewportHeight: window.innerHeight,
+        //       documentHeight: document.documentElement.scrollHeight,
+        //     });
+        //   }}
         />
         <ScrollTransition
           background="bg-gray-400"
@@ -114,8 +116,41 @@ export default function Home() {
           className="relative h-[250lvh] w-full bg-transparent lg:h-[150vh]"
         />
 
+        <section
+          id="faixaSuperior"
+          className="relative flex h-auto w-full flex-col bg-black"
+        >
+          <div className="relative">
+            <LogoLoop
+              logos={logosBranca}
+              fadeOut
+              logoHeight={40}
+              fadeOutColor="var(--color-black)"
+              ariaLabel="Serpentize"
+              className="bg-black"
+            />
+          </div>
+        </section>
+
         <section id="modelos" className="bg-background relative z-1">
           <Modelos />
+        </section>
+
+        <section
+          id="faixaInferior"
+          className="relative flex h-auto w-full flex-col bg-black"
+        >
+          <div className="relative">
+            <LogoLoop
+              logos={logosPreta}
+              fadeOut
+              logoHeight={40}
+              fadeOutColor="var(--color-white)"
+              ariaLabel="Serpentize"
+              className="bg-white"
+              direction="right"
+            />
+          </div>
         </section>
 
         <section
@@ -142,7 +177,7 @@ export default function Home() {
 
         <section
           id="qualidade2"
-          className="h-lvh relative z-1 overflow-hidden lg:hidden lg:overflow-visible"
+          className="relative z-1 h-lvh overflow-hidden lg:hidden lg:overflow-visible"
         >
           <QualidadeCardMobile
             title="Modelo Classica"
@@ -154,7 +189,7 @@ export default function Home() {
 
         <section
           id="qualidade3"
-          className="h-lvh relative z-1 overflow-hidden lg:hidden lg:overflow-visible"
+          className="relative z-1 h-lvh overflow-hidden lg:hidden lg:overflow-visible"
         >
           <QualidadeCardMobile
             title="Modelo Classica"
