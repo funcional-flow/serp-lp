@@ -15,7 +15,7 @@ const slides = [
         src="/Hero/modelo_woman21.png"
         width={216}
         height={847}
-        className_img="animate-image-pulse mt-[20svh] w-[18svh] lg:w-[22vh] lg:mt-[5svh]"
+        className_img="animate-image-pulse mt-[20vh] w-[18vh] lg:w-[22vh] lg:mt-[5vh]"
         // Card
         cor_card="bg-black"
         cor_card_secundaria="bg-white"
@@ -44,7 +44,7 @@ const slides = [
         src="/Hero/modelo_woman11.png"
         width={333}
         height={862}
-        className_img="animate-image-pulse mt-[21svh] ml-[2vh] w-[24svh] lg:w-[29vh] lg:ml-[7svh] lg:mt-[7svh]"
+        className_img="animate-image-pulse mt-[21vh] ml-[2vh] w-[24vh] lg:w-[29vh] lg:ml-[7vh] lg:mt-[7vh]"
         // Card
         cor_card="bg-white"
         cor_card_secundaria="bg-gray-700"

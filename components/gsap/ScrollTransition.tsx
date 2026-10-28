@@ -122,7 +122,7 @@ export default function ScrollTransition({
           key={index}
           className={
             index === 0
-              ? "panel absolute inset-0 z-10 h-lvh overflow-hidden"
+              ? "panel absolute inset-0 z-10 h-lvh"
               : "panel relative z-20"
           }
         >
