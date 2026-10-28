@@ -113,7 +113,7 @@ export default function ScrollTransition({
   );
 
   return (
-    <section ref={container} className={`relative min-h-dvh ${className}`}>
+    <section ref={container} className={`relative min-h-lvh ${className}`}>
       {/* Fundo permanente */}
       <div className={`absolute inset-0 ${background}`} />
 
@@ -122,7 +122,7 @@ export default function ScrollTransition({
           key={index}
           className={
             index === 0
-              ? "panel absolute inset-0 z-10 h-dvh"
+              ? "panel absolute inset-0 z-10 h-lvh overflow-hidden"
               : "panel relative z-20"
           }
         >
