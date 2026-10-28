@@ -105,11 +105,11 @@ export default function BentoGallery({
     return () => {
       ctx.revert();
     };
-  }, [reverse]);
+  }, [reverse, staticGrid]);
   return (
     <div
       ref={wrapRef}
-      className={`gallery-wrap ${background} relative flex h-svh w-full items-center justify-center overflow-hidden`}
+      className={`gallery-wrap ${background} relative flex h-lvh w-full items-center justify-center overflow-hidden`}
     >
       <div
         ref={galleryRef}
