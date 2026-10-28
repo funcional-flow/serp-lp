@@ -181,7 +181,7 @@ export default function Home() {
           </div>
           <div className="h-lvh lg:hidden">
             <QualidadeCardMobile
-              title="Modelo Classica"
+              title="Modelo Boxy"
               backgroundColor="bg-black"
               titleColor="text-white"
               textColor="text-black"
@@ -206,7 +206,7 @@ export default function Home() {
           className="relative z-1 h-lvh overflow-hidden lg:hidden lg:overflow-visible"
         >
           <QualidadeCardMobile
-            title="Modelo Classica"
+            title="Modelo Regata"
             backgroundColor="bg-black"
             titleColor="text-white"
             textColor="text-black"
