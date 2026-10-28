@@ -7,7 +7,7 @@ import {
 import type { ImageSequenceConfig } from "@/components/gsap/ImageSequenceFixed";
 
 export const imageSequenceDesktop = {
-  duration: 9000,
+  duration: 100000,
   animationStart: 0,
   fullPageScroll: false,
   scrub: true,

@@ -841,6 +841,9 @@ export default function ImageSequenceFixed({
           end: () => `top+=${toPixels(end)} bottom`,
           scrub: true,
           invalidateOnRefresh: true,
+
+          // Recalcula estes gatilhos depois dos de prioridade padrão.
+          refreshPriority: -1,
         },
       });
 

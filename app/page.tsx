@@ -107,7 +107,7 @@ export default function Home() {
             </section>,
             <section key="manifesto" id="manifesto" className="relative z-1">
               <Manifesto />
-            </section>,
+            </section>
           ]}
         />
 
