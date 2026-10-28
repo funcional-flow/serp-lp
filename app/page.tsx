@@ -12,15 +12,8 @@ import Depoimentos from "@/widgets/Depoimentos";
 import Faq from "@/widgets/Faq";
 import Cta from "@/widgets/Cta";
 import Simbologia from "@/widgets/Simbologia";
-import SerpVideo from "@/widgets/SerpVideo";
-import ImageSequence from "@/components/gsap/ImageSequence";
 import ImageSequenceFixed from "@/components/gsap/ImageSequenceFixed";
 import ScaleOnScroll from "@/components/gsap/ScaleOnScroll";
-import {
-  video_serp_1,
-  video_serp_2,
-  video_serp_3,
-} from "@/config/videos_frames";
 import {
   imageSequenceDesktop,
   imageSequenceMobile,
@@ -225,20 +218,20 @@ export default function Home() {
           className="relative h-[150vh] w-full bg-transparent"
         />
 
+        <section id="simbologia" className="relative z-1">
+          <Simbologia />
+        </section>
+
+        <section id="lifestyle" className="relative z-1">
+          <LifeStyle />
+        </section>
+
         <section
           id="final"
           className="relative z-1 flex h-lvh w-full flex-col items-center justify-center gap-2 bg-black text-white lg:hidden"
         >
           <h2 className="font-metrim text-3xl uppercase">serpentize</h2>
           <span className="text-xl">Em construção...</span>
-        </section>
-
-        <section id="simbologia" className="relative z-1 hidden lg:block">
-          <Simbologia />
-        </section>
-
-        <section id="lifestyle" className="relative z-1 hidden lg:block">
-          <LifeStyle />
         </section>
 
         <section id="depoimentos" className="relative z-1 hidden lg:block">

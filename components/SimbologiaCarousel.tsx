@@ -10,7 +10,7 @@ export default function SimbologiaCarousel({
   alt,
 }: SimbologiaCarouselProps) {
   return (
-    <div className="relative flex h-180 w-full">
+    <div className="relative flex h-[40vh] w-full lg:h-180">
       <Image
         src={src}
         alt={alt || "Modelo"}

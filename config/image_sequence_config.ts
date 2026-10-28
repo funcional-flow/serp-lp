@@ -89,7 +89,7 @@ export const imageSequenceDesktop = {
 } satisfies ImageSequenceConfig;
 
 export const imageSequenceMobile = {
-  duration: 1000000,
+  duration: 10000,
   animationStart: 0,
   fullPageScroll: false,
   scrub: true,
@@ -137,6 +137,15 @@ export const imageSequenceMobile = {
       unit: "section",
       color: "#EBEBEB",
     },
+    {
+      trigger: "#simbologia",
+      start: 25,
+      peak: 70,
+      holdEnd: 200,
+      end: 201,
+      unit: "section",
+      color: "#EBEBEB",
+    },
   ],
   videoSegments: [
     {
@@ -156,7 +165,18 @@ export const imageSequenceMobile = {
       },
       end: {
         trigger: "#final",
-        afterFrames: 30,
+        afterFrames: 0,
+      },
+    },
+    
+    {
+      images: video_serp_3.slice(20),
+      start: {
+        trigger: "#divisao31",
+      },
+      end: {
+        trigger: "#final",
+        afterFrames: 0,
       },
     },
   ],
