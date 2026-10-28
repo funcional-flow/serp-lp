@@ -12,7 +12,7 @@ export default function LifeStyle() {
           staticGrid={false}
         />
       </div>
-      <div className="relative lg:hidden">
+      <div className="relative bg-black lg:hidden">
         <BentoGallery
           background="bg-black overflow-x-hidden"
           images={lifestyleDados}
