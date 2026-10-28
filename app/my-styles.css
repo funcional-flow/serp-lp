@@ -38,6 +38,9 @@ html::-webkit-scrollbar {
   animation-direction: reverse;
 }
 
+
+/* Bento Gallery  */
+
 @layer components {
   .gallery--bento {
     display: grid;

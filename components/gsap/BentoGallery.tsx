@@ -17,12 +17,14 @@ interface BentoGalleryProps {
   background?: string;
   images: ImageItem[];
   reverse?: boolean;
+  staticGrid?: boolean;
 }
 
 export default function BentoGallery({
   background = "bg-black",
   images,
   reverse = false,
+  staticGrid = false,
 }: BentoGalleryProps) {
   if (images.length === 0) {
     images = [
@@ -41,6 +43,12 @@ export default function BentoGallery({
   useLayoutEffect(() => {
     const wrap = wrapRef.current;
     const gallery = galleryRef.current;
+
+    // Modo estático: mantém apenas o grid Bento.
+    if (staticGrid) {
+      gallery?.classList.remove("gallery--final");
+      return;
+    }
     if (!wrap || !gallery) return;
     const ctx = gsap.context(() => {
       const items = gallery.querySelectorAll<HTMLElement>(".gallery__item");
