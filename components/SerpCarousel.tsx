@@ -15,7 +15,7 @@ const slides = [
         src="/Hero/modelo_woman21.png"
         width={216}
         height={847}
-        className_img="animate-image-pulse mt-[20vh] w-[18vh] lg:w-[22vh] lg:mt-[5vh]"
+        className_img="animate-image-pulse mt-[17vh] w-[18vh] lg:w-[22vh] lg:mt-[5vh]"
         // Card
         cor_card="bg-black"
         cor_card_secundaria="bg-white"
@@ -297,7 +297,7 @@ export default function SerpCarousel() {
           </div>
         ))}
       </div>
-      <div className="absolute bottom-20 left-1/2 z-10 flex -translate-x-1/2 items-center gap-8">
+      <div className="absolute bottom-[12vh] left-1/2 z-10 flex -translate-x-1/2 items-center gap-8">
         <button
           ref={prevButtonRef}
           type="button"
@@ -319,7 +319,7 @@ export default function SerpCarousel() {
       </div>
       <div
         ref={counterRef}
-        className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 text-xs tracking-[0.4em] opacity-60"
+        className="absolute bottom-[9vh] left-1/2 z-20 -translate-x-1/2 text-xs tracking-[0.4em] opacity-60"
       >
         {String(current + 1).padStart(2, "0")} /
         {String(slides.length).padStart(2, "0")}

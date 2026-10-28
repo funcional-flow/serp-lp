@@ -77,7 +77,7 @@ export default function ConteudoCarousel({
                     className={`hidden lg:block lg:h-0.5 lg:w-14 ${cor_detalhes}`}
                   />
                 </div>
-                <div className="flex flex-col gap-2 pt-[7svh] lg:gap-6 lg:pt-[35svh]">
+                <div className="flex flex-col gap-2 pt-[6svh] lg:gap-6 lg:pt-[35svh]">
                   <h1 className="flex flex-col text-xl tracking-widest lg:text-3xl">
                     <span>MOVEMENT</span> <span>WITH INTENTION</span>
                   </h1>
