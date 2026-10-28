@@ -20,35 +20,72 @@ export const imageSequenceDesktop = {
   objectPosition: "top",
   overlayIntervals: [
     {
-      trigger: "#divisao11",
-      start: 3299,
-      peak: 3300,
-      holdEnd: 3400,
-      end: 3450,
+      trigger: "#modelos",
+      start: 50,
+      peak: 85,
+      holdEnd: 100,
+      end: 105,
+      unit: "section",
       color: "#000000",
     },
-    // {
-    //   start: 5300,
-    //   peak: 5750,
-    //   holdEnd: 5900,
-    //   end: 6600,
-    //   color: "#18181b",
-    // },
-    // {
-    //   start: 7700,
-    //   peak: 8250,
-    //   holdEnd: 9500,
-    //   end: 9600,
-    //   color: "#EBEBEB",
-    // },
+    {
+      trigger: "#qualidade1",
+      start: 25,
+      peak: 65,
+      holdEnd: 100,
+      end: 150,
+      unit: "section",
+      color: "#18181b",
+    },
+    {
+      trigger: "#simbologia",
+      start: 40,
+      peak: 75,
+      holdEnd: 199,
+      end: 200,
+      unit: "section",
+      color: "#EBEBEB",
+    },
+  ],
+  videoSegments: [
+    {
+      images: video_serp_1,
+      start: {
+        trigger: "#manifesto",
+      },
+      end: {
+        trigger: "#modelos",
+        afterFrames: 50,
+      },
+    },
+    {
+      images: video_serp_2.slice(50, 150),
+      start: {
+        trigger: "#faixaInferior",
+      },
+      end: {
+        trigger: "#qualidade1",
+        afterFrames: 100,
+      },
+    },
+    {
+      images: video_serp_3.slice(104),
+      start: {
+        trigger: "#divisao31",
+      },
+      end: {
+        trigger: "#simbologia",
+        afterFrames: 50,
+      },
+    },
   ],
   // o slice é o intervalo que quer os frames, poderia ser slice(50,120) - primeiro e ultimo-1.
   // E se for o numero sozinho slice(30) significa que começa a partir dele até o final do array.
-  images: [
-    ...video_serp_1.slice(40),
-    ...video_serp_2.slice(65, 120),
-    ...video_serp_3.slice(104),
-  ],
+  //   images: [
+  //     ...video_serp_1.slice(40),
+  //     ...video_serp_2.slice(65, 120),
+  //     ...video_serp_3.slice(104),
+  //   ],
 } satisfies ImageSequenceConfig;
 
 export const imageSequenceMobile = {

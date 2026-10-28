@@ -120,12 +120,21 @@ export default function Home() {
           id="faixaSuperior"
           className="relative flex h-auto w-full flex-col bg-black"
         >
-          <div className="relative">
+          <div className="relative lg:hidden">
             <LogoLoop
               logos={logosBranca}
               fadeOut
               logoHeight={40}
               gap={40}
+              fadeOutColor="var(--color-black)"
+              ariaLabel="Serpentize"
+              className="bg-black"
+            />
+          </div>
+          <div className="hidden lg:block">
+            <LogoLoop
+              logos={logosBranca}
+              fadeOut
               fadeOutColor="var(--color-black)"
               ariaLabel="Serpentize"
               className="bg-black"
@@ -141,12 +150,22 @@ export default function Home() {
           id="faixaInferior"
           className="relative flex h-auto w-full flex-col bg-black"
         >
-          <div className="relative">
+          <div className="relative lg:hidden">
             <LogoLoop
               logos={logosPreta}
               fadeOut
               logoHeight={40}
               gap={40}
+              fadeOutColor="var(--color-white)"
+              ariaLabel="Serpentize"
+              className="bg-white"
+              direction="right"
+            />
+          </div>
+          <div className="relative hidden lg:block">
+            <LogoLoop
+              logos={logosPreta}
+              fadeOut
               fadeOutColor="var(--color-white)"
               ariaLabel="Serpentize"
               className="bg-white"
@@ -202,11 +221,14 @@ export default function Home() {
         </section>
 
         <section
-          id="divisao21"
+          id="divisao31"
           className="relative h-[150vh] w-full bg-transparent"
         />
 
-        <section id="final" className="relative z-1 flex h-lvh w-full flex-col items-center justify-center gap-2 bg-black text-white">
+        <section
+          id="final"
+          className="relative z-1 flex h-lvh w-full flex-col items-center justify-center gap-2 bg-black text-white lg:hidden"
+        >
           <h2 className="font-metrim text-3xl uppercase">serpentize</h2>
           <span className="text-xl">Em construção...</span>
         </section>
