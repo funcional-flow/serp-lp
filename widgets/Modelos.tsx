@@ -6,16 +6,7 @@ import { logosBranca, logosPreta } from "@/config/logos";
 export default function Modelos() {
 
   return (
-    <div className="relative flex h-auto w-full flex-col bg-black">
-      {/* <div className="relative">
-        <LogoLoop
-          logos={logosBranca}
-          fadeOut
-          fadeOutColor="var(--color-black)"
-          ariaLabel="Serpentize"
-          className="bg-black"
-        />
-      </div> */}
+    <div className="relative flex h-auto w-full flex-col">
       <div className="relative flex min-h-lvh flex-col lg:flex-row">
         {/* Primeira Sessão */}
         <div className="relative min-h-lvh w-full lg:flex lg:h-auto lg:w-1/2">
