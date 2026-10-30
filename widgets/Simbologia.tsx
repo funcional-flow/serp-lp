@@ -19,7 +19,7 @@ export default function Simbologia() {
     <ScaleOnScroll
       scale={{ from: 1, to: 0 }}
       opacity={{ from: 1, to: 0 }}
-      startAnimation="top top-=100"
+      startAnimation="top top-=50"
       endAnimation="+=1000"
     >
       <div className="relative flex min-h-[110lvh] w-full flex-col items-center justify-center overflow-hidden lg:h-[110lvh] lg:flex-row lg:gap-10 lg:px-30">

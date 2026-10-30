@@ -15,16 +15,17 @@ export default function LifeStyle() {
         />
       </div>
       {/* Mobile */}
-      <div className="relative bg-transparent lg:hidden">
+      <div className="relative lg:hidden">
         <ScaleOnScroll
           scale={{ from: 3, to: 1 }}
           opacity={{ from: 0, to: 1 }}
           startAnimation="top bottom"
-          endAnimation="top center-=300"
+          endAnimation="top top+=50"
           className="overflow-hidden"
+        //   background={{ from: "transparent", to: "#000000" }}
         >
           <BentoGallery
-            background="bg-transparent overflow-x-hidden"
+            background="overflow-x-hidden"
             images={lifestyleDados}
             reverse={true}
             staticGrid={true}

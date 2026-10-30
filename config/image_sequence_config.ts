@@ -149,8 +149,8 @@ export const imageSequenceMobile = {
     // Teste pra bug do lado direito colorido na tela de celular.
     {
       trigger: "#lifestyle",
-      start: 50,
-      peak: 90,
+      start: 40,
+      peak: 75,
       holdEnd: 9999,
       end: 10000,
       unit: "section",

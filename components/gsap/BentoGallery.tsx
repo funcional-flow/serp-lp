@@ -21,7 +21,7 @@ interface BentoGalleryProps {
 }
 
 export default function BentoGallery({
-  background = "bg-black",
+  background,
   images,
   reverse = false,
   staticGrid = false,

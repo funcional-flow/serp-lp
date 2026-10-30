@@ -21,7 +21,6 @@ interface ScaleOnScrollProps {
     from?: number;
     to?: number;
   };
-  reverse?: boolean;
 
   /**
    * Configurações do ScrollTrigger
@@ -53,7 +52,6 @@ export default function ScaleOnScroll({
 
   scale = { from: 1, to: 0.85 },
   opacity = { from: 1, to: 1 },
-  reverse = false,
 
   // "ELEMENT_POSITION VIEWPORT_POSITION"
   startAnimation = "top top", // Ex: "top top", "center center", "bottom bottom", "top center", "top 80%", "top 200px", "top+=100", "top top-=100"
