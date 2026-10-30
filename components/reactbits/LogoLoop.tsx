@@ -4,6 +4,7 @@ import React, {
   useMemo,
   useRef,
   useState,
+  useSyncExternalStore,
 } from "react";
 
 export type LogoItem =
@@ -225,16 +226,42 @@ const useAnimationLoop = (
 
 const BREAKPOINTS = {
   mobile: 0,
+  sm: 640,
+  md: 768,
   tablet: 768,
+  lg: 1024,
   desktop: 1024,
+  xl: 1280,
+  "2xl": 1536,
 } as const;
 
-const getResponsiveValue = (
-  value: ResponsiveValue,
-  fallback: number,
-  width: number,
-) => {
-  if (typeof value === "number") return value;
+const subscribeToWindowResize = (callback: () => void) => {
+  window.addEventListener("resize", callback);
+
+  return () => {
+    window.removeEventListener("resize", callback);
+  };
+};
+
+const getWindowWidth = () => window.innerWidth;
+
+const getServerWindowWidth = () => null;
+
+const useResponsiveValue = (value: ResponsiveValue, fallback: number) => {
+  const width = useSyncExternalStore(
+    subscribeToWindowResize,
+    getWindowWidth,
+    getServerWindowWidth,
+  );
+
+  if (typeof value === "number") {
+    return value;
+  }
+
+  // Durante SSR e hidratação, utiliza o mesmo valor.
+  if (width === null) {
+    return fallback;
+  }
 
   return (
     Object.entries(value)
@@ -248,22 +275,6 @@ const getResponsiveValue = (
       .sort((a, b) => a.breakpoint - b.breakpoint)
       .at(-1)?.value ?? fallback
   );
-};
-
-const useResponsiveValue = (value: ResponsiveValue, fallback: number) => {
-  const [width, setWidth] = useState(() =>
-    typeof window !== "undefined" ? window.innerWidth : 1024,
-  );
-
-  useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth);
-
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  return getResponsiveValue(value, fallback, width);
 };
 
 export const LogoLoop = React.memo<LogoLoopProps>(
