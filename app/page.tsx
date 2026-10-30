@@ -112,26 +112,15 @@ export default function Home() {
           id="faixaSuperior"
           className="relative flex h-auto w-full flex-col bg-black"
         >
-          <div className="relative overflow-hidden lg:hidden">
-            <LogoLoop
-              logos={logosBranca}
-              fadeOut
-              logoHeight={40}
-              gap={40}
-              fadeOutColor="var(--color-black)"
-              ariaLabel="Serpentize"
-              className="bg-black"
-            />
-          </div>
-          <div className="hidden overflow-hidden lg:block">
-            <LogoLoop
-              logos={logosBranca}
-              fadeOut
-              fadeOutColor="var(--color-black)"
-              ariaLabel="Serpentize"
-              className="bg-black"
-            />
-          </div>
+          <LogoLoop
+            logos={logosBranca}
+            fadeOut
+            logoHeight={{ mobile: 40, desktop: 65 }}
+            gap={{ mobile: 40, desktop: 60 }}
+            fadeOutColor="var(--color-black)"
+            ariaLabel="Serpentize"
+            className="bg-black"
+          />
         </section>
 
         <section id="modelos" className="bg-background relative z-1">
@@ -142,28 +131,16 @@ export default function Home() {
           id="faixaInferior"
           className="relative flex h-auto w-full flex-col bg-black"
         >
-          <div className="relative overflow-hidden lg:hidden">
-            <LogoLoop
-              logos={logosPreta}
-              fadeOut
-              logoHeight={40}
-              gap={40}
-              fadeOutColor="var(--color-white)"
-              ariaLabel="Serpentize"
-              className="bg-white"
-              direction="right"
-            />
-          </div>
-          <div className="relative hidden overflow-hidden lg:block">
-            <LogoLoop
-              logos={logosPreta}
-              fadeOut
-              fadeOutColor="var(--color-white)"
-              ariaLabel="Serpentize"
-              className="bg-white"
-              direction="right"
-            />
-          </div>
+          <LogoLoop
+            logos={logosPreta}
+            fadeOut
+            logoHeight={{ mobile: 40, desktop: 65 }}
+            gap={{ mobile: 40, desktop: 60 }}
+            fadeOutColor="var(--color-white)"
+            ariaLabel="Serpentize"
+            className="bg-white"
+            direction="right"
+          />
         </section>
 
         <section

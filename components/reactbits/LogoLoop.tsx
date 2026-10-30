@@ -24,14 +24,22 @@ export type LogoItem =
       height?: number;
     };
 
+export type ResponsiveValue =
+  | number
+  | {
+      mobile?: number;
+      tablet?: number;
+      desktop?: number;
+    };
+
 export interface LogoLoopProps {
   logos: LogoItem[];
   speed?: number;
   direction?: "left" | "right" | "up" | "down";
   width?: number | string;
-  logoHeight?: number;
+  logoHeight?: ResponsiveValue;
   altura?: string;
-  gap?: number;
+  gap?: ResponsiveValue;
   pauseOnHover?: boolean;
   hoverSpeed?: number;
   fadeOut?: boolean;
@@ -204,7 +212,58 @@ const useAnimationLoop = (
       }
       lastTimestampRef.current = null;
     };
-  }, [targetVelocity, seqWidth, seqHeight, isHovered, hoverSpeed, isVertical]);
+  }, [
+    targetVelocity,
+    trackRef,
+    seqWidth,
+    seqHeight,
+    isHovered,
+    hoverSpeed,
+    isVertical,
+  ]);
+};
+
+const BREAKPOINTS = {
+  mobile: 0,
+  tablet: 768,
+  desktop: 1024,
+} as const;
+
+const getResponsiveValue = (
+  value: ResponsiveValue,
+  fallback: number,
+  width: number,
+) => {
+  if (typeof value === "number") return value;
+
+  return (
+    Object.entries(value)
+      .map(([key, item]) => ({
+        breakpoint: BREAKPOINTS[key as keyof typeof BREAKPOINTS],
+        value: item,
+      }))
+      .filter(
+        (item) => item.breakpoint !== undefined && width >= item.breakpoint,
+      )
+      .sort((a, b) => a.breakpoint - b.breakpoint)
+      .at(-1)?.value ?? fallback
+  );
+};
+
+const useResponsiveValue = (value: ResponsiveValue, fallback: number) => {
+  const [width, setWidth] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth : 1024,
+  );
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return getResponsiveValue(value, fallback, width);
 };
 
 export const LogoLoop = React.memo<LogoLoopProps>(
@@ -236,6 +295,8 @@ export const LogoLoop = React.memo<LogoLoopProps>(
       ANIMATION_CONFIG.MIN_COPIES,
     );
     const [isHovered, setIsHovered] = useState<boolean>(false);
+    const responsiveGap = useResponsiveValue(gap, 60);
+    const responsiveLogoHeight = useResponsiveValue(logoHeight, 65);
 
     const effectiveHoverSpeed = useMemo(() => {
       if (hoverSpeed !== undefined) return hoverSpeed;
@@ -294,13 +355,13 @@ export const LogoLoop = React.memo<LogoLoopProps>(
     useResizeObserver(
       updateDimensions,
       [containerRef, seqRef],
-      [logos, gap, logoHeight, isVertical],
+      [logos, responsiveGap, responsiveLogoHeight, isVertical],
     );
 
     useImageLoader(seqRef, updateDimensions, [
       logos,
-      gap,
-      logoHeight,
+      responsiveGap,
+      responsiveLogoHeight,
       isVertical,
     ]);
 
@@ -317,11 +378,11 @@ export const LogoLoop = React.memo<LogoLoopProps>(
     const cssVariables = useMemo(
       () =>
         ({
-          "--logoloop-gap": `${gap}px`,
-          "--logoloop-logoHeight": `${logoHeight}px`,
+          "--logoloop-gap": `${responsiveGap}px`,
+          "--logoloop-logoHeight": `${responsiveLogoHeight}px`,
           ...(fadeOutColor && { "--logoloop-fadeColor": fadeOutColor }),
         }) as React.CSSProperties,
-      [gap, logoHeight, fadeOutColor],
+      [responsiveGap, responsiveLogoHeight, fadeOutColor],
     );
 
     const rootClasses = useMemo(
@@ -534,7 +595,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
           className={cx(
             "relative z-0 flex py-1 will-change-transform select-none",
             "motion-reduce:transform-none",
-            altura ? `${altura}`:"",
+            altura ? `${altura}` : "",
             isVertical ? "h-max w-full flex-col" : "w-max flex-row",
           )}
           ref={trackRef}

@@ -1,7 +1,9 @@
+"use client";
+
 import LogoLoop from "@/components/reactbits/LogoLoop";
 import DepoimentoCard from "@/components/DepoimentoCard";
 import Image from "next/image";
-import { depoimentos } from "@/config/depoimentos";
+import { depoimentos } from "@/config/depoimentos_dados";
 
 export default function Depoimentos() {
   return (
@@ -29,12 +31,14 @@ export default function Depoimentos() {
               <DepoimentoCard
                 key={depoimento.key}
                 title={depoimento.title}
-                subtitle={depoimento.subtitle}
+                rate={depoimento.rate}
                 description={depoimento.description}
               />
             ),
           }))}
           fadeOut={true}
+          logoHeight={{ mobile: 20, desktop: 65 }}
+          gap={{ mobile: 20, desktop: 60 }}
           fadeOutColor="#000000"
           direction="left"
           //   gap={20}
@@ -48,37 +52,21 @@ export default function Depoimentos() {
               <DepoimentoCard
                 key={depoimento.key}
                 title={depoimento.title}
-                subtitle={depoimento.subtitle}
+                rate={depoimento.rate}
                 description={depoimento.description}
               />
             ),
           }))}
           fadeOut={true}
+          logoHeight={{ mobile: 20, desktop: 65 }}
+          gap={{ mobile: 20, desktop: 60 }}
           fadeOutColor="#000000"
           direction="right"
           altura="h-auto lg:h-65"
         />
       </div>
-      <div className="relative h-auto w-full">
-        <LogoLoop
-          logos={depoimentos.map((depoimento) => ({
-            node: (
-              <DepoimentoCard
-                key={depoimento.key}
-                title={depoimento.title}
-                subtitle={depoimento.subtitle}
-                description={depoimento.description}
-              />
-            ),
-          }))}
-          fadeOut={true}
-          fadeOutColor="#000000"
-          direction="left"
-          altura="h-auto lg:h-65"
-        />
-      </div>
       <div className="relative">
-        <button className="mt-[6vh] rounded-xl bg-white px-10 py-4 font-bold text-black uppercase transition-transform duration-200 hover:scale-105 hover:cursor-pointer lg:mt-20 lg:px-16 lg:text-lg">
+        <button className="mt-[6vh] rounded-xl bg-white px-10 py-4 text-sm font-bold text-black uppercase transition-transform duration-200 hover:scale-105 hover:cursor-pointer lg:mt-20 lg:px-16 lg:text-lg">
           Quero Encomendar Agora
         </button>
       </div>
