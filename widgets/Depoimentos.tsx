@@ -37,12 +37,13 @@ export default function Depoimentos() {
             ),
           }))}
           fadeOut={true}
-          logoHeight={{ mobile: 35, desktop: 65 }}
+          logoHeight={{ mobile: 35, desktop: 0 }}
           gap={{ mobile: 20, desktop: 60 }}
           fadeOutColor="#000000"
           direction="left"
           //   gap={20}
-          altura="h-auto lg:h-65"
+          altura="h-auto lg:h-[30vh]"
+        //   className="border"
         />
       </div>
       <div className="relative h-auto w-full lg:mb-3">
@@ -58,11 +59,12 @@ export default function Depoimentos() {
             ),
           }))}
           fadeOut={true}
-          logoHeight={{ mobile: 35, desktop: 65 }}
+          logoHeight={{ mobile: 35, desktop: 0 }}
           gap={{ mobile: 20, desktop: 60 }}
           fadeOutColor="#000000"
           direction="right"
-          altura="h-auto lg:h-65"
+          altura="h-auto lg:h-[30vh]"
+        //   className="border"
         />
       </div>
       <div className="relative">

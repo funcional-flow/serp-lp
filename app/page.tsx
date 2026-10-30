@@ -20,6 +20,7 @@ import {
 import QualidadeCardMobile from "@/components/QualidadeCardMobile";
 import LogoLoop from "@/components/reactbits/LogoLoop";
 import { logosBranca, logosPreta } from "@/config/logos";
+import ScaleOnScroll from "@/components/gsap/ScaleOnScroll";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -195,7 +196,18 @@ export default function Home() {
         />
 
         <section id="simbologia" className="relative z-1">
-          <Simbologia />
+          <ScaleOnScroll
+            scale={{ from: 1, to: 0 }}
+            opacity={{ from: 1, to: 0 }}
+            startAnimation="top top-=50"
+            endAnimation="+=1000"
+            className="lg:hidden"
+          >
+            <Simbologia />
+          </ScaleOnScroll>
+          <div className="hidden lg:block">
+            <Simbologia />
+          </div>
         </section>
 
         <section id="lifestyle" className="sticky top-0 z-1 lg:relative">
