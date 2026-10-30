@@ -221,37 +221,37 @@ export default function Home() {
           <Simbologia />
         </section>
 
-        <section id="lifestyle" className="relative z-1">
+        <section id="lifestyle" className="sticky top-0 z-1 lg:relative">
           <LifeStyle />
+        </section>
+
+        <section id="depoimentos" className="relative z-2">
+          <Depoimentos />
         </section>
 
         <section
           id="final"
-          className="relative z-1 flex h-lvh w-full flex-col items-center justify-center gap-2 bg-black text-white lg:hidden"
+          className="relative z-2 flex h-lvh w-full flex-col items-center justify-center gap-2 bg-black text-white lg:hidden"
         >
           <h2 className="font-metrim text-3xl uppercase">serpentize</h2>
           <span className="text-xl">Em construção...</span>
         </section>
 
-        <section id="depoimentos" className="relative z-1 hidden lg:block">
-          <Depoimentos />
-        </section>
-
         <section
           id="faq"
-          className="sticky top-0 z-1 hidden overflow-hidden lg:block"
+          className="sticky top-0 z-2 hidden overflow-hidden lg:block"
         >
           <Faq />
         </section>
 
         <section
           id="cta"
-          className="relative z-1 hidden overflow-hidden lg:block"
+          className="relative z-2 hidden overflow-hidden lg:block"
         >
           <Cta />
         </section>
 
-        <footer className="relative z-10 hidden bg-gray-500 lg:block">
+        <footer className="relative z-20 hidden bg-gray-500 lg:block">
           <div className="container mx-auto px-4">
             <p className="text-white">
               © 2026 Serpentize. Todos os direitos reservados.

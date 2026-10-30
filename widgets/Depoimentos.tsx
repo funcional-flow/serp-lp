@@ -1,6 +1,7 @@
 import LogoLoop from "@/components/reactbits/LogoLoop";
-import TestimonialsCard from "@/components/TestimonialsCard";
+import DepoimentoCard from "@/components/DepoimentoCard";
 import Image from "next/image";
+import { depoimentos } from "@/config/depoimentos";
 
 export default function Depoimentos() {
   return (
@@ -13,45 +14,72 @@ export default function Depoimentos() {
           className="object-cover opacity-20"
         />
       </div>
-      <div className="relative flex flex-col items-center gap-2 pb-10">
-        <h1 className="font-metrim text-6xl uppercase">serpentize</h1>
-        <span className="text-lg uppercase">MOVEMENT WITH INTENTION</span>
+      <div className="relative flex flex-col items-center gap-2 pb-[3vh] lg:pb-10">
+        <h1 className="font-metrim text-2xl uppercase lg:text-6xl">
+          serpentize
+        </h1>
+        <span className="text-sm uppercase lg:text-lg">
+          MOVEMENT WITH INTENTION
+        </span>
       </div>
-      <div className="relative mb-3 h-auto w-full">
+      <div className="relative h-auto w-full lg:mb-3">
         <LogoLoop
-          logos={[
-            { node: <TestimonialsCard key="1" title="Depoimento Card 1" /> },
-            { node: <TestimonialsCard key="2" title="Depoimento Card 2" /> },
-            { node: <TestimonialsCard key="3" title="Depoimento Card 3" /> },
-            { node: <TestimonialsCard key="4" title="Depoimento Card 4" /> },
-            { node: <TestimonialsCard key="5" title="Depoimento Card 5" /> },
-            { node: <TestimonialsCard key="6" title="Depoimento Card 6" /> },
-          ]}
+          logos={depoimentos.map((depoimento) => ({
+            node: (
+              <DepoimentoCard
+                key={depoimento.key}
+                title={depoimento.title}
+                subtitle={depoimento.subtitle}
+                description={depoimento.description}
+              />
+            ),
+          }))}
           fadeOut={true}
           fadeOutColor="#000000"
           direction="left"
-          altura="h-65"
+          //   gap={20}
+          altura="h-auto lg:h-65"
+        />
+      </div>
+      <div className="relative h-auto w-full lg:mb-3">
+        <LogoLoop
+          logos={depoimentos.map((depoimento) => ({
+            node: (
+              <DepoimentoCard
+                key={depoimento.key}
+                title={depoimento.title}
+                subtitle={depoimento.subtitle}
+                description={depoimento.description}
+              />
+            ),
+          }))}
+          fadeOut={true}
+          fadeOutColor="#000000"
+          direction="right"
+          altura="h-auto lg:h-65"
         />
       </div>
       <div className="relative h-auto w-full">
         <LogoLoop
-          logos={[
-            { node: <TestimonialsCard key="1" title="Depoimento Card 1" /> },
-            { node: <TestimonialsCard key="2" title="Depoimento Card 2" /> },
-            { node: <TestimonialsCard key="3" title="Depoimento Card 3" /> },
-            { node: <TestimonialsCard key="4" title="Depoimento Card 4" /> },
-            { node: <TestimonialsCard key="5" title="Depoimento Card 5" /> },
-            { node: <TestimonialsCard key="6" title="Depoimento Card 6" /> },
-          ]}
+          logos={depoimentos.map((depoimento) => ({
+            node: (
+              <DepoimentoCard
+                key={depoimento.key}
+                title={depoimento.title}
+                subtitle={depoimento.subtitle}
+                description={depoimento.description}
+              />
+            ),
+          }))}
           fadeOut={true}
           fadeOutColor="#000000"
-          direction="right"
-          altura="h-65"
+          direction="left"
+          altura="h-auto lg:h-65"
         />
       </div>
       <div className="relative">
-        <button className="mt-20 rounded-xl bg-white px-16 py-4 text-lg font-bold text-black uppercase transition-transform duration-200 hover:scale-105 hover:cursor-pointer">
-          Lorem ipsum dolor
+        <button className="mt-[6vh] rounded-xl bg-white px-10 py-4 font-bold text-black uppercase transition-transform duration-200 hover:scale-105 hover:cursor-pointer lg:mt-20 lg:px-16 lg:text-lg">
+          Quero Encomendar Agora
         </button>
       </div>
     </div>

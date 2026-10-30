@@ -169,23 +169,23 @@ export const imageSequenceMobile = {
       },
     },
     {
-      images: video_serp_2,
+      images: video_serp_2.slice(50),
       start: {
         trigger: "#faixaInferior",
       },
       end: {
-        trigger: "#final",
+        trigger: "#divisao31",
         afterFrames: 0,
       },
     },
     
     {
-      images: video_serp_3.slice(20),
+      images: video_serp_3.slice(20,110),
       start: {
         trigger: "#divisao31",
       },
       end: {
-        trigger: "#final",
+        trigger: "#lifestyle",
         afterFrames: 0,
       },
     },
