@@ -13,8 +13,15 @@ interface ScaleOnScrollProps {
   /**
    * Configurações da animação do conteúdo
    */
-  scale?: number;
-  opacity?: number;
+  scale?: {
+    from?: number;
+    to?: number;
+  };
+  opacity?: {
+    from?: number;
+    to?: number;
+  };
+  reverse?: boolean;
 
   /**
    * Configurações do ScrollTrigger
@@ -44,11 +51,13 @@ interface ScaleOnScrollProps {
 export default function ScaleOnScroll({
   children,
 
-  scale = 0.85,
-  opacity = 1,
+  scale = { from: 1, to: 0.85 },
+  opacity = { from: 1, to: 1 },
+  reverse = false,
 
-  startAnimation = "top",
-  endAnimation = "+=1000",
+  // "ELEMENT_POSITION VIEWPORT_POSITION"
+  startAnimation = "top top", // Ex: "top top", "center center", "bottom bottom", "top center", "top 80%", "top 200px", "top+=100", "top top-=100"
+  endAnimation = "+=1000", // Ex: "+=500", "bottom top", "center center"
 
   background,
 
@@ -65,7 +74,8 @@ export default function ScaleOnScroll({
 
       const scrollTrigger = {
         trigger: container.current,
-        start: `${startAnimation} top`,
+        // "ELEMENT_POSITION VIEWPORT_POSITION"
+        start: startAnimation,
         end: endAnimation,
         scrub: true,
       };
@@ -78,12 +88,12 @@ export default function ScaleOnScroll({
       gsap.fromTo(
         content.current,
         {
-          scale: 1,
-          opacity: 1,
+          scale: scale.from, // Pode fazer tambem: reverse ? 0 : 1
+          opacity: opacity.from,
         },
         {
-          scale,
-          opacity,
+          scale: scale.to,
+          opacity: opacity.to,
           ease: "none",
           scrollTrigger,
         },
@@ -114,7 +124,10 @@ export default function ScaleOnScroll({
   );
 
   return (
-    <div ref={container} className={`relative isolate ${className}`}>
+    <div
+      ref={container}
+      className={`relative isolate ${className}`}
+    >
       {/* Background */}
       {background && (
         <div
@@ -122,7 +135,6 @@ export default function ScaleOnScroll({
           className="pointer-events-none absolute inset-0 -z-10"
         />
       )}
-
       {/* Conteúdo */}
       <div ref={content} className={`relative ${contentClassName}`}>
         {children}

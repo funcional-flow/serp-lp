@@ -13,7 +13,6 @@ import Faq from "@/widgets/Faq";
 import Cta from "@/widgets/Cta";
 import Simbologia from "@/widgets/Simbologia";
 import ImageSequenceFixed from "@/components/gsap/ImageSequenceFixed";
-import ScaleOnScroll from "@/components/gsap/ScaleOnScroll";
 import {
   imageSequenceDesktop,
   imageSequenceMobile,
