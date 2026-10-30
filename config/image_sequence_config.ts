@@ -146,6 +146,16 @@ export const imageSequenceMobile = {
       unit: "section",
       color: "#EBEBEB",
     },
+    // Teste pra bug do lado direito colorido na tela de celular.
+    {
+      trigger: "#lifestyle",
+      start: 98,
+      peak: 99,
+      holdEnd: 9999,
+      end: 10000,
+      unit: "section",
+      color: "#000000",
+    },
   ],
   videoSegments: [
     {
