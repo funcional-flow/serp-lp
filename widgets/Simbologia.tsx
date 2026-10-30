@@ -15,7 +15,7 @@ import "swiper/css";
 export default function Simbologia() {
   const [swiper, setSwiper] = useState<SwiperInstance | null>(null);
   return (
-    <div className="relative flex min-h-[110lvh] w-full flex-col items-center justify-center lg:h-[110lvh] lg:flex-row lg:gap-10 lg:px-30">
+    <div className="relative overflow-hidden flex min-h-[110lvh] w-full flex-col items-center justify-center lg:h-[110lvh] lg:flex-row lg:gap-10 lg:px-30">
       {/* Lado Esquerdo */}
       <div className="relative z-1 flex w-full flex-col items-center px-4 lg:w-1/2 lg:px-0">
         <div className="group relative w-full lg:w-2xl">
