@@ -15,7 +15,7 @@ export default function QualidadeCardMobile({
   backgroundColor = "bg-black",
 }: QualidadeCardMobileProps) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 overflow-hidden">
       <h2
         className={`font-metrim mx-auto mb-8 max-w-full rounded-lg ${backgroundColor} px-4 py-2 text-center text-3xl tracking-widest ${titleColor} uppercase shadow-lg shadow-gray-500`}
       >

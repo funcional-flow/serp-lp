@@ -47,7 +47,7 @@ export default function ConteudoCarousel({
 }: ConteudoCarouselProps) {
   return (
     <ScaleOnScroll>
-      <div className="relative min-h-lvh w-full select-none">
+      <div className="relative min-h-lvh w-full select-none overflow-hidden">
         <div ref={fadeRef} className="relative">
           {/* Logo Background */}
           <div className="absolute top-1/2 left-1/2 z-0 flex w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center">

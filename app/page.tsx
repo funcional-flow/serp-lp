@@ -100,7 +100,7 @@ export default function Home() {
             </section>,
             <section key="manifesto" id="manifesto" className="relative z-1">
               <Manifesto />
-            </section>
+            </section>,
           ]}
         />
 
@@ -113,7 +113,7 @@ export default function Home() {
           id="faixaSuperior"
           className="relative flex h-auto w-full flex-col bg-black"
         >
-          <div className="relative lg:hidden">
+          <div className="relative overflow-hidden lg:hidden">
             <LogoLoop
               logos={logosBranca}
               fadeOut
@@ -124,7 +124,7 @@ export default function Home() {
               className="bg-black"
             />
           </div>
-          <div className="hidden lg:block">
+          <div className="hidden overflow-hidden lg:block">
             <LogoLoop
               logos={logosBranca}
               fadeOut
@@ -143,7 +143,7 @@ export default function Home() {
           id="faixaInferior"
           className="relative flex h-auto w-full flex-col bg-black"
         >
-          <div className="relative lg:hidden">
+          <div className="relative overflow-hidden lg:hidden">
             <LogoLoop
               logos={logosPreta}
               fadeOut
@@ -155,7 +155,7 @@ export default function Home() {
               direction="right"
             />
           </div>
-          <div className="relative hidden lg:block">
+          <div className="relative hidden overflow-hidden lg:block">
             <LogoLoop
               logos={logosPreta}
               fadeOut
