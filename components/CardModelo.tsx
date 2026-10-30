@@ -10,7 +10,6 @@ interface CardModeloProps {
   height: number;
   titulo: string;
   texto: string;
-  imgAntes?: boolean;
   alt?: string;
   background?: string;
   textColor?: string;
@@ -21,7 +20,6 @@ interface CardModeloProps {
   linkCamisa?: string;
   buttonTextColor?: string;
   buttonShadowColor?: string;
-  contentAspect?: "portrait" | "landscape";
   //   Tabs
   textSecondaryColor?: string;
   buttonColor?: string;
@@ -37,7 +35,6 @@ export default function CardModelo({
   height,
   titulo,
   texto,
-  imgAntes = true,
   background = "bg-white",
   textColor = "text-black",
   textSecondaryColor = "text-black/50",
@@ -50,19 +47,18 @@ export default function CardModelo({
   buttonTextColor = "text-white",
   buttonShadowColor = "hover:shadow-white/50",
   lineColor = "border-black/25",
-  contentAspect = "portrait",
   tabsPosition = "top",
 }: CardModeloProps) {
   return (
     <div
-      className={`group relative flex h-full w-full flex-col items-center justify-center gap-5 brightness-100 transition-all duration-500 select-none hover:brightness-100 lg:flex-row lg:brightness-90 ${background} px-12`}
+      className={`group relative flex h-full w-full flex-col items-center gap-5 brightness-100 transition-all duration-200 select-none hover:brightness-100 lg:brightness-80 ${background} px-12`}
     >
       <h1
-        className={`font-metrim z-10 text-center text-4xl tracking-widest uppercase lg:hidden ${textColor}`}
+        className={`font-metrim z-10 text-center text-4xl tracking-widest uppercase ${textColor}`}
       >
         {titulo}
       </h1>
-      <div className={`relative ${imgAntes ? "lg:order-1" : "lg:order-2"}`}>
+      <div className={`relative`}>
         <div className={`relative flex ${larguraImagem}`}>
           <AnimatedTabs
             animation="flip"
@@ -77,7 +73,7 @@ export default function CardModelo({
                 label: "Frente",
                 content: (
                   <div
-                    className={`relative flex rounded-2xl bg-linear-to-b from-gray-500 to-gray-700 transition-transform ${contentAspect === "portrait" ? "h-auto lg:h-[75svh]" : "h-auto"} w-full`}
+                    className={`relative flex h-auto w-full rounded-2xl bg-linear-to-b from-gray-500 to-gray-700 transition-transform`}
                   >
                     <Image
                       src={img_modelo_frente}
@@ -95,7 +91,7 @@ export default function CardModelo({
                 label: "Costas",
                 content: (
                   <div
-                    className={`relative flex rounded-2xl bg-linear-to-b from-gray-500 to-gray-700 transition-transform ${contentAspect === "portrait" ? "lg:h-[75svh]" : "lg:h-auto"} w-full`}
+                    className={`relative flex h-auto w-full rounded-2xl bg-linear-to-b from-gray-500 to-gray-700 transition-transform`}
                   >
                     <Image
                       src={img_modelo_costas}
@@ -113,9 +109,7 @@ export default function CardModelo({
           />
         </div>
       </div>
-      <div
-        className={`relative ${imgAntes ? "lg:order-2" : "lg:order-1"} flex flex-col items-center gap-5`}
-      >
+      <div className={`relative flex flex-col items-center gap-5`}>
         {/* Logo Hover */}
         <div className="absolute inset-0 top-[62%] left-1/2 z-0 h-auto w-60 -translate-x-1/2 -translate-y-1/2">
           <Image
@@ -127,19 +121,9 @@ export default function CardModelo({
             className={`animate-image-pulse object-contain opacity-0 transition-opacity duration-1000 group-hover:opacity-10`}
           />
         </div>
-        {/* Conteúdo Texto */}
-        <h1
-          className={`font-metrim z-10 hidden text-center text-4xl tracking-widest uppercase lg:mt-20 lg:mb-2 lg:flex ${textColor}`}
-        >
-          {titulo}
-        </h1>
-        <p
-          className={`z-10 w-full text-center text-sm lg:text-xl ${textSecondaryColor}`}
-        >
-          {texto}
-        </p>
+
         <span
-          className={`font-montserrat z-10 text-2xl font-bold lg:mt-40 lg:text-5xl ${textColor}`}
+          className={`font-montserrat z-10 text-2xl font-bold lg:mt-[2vh] lg:text-5xl ${textColor}`}
         >
           R$ 197,00
         </span>

@@ -109,7 +109,7 @@ export default function Home() {
           className="relative h-[250lvh] w-full bg-transparent lg:h-[150vh]"
         />
 
-        <section
+        {/* <section
           id="faixaSuperior"
           className="relative flex h-auto w-full flex-col bg-black"
         >
@@ -122,13 +122,13 @@ export default function Home() {
             ariaLabel="Serpentize"
             className="bg-black"
           />
-        </section>
+        </section> */}
 
-        <section id="modelos" className="bg-background relative z-1">
+        <section id="modelos" className="bg-transparent relative z-1">
           <Modelos />
         </section>
 
-        <section
+        {/* <section
           id="faixaInferior"
           className="relative flex h-auto w-full flex-col bg-black"
         >
@@ -142,7 +142,7 @@ export default function Home() {
             className="bg-white"
             direction="right"
           />
-        </section>
+        </section> */}
 
         <section
           id="divisao21"

@@ -21,12 +21,12 @@ export const imageSequenceDesktop = {
   overlayIntervals: [
     {
       trigger: "#modelos",
-      start: 50,
-      peak: 85,
-      holdEnd: 100,
-      end: 105,
+      start: 30,
+      peak: 75,
+      holdEnd: 140,
+      end: 200,
       unit: "section",
-      color: "#000000",
+      color: "#27272a",
     },
     {
       trigger: "#qualidade1",
@@ -54,14 +54,14 @@ export const imageSequenceDesktop = {
         trigger: "#manifesto",
       },
       end: {
-        trigger: "#modelos",
+        trigger: "#divisao21",
         afterFrames: 50,
       },
     },
     {
       images: video_serp_2.slice(50, 150),
       start: {
-        trigger: "#faixaInferior",
+        trigger: "#divisao21",
       },
       end: {
         trigger: "#qualidade1",
@@ -102,13 +102,13 @@ export const imageSequenceMobile = {
   objectPosition: "top",
   overlayIntervals: [
     {
-      trigger: "#divisao11",
-      start: 125,
-      peak: 139,
-      holdEnd: 141,
-      end: 142,
+      trigger: "#modelos",
+      start: 0,
+      peak: 30,
+      holdEnd: 120,
+      end: 150,
       unit: "section",
-      color: "#000000",
+      color: "#27272a",
     },
     {
       trigger: "#qualidade1",
@@ -164,23 +164,23 @@ export const imageSequenceMobile = {
         trigger: "#manifesto",
       },
       end: {
-        trigger: "#modelos",
-        afterFrames: 30,
+        trigger: "#divisao21",
+        afterFrames: 50,
       },
     },
     {
       images: video_serp_2.slice(50),
       start: {
-        trigger: "#faixaInferior",
+        trigger: "#divisao21",
       },
       end: {
         trigger: "#divisao31",
         afterFrames: 0,
       },
     },
-    
+
     {
-      images: video_serp_3.slice(20,110),
+      images: video_serp_3.slice(20, 110),
       start: {
         trigger: "#divisao31",
       },
