@@ -37,7 +37,7 @@ export default function Depoimentos() {
             ),
           }))}
           fadeOut={true}
-          logoHeight={{ mobile: 20, desktop: 65 }}
+          logoHeight={{ mobile: 35, desktop: 65 }}
           gap={{ mobile: 20, desktop: 60 }}
           fadeOutColor="#000000"
           direction="left"
@@ -58,7 +58,7 @@ export default function Depoimentos() {
             ),
           }))}
           fadeOut={true}
-          logoHeight={{ mobile: 20, desktop: 65 }}
+          logoHeight={{ mobile: 35, desktop: 65 }}
           gap={{ mobile: 20, desktop: 60 }}
           fadeOutColor="#000000"
           direction="right"
