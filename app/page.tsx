@@ -21,50 +21,13 @@ import QualidadeCardMobile from "@/components/QualidadeCardMobile";
 import LogoLoop from "@/components/reactbits/LogoLoop";
 import { logosBranca, logosPreta } from "@/config/logos";
 import ScaleOnScroll from "@/components/gsap/ScaleOnScroll";
+import { ArrowDown } from "lucide-react";
+import QualidadeHero from "@/widgets/QualidadeHero";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
 
   //   effect gl (1000ms):fade, wave-x, peel-x, stretch, ripple, morph-y
-
-  //   useEffect(() => {
-  //     const section = document.querySelector("#divisao11");
-  //     if (!section) {
-  //       console.log("Seção #divisao11 não encontrada");
-  //       return;
-  //     }
-
-  //     const rect = section.getBoundingClientRect();
-
-  //     console.table({
-  //       scrollY: window.scrollY,
-  //       sectionTop: rect.top,
-  //       sectionDocumentTop: rect.top + window.scrollY,
-  //       sectionHeight: rect.height,
-  //       viewportHeight: window.innerHeight,
-  //       scrollHeight: document.documentElement.scrollHeight,
-  //     });
-
-  //     const logPosition = () => {
-  //       const rect = section.getBoundingClientRect();
-
-  //       console.table({
-  //         scrollY: window.scrollY,
-  //         sectionTop: rect.top,
-  //         sectionDocumentTop: rect.top + window.scrollY,
-  //         sectionHeight: rect.height,
-  //         viewportHeight: window.innerHeight,
-  //         scrollHeight: document.documentElement.scrollHeight,
-  //       });
-  //     };
-
-  //     window.addEventListener("scroll", logPosition, { passive: true });
-  //     logPosition();
-
-  //     return () => {
-  //       window.removeEventListener("scroll", logPosition);
-  //     };
-  //   }, []);
 
   return (
     <>
@@ -76,14 +39,6 @@ export default function Home() {
             desktop: imageSequenceDesktop,
             mobile: imageSequenceMobile,
           }}
-          //   onFrameChange={(frame) => {
-          //     console.log({
-          //       scrollY: Math.round(window.scrollY),
-          //       frame,
-          //       viewportHeight: window.innerHeight,
-          //       documentHeight: document.documentElement.scrollHeight,
-          //     });
-          //   }}
         />
         <ScrollTransition
           background="bg-gray-400"
@@ -124,7 +79,7 @@ export default function Home() {
           />
         </section> */}
 
-        <section id="modelos" className="bg-transparent relative z-1">
+        <section id="modelos" className="relative z-1 bg-transparent">
           <Modelos />
         </section>
 
@@ -146,8 +101,12 @@ export default function Home() {
 
         <section
           id="divisao21"
-          className="relative h-[150vh] w-full bg-transparent"
+          className="relative h-[30vh] w-full bg-transparent"
         />
+
+        <section id="qualidadeHero" className="relative z-1">
+          <QualidadeHero />
+        </section>
 
         <section
           id="qualidade1"
@@ -218,26 +177,20 @@ export default function Home() {
           <Depoimentos />
         </section>
 
+        <section id="faq" className="relative z-2">
+          <Faq />
+        </section>
+
+        <section id="cta" className="relative z-2 overflow-hidden">
+          <Cta />
+        </section>
+
         <section
           id="final"
           className="relative z-2 flex h-lvh w-full flex-col items-center justify-center gap-2 bg-black text-white lg:hidden"
         >
           <h2 className="font-metrim text-3xl uppercase">serpentize</h2>
           <span className="text-xl">Em construção...</span>
-        </section>
-
-        <section
-          id="faq"
-          className="sticky top-0 z-2 hidden overflow-hidden lg:block"
-        >
-          <Faq />
-        </section>
-
-        <section
-          id="cta"
-          className="relative z-2 hidden overflow-hidden lg:block"
-        >
-          <Cta />
         </section>
 
         <footer className="relative z-20 hidden bg-gray-500 lg:block">

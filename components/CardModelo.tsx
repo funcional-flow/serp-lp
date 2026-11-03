@@ -111,7 +111,7 @@ export default function CardModelo({
       </div>
       <div className={`relative flex flex-col items-center gap-5`}>
         {/* Logo Hover */}
-        <div className="absolute inset-0 top-[62%] left-1/2 z-0 h-auto w-60 -translate-x-1/2 -translate-y-1/2">
+        {/* <div className="absolute inset-0 top-[62%] left-1/2 z-0 h-auto w-60 -translate-x-1/2 -translate-y-1/2">
           <Image
             src={`/Details/serp-simbolo-${logoColor}.png`}
             alt=""
@@ -120,7 +120,7 @@ export default function CardModelo({
             onContextMenu={(e) => e.preventDefault()}
             className={`animate-image-pulse object-contain opacity-0 transition-opacity duration-1000 group-hover:opacity-10`}
           />
-        </div>
+        </div> */}
 
         <span
           className={`font-montserrat z-10 text-2xl font-bold lg:mt-[2vh] lg:text-5xl ${textColor}`}

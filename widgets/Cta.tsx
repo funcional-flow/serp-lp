@@ -2,7 +2,7 @@ import CardCta from "@/components/CardCta";
 
 export default function Cta() {
   return (
-    <div className="relative flex min-h-[115svh] w-full">
+    <div className="relative flex h-lvh w-full lg:min-h-[115lvh]">
       <CardCta
         img_principal1="/modelos/modelo_principal_frente.png"
         width={940}

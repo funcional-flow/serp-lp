@@ -1,4 +1,5 @@
 import AnimatedTabs from "@/components/AnimatedTabs";
+import ScaleOnScroll from "@/components/gsap/ScaleOnScroll";
 // import ScaleOnScroll from "@/components/gsap/ScaleOnScroll";
 import QualidadeCard from "@/components/QualidadeCard";
 

@@ -7,7 +7,7 @@ export default function Modelos() {
   return (
     <div className="relative flex min-h-lvh w-full flex-col">
       {/* Primeira Sessão */}
-      <div className="relative flex h-full min-h-lvh w-full flex-col items-center gap-30 lg:flex-row">
+      <div className="relative flex h-full min-h-lvh w-full flex-col items-center gap-30 lg:flex-row lg:gap-0">
         {/* Card #1 */}
         <div className="relative w-full flex-1">
           <CardModelo
@@ -17,8 +17,8 @@ export default function Modelos() {
             height={1672}
             larguraImagem="w-[35vh] lg:w-xs"
             tamanhoImagem="h-[45vh] lg:h-[50vh]"
-            classNameImage="object-top object-contain lg:object-cover"
-            titulo="serp - boxy"
+            classNameImage="object-top object-contain"
+            titulo="boxy"
             texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
             background="bg-transparent"
             // background="bg-linear-to-b from-zinc-800 to-zinc-950"
@@ -47,8 +47,8 @@ export default function Modelos() {
             height={1672}
             larguraImagem="w-[35vh] lg:w-xs"
             tamanhoImagem="h-[45vh] lg:h-[50vh]"
-            classNameImage="object-top object-contain lg:object-cover"
-            titulo="minimal - boxy"
+            classNameImage="object-top object-contain"
+            titulo="classica"
             texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
             background="bg-transparent"
             textColor="text-white"
@@ -75,8 +75,8 @@ export default function Modelos() {
             height={1672}
             larguraImagem="w-[35vh] lg:w-xs"
             tamanhoImagem="h-[45vh] lg:h-[50vh]"
-            classNameImage="object-top object-contain lg:object-cover"
-            titulo="minimal - boxy"
+            classNameImage="object-top object-contain"
+            titulo="regata"
             texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
             background="bg-transparent"
             textColor="text-white"

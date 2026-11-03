@@ -60,7 +60,7 @@ export default function CardCta({
       <div className="relative z-10 flex w-full">
         {/* Imagem Principal */}
         <div
-          className={`relative order-1 flex h-auto w-1/3 flex-1 items-center justify-center`}
+          className={`relative order-1 hidden h-auto w-1/3 flex-1 items-center justify-center lg:flex`}
         >
           <Image
             src={img_principal1}
@@ -93,7 +93,7 @@ export default function CardCta({
 
         {/* Molduras com quatro imagens */}
         <div
-          className={`relative order-3 flex w-1/3 flex-1 items-center justify-center gap-3`}
+          className={`relative order-3 hidden w-1/3 flex-1 items-center justify-center gap-3 lg:flex`}
         >
           {/* coluna 1 */}
           <div className="relative flex flex-col gap-5">
@@ -153,7 +153,7 @@ export default function CardCta({
       </div>
 
       {/* Logo de fundo */}
-      <div className="absolute inset-0 top-1/2 left-1/2 z-1 h-auto w-xl -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute inset-0 top-1/2 left-1/2 z-1 h-auto w-xs -translate-x-1/2 -translate-y-1/2 lg:w-xl">
         <Image
           src={`/Details/serp-simbolo-${logoColor}.png`}
           alt=""
@@ -163,7 +163,7 @@ export default function CardCta({
           className={`object-contain opacity-12`}
         />
       </div>
-      <div className="absolute inset-0 top-1/2 left-1/2 z-0 h-auto w-xl -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute inset-0 top-1/2 left-1/2 z-0 h-auto w-xs -translate-x-1/2 -translate-y-1/2 lg:w-xl">
         <Image
           src={`/Details/serp-simbolo-black.png`}
           alt=""

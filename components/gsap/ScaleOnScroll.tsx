@@ -29,6 +29,13 @@ interface ScaleOnScrollProps {
   endAnimation?: string;
 
   /**
+   * Configurações do Pin (opcional)
+   */
+  pin?: boolean;
+  pinDuration?: number;
+  pinSpacing?: boolean; // true = reserva o espaço do elemento pinado para que outro nao sobreponha ele.
+
+  /**
    * Configurações do background
    */
   background?: {
@@ -56,6 +63,11 @@ export default function ScaleOnScroll({
   // "ELEMENT_POSITION VIEWPORT_POSITION"
   startAnimation = "top top", // Ex: "top top", "center center", "bottom bottom", "top center", "top 80%", "top 200px", "top+=100", "top top-=100"
   endAnimation = "+=1000", // Ex: "+=500", "bottom top", "center center"
+
+  // Pin
+  pin = false,
+  pinDuration = 1500,
+  pinSpacing = true,
 
   background,
 
@@ -115,6 +127,21 @@ export default function ScaleOnScroll({
           },
         );
       }
+
+      /**
+       * =========================
+       * PIN
+       * =========================
+       */
+      if (pin) {
+        ScrollTrigger.create({
+          trigger: container.current,
+          start: startAnimation,
+          end: `+=${pinDuration}`,
+          pin: container.current,
+          pinSpacing,
+        });
+      }
     },
     {
       scope: container,
@@ -122,10 +149,7 @@ export default function ScaleOnScroll({
   );
 
   return (
-    <div
-      ref={container}
-      className={`relative isolate ${className}`}
-    >
+    <div ref={container} className={`relative isolate ${className}`}>
       {/* Background */}
       {background && (
         <div
