@@ -112,40 +112,42 @@ export default function Home() {
           id="qualidade1"
           className="relative z-1 overflow-hidden lg:overflow-visible"
         >
-          <div className="hidden lg:block">
-            <Qualidade />
-          </div>
-          <div className="h-lvh lg:hidden">
-            <QualidadeCardMobile
-              title="Modelo Boxy"
-              backgroundColor="bg-black"
-              titleColor="text-white"
-              textColor="text-black"
-            />
-          </div>
+          <Qualidade
+            title="Modelo Boxy"
+            backgroundColor="bg-black"
+            titleColor="text-white"
+            textColor="text-black"
+            image1="/qualidade/camisa_cabide11.png"
+            image2="/qualidade/camisa_cabide11.png"
+          />
         </section>
 
         <section
           id="qualidade2"
-          className="relative z-1 h-lvh overflow-hidden lg:hidden lg:overflow-visible"
+          className="relative z-1 overflow-hidden lg:overflow-visible"
         >
-          <QualidadeCardMobile
+          <Qualidade
             title="Modelo Classica"
-            backgroundColor="bg-white"
-            titleColor="text-black"
-            textColor="text-white"
+            backgroundColor="bg-white lg:bg-black"
+            titleColor="text-black lg:text-white"
+            textColor="text-white lg:text-black"
+            image1="/qualidade/camisa_cabide11.png"
+            image2="/qualidade/camisa_cabide11.png"
+            imageBackground={true}
           />
         </section>
 
         <section
           id="qualidade3"
-          className="relative z-1 h-lvh overflow-hidden lg:hidden lg:overflow-visible"
+          className="relative z-1 overflow-hidden lg:overflow-visible"
         >
-          <QualidadeCardMobile
+          <Qualidade
             title="Modelo Regata"
             backgroundColor="bg-black"
             titleColor="text-white"
             textColor="text-black"
+            image1="/qualidade/camisa_cabide11.png"
+            image2="/qualidade/camisa_cabide11.png"
           />
         </section>
 

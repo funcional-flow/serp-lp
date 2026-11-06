@@ -26,7 +26,7 @@ export const imageSequenceDesktop = {
       holdEnd: 125,
       end: 200,
       unit: "section",
-      color: "#27272a",
+      color: "#27272a", // rgba(39, 39, 42, 1)
     },
     {
       trigger: "#qualidadeHero",
@@ -40,11 +40,30 @@ export const imageSequenceDesktop = {
     {
       trigger: "#qualidade1",
       start: 25,
-      peak: 65,
-      holdEnd: 100,
-      end: 150,
+      peak: 90,
+      holdEnd: 115,
+      end: 140,
       unit: "section",
-      color: "#18181b",
+      color: "#EBEBEB",
+    },
+    {
+      trigger: "#qualidade2",
+      start: 25,
+      peak: 90,
+      holdEnd: 115,
+      end: 140,
+      unit: "section",
+      color: "#EBEBEB",
+    },
+    
+    {
+      trigger: "#qualidade3",
+      start: 25,
+      peak: 90,
+      holdEnd: 130,
+      end: 170,
+      unit: "section",
+      color: "#EBEBEB",
     },
     {
       trigger: "#simbologia",
