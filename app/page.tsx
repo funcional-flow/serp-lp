@@ -123,6 +123,11 @@ export default function Home() {
         </section>
 
         <section
+          id="divisao22"
+          className="relative h-[50vh] w-full bg-transparent"
+        />
+
+        <section
           id="qualidade2"
           className="relative z-1 overflow-hidden lg:overflow-visible"
         >
@@ -136,6 +141,11 @@ export default function Home() {
             imageBackground={true}
           />
         </section>
+
+        <section
+          id="divisao23"
+          className="relative h-[50vh] w-full bg-transparent"
+        />
 
         <section
           id="qualidade3"
