@@ -28,14 +28,29 @@ export interface VideoSegmentPoint {
   afterFrames?: number;
 }
 
-export interface VideoSegmentConfig {
-  /** Array de frames deste vídeo, por exemplo video_serp_1. */
+export interface SequenceSegmentConfig {
+  /** Array de frames da sequência. O type pode ser omitido para compatibilidade. */
+  type?: "sequence";
   images: string[];
-  /** Onde começa a reprodução deste array. */
   start: VideoSegmentPoint;
-  /** Onde termina a reprodução deste array. */
   end: VideoSegmentPoint;
 }
+
+export interface VideoFileSegmentConfig {
+  type: "video";
+  /** Caminho ou URL do arquivo de vídeo. */
+  src: string;
+  start: VideoSegmentPoint;
+  end: VideoSegmentPoint;
+  /** Reprodução em loop. Padrão: true. */
+  loop?: boolean;
+  /** Reinicia do começo ao entrar novamente no intervalo. Padrão: false. */
+  restartOnEnter?: boolean;
+  /** Vídeos são mutados por padrão para permitir autoplay. */
+  muted?: boolean;
+}
+
+export type VideoSegmentConfig = SequenceSegmentConfig | VideoFileSegmentConfig;
 
 /** @deprecated Use videoSegments para definir o início e o fim de cada vídeo. */
 export interface FrameTransition {
@@ -165,6 +180,11 @@ export default function ImageSequenceFixed({
 }: ImageSequenceFixedProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const videoRefs = useRef<Record<Breakpoint, (HTMLVideoElement | null)[]>>({
+    desktop: [],
+    tablet: [],
+    mobile: [],
+  });
 
   const overlayRefs = useRef<Record<Breakpoint, (HTMLDivElement | null)[]>>({
     desktop: [],
@@ -279,7 +299,9 @@ export default function ImageSequenceFixed({
   const effectiveImages = useMemo(
     () =>
       activeVideoSegments?.length
-        ? activeVideoSegments.flatMap((segment) => segment.images)
+        ? activeVideoSegments.flatMap((segment) =>
+            segment.type === "video" ? [] : segment.images,
+          )
         : activeImageSequences?.length
           ? activeImageSequences.flat()
           : activeImagesProp?.length
@@ -292,7 +314,15 @@ export default function ImageSequenceFixed({
     const section = sectionRef.current;
     const canvas = canvasRef.current;
 
-    if (!section || !canvas || effectiveImages.length === 0) {
+    const hasVideoFiles = Boolean(
+      activeVideoSegments?.some((segment) => segment.type === "video"),
+    );
+
+    if (
+      !section ||
+      !canvas ||
+      (effectiveImages.length === 0 && !hasVideoFiles)
+    ) {
       return;
     }
 
@@ -304,6 +334,55 @@ export default function ImageSequenceFixed({
 
     const loadedImages: HTMLImageElement[] = [];
     const playhead = { frame: 0 };
+    let activeVideoIndex = -1;
+
+    const pauseVideos = (exceptIndex = -1) => {
+      videoRefs.current[breakpoint].forEach((video, index) => {
+        if (!video || index === exceptIndex) return;
+        video.pause();
+        video.style.display = "none";
+      });
+    };
+
+    const activateVideo = (segmentIndex: number) => {
+      const segment = activeVideoSegments?.[segmentIndex];
+      if (!segment || segment.type !== "video") return;
+
+      const video = videoRefs.current[breakpoint][segmentIndex];
+      if (!video) return;
+
+      const isEntering = activeVideoIndex !== segmentIndex;
+      pauseVideos(segmentIndex);
+      canvas.style.display = "none";
+      video.style.display = "block";
+      video.loop = segment.loop ?? true;
+      video.muted = segment.muted ?? true;
+      video.playsInline = true;
+
+      if (isEntering && segment.restartOnEnter) {
+        try {
+          video.currentTime = 0;
+        } catch {
+          // O metadata pode ainda não estar disponível.
+        }
+      }
+
+      activeVideoIndex = segmentIndex;
+      if (video.paused) {
+        void video.play().catch((error: unknown) => {
+          console.warn(
+            `[ImageSequenceFixed] Não foi possível reproduzir o vídeo "${segment.src}". Verifique autoplay, muted e o formato do arquivo.`,
+            error,
+          );
+        });
+      }
+    };
+
+    const deactivateVideos = () => {
+      pauseVideos();
+      activeVideoIndex = -1;
+      canvas.style.display = "block";
+    };
 
     /**
      * Ajusta a resolução interna do canvas considerando DPR.
@@ -372,7 +451,7 @@ export default function ImageSequenceFixed({
      * Atualiza o frame visível e chama o callback global.
      */
     const updateImage = () => {
-      if (isDisposed) return;
+      if (isDisposed || loadedImages.length === 0) return;
 
       const frame = Math.max(
         0,
@@ -510,6 +589,7 @@ export default function ImageSequenceFixed({
     const hasVideoSegments = Boolean(activeVideoSegments?.length);
 
     if (hasVideoSegments) {
+      let sequenceFrameCursor = 0;
       const segments = activeVideoSegments!
         .map((segment, index) => {
           const startElement = document.querySelector(segment.start.trigger);
@@ -522,20 +602,27 @@ export default function ImageSequenceFixed({
             return null;
           }
 
-          const startFrame = activeVideoSegments!
-            .slice(0, index)
-            .reduce((sum, item) => sum + item.images.length, 0);
+          const isVideo = segment.type === "video";
+          const startFrame = isVideo
+            ? sequenceFrameCursor
+            : sequenceFrameCursor;
+          const endFrame = isVideo
+            ? sequenceFrameCursor
+            : sequenceFrameCursor + segment.images.length - 1;
 
-          const endFrame = startFrame + segment.images.length - 1;
+          if (!isVideo) sequenceFrameCursor += segment.images.length;
 
           return {
+            kind: isVideo ? ("video" as const) : ("sequence" as const),
+            segmentIndex: index,
             startElement,
             endElement,
-            startOffset: Math.max(0, segment.start.afterFrames ?? 0),
-            endOffset: Math.max(0, segment.end.afterFrames ?? 0),
+            startOffset: isVideo
+              ? 0
+              : Math.max(0, segment.start.afterFrames ?? 0),
+            endOffset: isVideo ? 0 : Math.max(0, segment.end.afterFrames ?? 0),
             startFrame,
             endFrame,
-            frameCount: segment.images.length,
             startTrigger: segment.start.trigger,
             endTrigger: segment.end.trigger,
           };
@@ -545,92 +632,80 @@ export default function ImageSequenceFixed({
         );
 
       if (segments.length === activeVideoSegments!.length) {
-        /**
-         * Retorna a posição de entrada da seção no scroll.
-         * Equivale ao alinhamento "top bottom".
-         */
+        const sequenceStart = getSequenceStart();
+        const baseEnd = getBaseSequenceEnd();
+        const totalFrames = Math.max(1, effectiveImages.length - 1);
+        const baseDistance =
+          baseEnd === null
+            ? Math.max(1, activeDuration)
+            : Math.max(1, baseEnd - sequenceStart);
+        const scrollPerFrame = baseDistance / totalFrames;
+
         const getEntryScrollY = (element: Element) =>
           element.getBoundingClientRect().top +
           window.scrollY -
           window.innerHeight;
 
-        /**
-         * Calcula os limites de cada vídeo independentemente.
-         *
-         * A velocidade de referência é baseada na distância entre
-         * as seções daquele vídeo, e não em `duration`.
-         *
-         * Portanto, alterar `duration` não antecipa o término
-         * dos vídeos configurados em `videoSegments`.
-         */
         const getPositions = () =>
-          segments.map((segment) => {
-            const sectionStart = getEntryScrollY(segment.startElement);
-            const sectionEnd = getEntryScrollY(segment.endElement);
+          segments.map((segment) => ({
+            ...segment,
+            start:
+              getEntryScrollY(segment.startElement) +
+              segment.startOffset * scrollPerFrame,
+            end:
+              getEntryScrollY(segment.endElement) +
+              segment.endOffset * scrollPerFrame,
+          }));
 
-            const sectionDistance = sectionEnd - sectionStart;
-
-            if (sectionDistance <= 0) {
-              console.warn(
-                `[ImageSequenceFixed] A seção final "${segment.endTrigger}" precisa estar depois da seção inicial "${segment.startTrigger}".`,
-              );
-            }
-
-            // Distância de scroll de referência por frame deste vídeo.
-            const scrollPerFrame =
-              Math.max(1, sectionDistance) /
-              Math.max(1, segment.frameCount - 1);
-
-            // O início pode ter um offset opcional em frames.
-            const start = sectionStart + segment.startOffset * scrollPerFrame;
-
-            // O vídeo termina no ponto da seção final acrescido
-            // do offset configurado em end.afterFrames.
-            const end = sectionEnd + segment.endOffset * scrollPerFrame;
-
-            return {
-              start,
-              end,
-              startFrame: segment.startFrame,
-              endFrame: segment.endFrame,
-              startTrigger: segment.startTrigger,
-              endTrigger: segment.endTrigger,
-            };
-          });
-
-        /**
-         * Atualiza o frame de acordo com a posição do scroll.
-         * Todos os frames do segmento são interpolados entre
-         * os limites calculados para ele.
-         */
         const updateSegmentedSequence = (scrollY: number) => {
           const positions = getPositions();
           let activeIndex = -1;
 
-          // Os segmentos devem estar na ordem em que aparecem na página.
+          // Os segmentos devem ser declarados na ordem em que aparecem na página.
           for (let index = 0; index < positions.length; index += 1) {
-            if (scrollY >= positions[index].start) {
-              activeIndex = index;
-            } else {
-              break;
-            }
+            if (scrollY >= positions[index].start) activeIndex = index;
+            else break;
           }
 
           if (activeIndex < 0) {
+            deactivateVideos();
             playhead.frame = 0;
             updateImage();
             return;
           }
 
           const segment = positions[activeIndex];
+          const isInsideInterval = scrollY <= segment.end;
+
+          if (segment.kind === "video") {
+            if (isInsideInterval) {
+              activateVideo(segment.segmentIndex);
+            } else {
+              // Depois do fim, pausa e mantém o último frame visível.
+              // Antes do início, o ramo activeIndex < 0 esconde o vídeo.
+              const video = videoRefs.current[breakpoint][segment.segmentIndex];
+              pauseVideos(segment.segmentIndex);
+              if (video) {
+                video.pause();
+                video.style.display = "block";
+                canvas.style.display = "none";
+              }
+              activeVideoIndex = -1;
+            }
+            return;
+          }
+
+          deactivateVideos();
 
           if (segment.end <= segment.start) {
+            console.warn(
+              `[ImageSequenceFixed] O fim do segmento "${segment.endTrigger}" precisa estar depois do início "${segment.startTrigger}".`,
+            );
             playhead.frame = segment.endFrame;
             updateImage();
             return;
           }
 
-          // Progresso de 0 a 1 entre o início e o fim deste vídeo.
           const progress = Math.max(
             0,
             Math.min(
@@ -638,11 +713,9 @@ export default function ImageSequenceFixed({
               (scrollY - segment.start) / (segment.end - segment.start),
             ),
           );
-
           playhead.frame =
             segment.startFrame +
             (segment.endFrame - segment.startFrame) * progress;
-
           updateImage();
         };
 
@@ -654,7 +727,6 @@ export default function ImageSequenceFixed({
           onUpdate: (self) => updateSegmentedSequence(self.scroll()),
           onRefresh: (self) => updateSegmentedSequence(self.scroll()),
         });
-
         updateSegmentedSequence(window.scrollY);
       }
     } else {
@@ -878,6 +950,7 @@ export default function ImageSequenceFixed({
         tween.kill();
       });
       segmentedSequenceTrigger?.kill();
+      videoRefs.current[breakpoint].forEach((video) => video?.pause());
 
       overlayTimelines.forEach((timeline) => {
         timeline.scrollTrigger?.kill();
@@ -919,6 +992,35 @@ export default function ImageSequenceFixed({
         className={`absolute inset-0 h-full w-full ${activeCanvasClassName}`}
         style={activeCanvasStyle}
       />
+
+      {activeVideoSegments?.map((segment, index) =>
+        segment.type === "video" ? (
+          <video
+            key={`${segment.src}-${index}`}
+            ref={(element) => {
+              videoRefs.current[breakpoint][index] = element;
+            }}
+            src={segment.src}
+            loop={segment.loop ?? true}
+            muted={segment.muted ?? true}
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
+            tabIndex={-1}
+            className="absolute inset-0 h-full w-full"
+            style={{
+              display: "none",
+              objectFit: activeFit === "stretch" ? "fill" : activeFit,
+              objectPosition: activeObjectPosition,
+            }}
+            onError={() => {
+              console.error(
+                `[ImageSequenceFixed] Não foi possível carregar o vídeo: ${segment.src}`,
+              );
+            }}
+          />
+        ) : null,
+      )}
 
       {activeOverlayIntervals.map((interval, index) => (
         <div

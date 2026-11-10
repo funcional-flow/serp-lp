@@ -55,7 +55,7 @@ export const imageSequenceDesktop = {
       unit: "section",
       color: "#EBEBEB",
     },
-    
+
     {
       trigger: "#qualidade3",
       start: 50,
@@ -77,17 +77,20 @@ export const imageSequenceDesktop = {
   ],
   videoSegments: [
     {
+      type: "sequence",
       images: video_serp_1,
       start: {
         trigger: "#manifesto",
       },
       end: {
         trigger: "#divisao21",
-        afterFrames: 50,
+        afterFrames: 10,
       },
     },
     {
-      images: video_serp_2.slice(50, 150),
+      type: "video",
+      src: "/video_serp_2_final.mp4",
+      loop: true,
       start: {
         trigger: "#divisao21",
       },
@@ -96,14 +99,26 @@ export const imageSequenceDesktop = {
         afterFrames: 0,
       },
     },
+    // {
+    //   type: "sequence",
+    //   images: video_serp_2.slice(50, 150),
+    //   start: {
+    //     trigger: "#divisao21",
+    //   },
+    //   end: {
+    //     trigger: "#divisao31",
+    //     afterFrames: 0,
+    //   },
+    // },
     {
+      type: "sequence",
       images: video_serp_3.slice(104),
       start: {
         trigger: "#divisao31",
       },
       end: {
-        trigger: "#simbologia",
-        afterFrames: 50,
+        trigger: "#lifestyle",
+        afterFrames: 0,
       },
     },
   ],
@@ -196,6 +211,7 @@ export const imageSequenceMobile = {
   ],
   videoSegments: [
     {
+      type: "sequence",
       images: video_serp_1,
       start: {
         trigger: "#manifesto",
@@ -205,8 +221,11 @@ export const imageSequenceMobile = {
         afterFrames: 50,
       },
     },
+
     {
-      images: video_serp_2.slice(50),
+      type: "video",
+      src: "/video_serp_2_final.mp4",
+      loop: true,
       start: {
         trigger: "#divisao21",
       },
@@ -216,7 +235,20 @@ export const imageSequenceMobile = {
       },
     },
 
+    // {
+    //   type: "sequence",
+    //   images: video_serp_2.slice(50),
+    //   start: {
+    //     trigger: "#divisao21",
+    //   },
+    //   end: {
+    //     trigger: "#divisao31",
+    //     afterFrames: 0,
+    //   },
+    // },
+
     {
+      type: "sequence",
       images: video_serp_3.slice(20, 110),
       start: {
         trigger: "#divisao31",
