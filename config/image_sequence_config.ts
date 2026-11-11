@@ -6,6 +6,8 @@ import {
 
 import type { ImageSequenceConfig } from "@/components/gsap/ImageSequenceFixed";
 
+const video_serp_2_final = "/video_serp_final_.mp4";
+
 export const imageSequenceDesktop = {
   duration: 100000,
   animationStart: 0,
@@ -89,7 +91,7 @@ export const imageSequenceDesktop = {
     },
     {
       type: "video",
-      src: "/video_serp_2_final.mp4",
+      src: video_serp_2_final,
       loop: true,
       start: {
         trigger: "#divisao21",
@@ -224,7 +226,7 @@ export const imageSequenceMobile = {
 
     {
       type: "video",
-      src: "/video_serp_2_final.mp4",
+      src: video_serp_2_final,
       loop: true,
       start: {
         trigger: "#divisao21",
