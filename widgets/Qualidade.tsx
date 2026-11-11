@@ -1,7 +1,3 @@
-import AnimatedTabs from "@/components/AnimatedTabs";
-import ScaleOnScroll from "@/components/gsap/ScaleOnScroll";
-// import ScaleOnScroll from "@/components/gsap/ScaleOnScroll";
-import QualidadeCard from "@/components/QualidadeCard";
 import QualidadeCardDesk from "@/components/QualidadeCardDesk";
 import QualidadeCardMobile from "@/components/QualidadeCardMobile";
 
@@ -34,7 +30,6 @@ export default function Qualidade({
           backgroundColor={backgroundColor}
           titleColor={titleColor}
           textColor={textColor}
-          imageBackground={imageBackground}
         />
       </div>
       <div className="h-lvh lg:hidden">

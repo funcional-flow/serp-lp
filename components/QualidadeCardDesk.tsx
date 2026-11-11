@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { qualidadadeClassica } from "@/config/qualidade_dados";
 import ScaleOnScroll from "./gsap/ScaleOnScroll";
+import TiltCard from "./gsap/TiltCard";
 
 interface QualidadeCardDeskProps {
   title: string;
@@ -9,7 +10,6 @@ interface QualidadeCardDeskProps {
   textColor: string;
   image1: string;
   image2: string;
-  imageBackground?: boolean;
 }
 
 export default function QualidadeCardDesk({
@@ -19,7 +19,6 @@ export default function QualidadeCardDesk({
   textColor,
   image1,
   image2,
-  imageBackground = false,
 }: QualidadeCardDeskProps) {
   return (
     <div className="flex h-full w-full flex-col justify-center py-6 select-none">
@@ -56,19 +55,27 @@ export default function QualidadeCardDesk({
         </div>
         {/* Texto do Meio */}
         <div className="flex w-1/3 flex-col gap-4">
-          <h2
-            className={`font-metrim mx-auto mb-8 max-w-full rounded-lg ${backgroundColor} px-4 py-2 text-center text-3xl tracking-widest ${titleColor} uppercase shadow-lg shadow-gray-500`}
-          >
-            {title}
+          <h2 className={`mx-auto mb-8`}>
+            <TiltCard
+              className={`font-metrim max-w-full rounded-lg ${backgroundColor} px-5 py-5 text-center text-3xl tracking-widest ${titleColor} uppercase shadow-lg shadow-gray-500`}
+
+              contentClassName=""
+            >
+              {title}
+            </TiltCard>
           </h2>
           {qualidadadeClassica.map((item) => (
             <div
-              className="mx-auto flex min-w-58 flex-col gap-6"
+              className="group mx-auto flex min-w-58 flex-col gap-6 transition-transform duration-200 hover:scale-105"
               key={item.titulo}
             >
               <div className="flex items-center gap-5">
-                <item.icone className={`h-7 w-7 ${textColor}`} />
-                <div className={`flex flex-col ${textColor}`}>
+                <item.icone
+                  className={`h-7 w-7 ${textColor} group-hover:text-gray-500`}
+                />
+                <div
+                  className={`flex flex-col ${textColor} group-hover:text-gray-600`}
+                >
                   <h3 className="text-base font-bold uppercase">
                     {item.titulo}
                   </h3>
