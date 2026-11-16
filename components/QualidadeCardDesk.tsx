@@ -55,35 +55,45 @@ export default function QualidadeCardDesk({
         </div>
         {/* Texto do Meio */}
         <div className="flex w-1/3 flex-col gap-4">
-          <h2 className={`mx-auto mb-8`}>
-            <TiltCard
-              className={`font-metrim max-w-full rounded-lg ${backgroundColor} px-5 py-5 text-center text-3xl tracking-widest ${titleColor} uppercase shadow-lg shadow-gray-500`}
+          <ScaleOnScroll
+            scale={{ from: 1, to: 1 }}
+            opacity={{ from: 1, to: 0 }}
+            className="relative"
+            startAnimation="top top"
+            endAnimation="top top-=300"
+          >
+            <div className="flex h-full w-full flex-col items-center justify-center gap-4">
+              <h2 className={`mx-auto mb-8`}>
+                <TiltCard
+                  className={`font-metrim max-w-full rounded-lg ${backgroundColor} px-5 py-5 text-center text-3xl tracking-widest ${titleColor} uppercase shadow-lg shadow-gray-500`}
 
-              contentClassName=""
-            >
-              {title}
-            </TiltCard>
-          </h2>
-          {qualidadadeClassica.map((item) => (
-            <div
-              className="group mx-auto flex min-w-58 flex-col gap-6 transition-transform duration-200 hover:scale-105"
-              key={item.titulo}
-            >
-              <div className="flex items-center gap-5">
-                <item.icone
-                  className={`h-7 w-7 ${textColor} group-hover:text-gray-500`}
-                />
-                <div
-                  className={`flex flex-col ${textColor} group-hover:text-gray-600`}
+                  contentClassName=""
                 >
-                  <h3 className="text-base font-bold uppercase">
-                    {item.titulo}
-                  </h3>
-                  <span className="text-sm">{item.descricao}</span>
+                  {title}
+                </TiltCard>
+              </h2>
+              {qualidadadeClassica.map((item) => (
+                <div
+                  className="group mx-auto flex min-w-58 flex-col gap-6 transition-transform duration-200 hover:scale-105"
+                  key={item.titulo}
+                >
+                  <div className="flex items-center gap-5">
+                    <item.icone
+                      className={`h-7 w-7 ${textColor} group-hover:text-zinc-700`}
+                    />
+                    <div
+                      className={`flex flex-col ${textColor} group-hover:text-zinc-700`}
+                    >
+                      <h3 className="text-base font-bold uppercase">
+                        {item.titulo}
+                      </h3>
+                      <span className="text-sm">{item.descricao}</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
+          </ScaleOnScroll>
         </div>
         {/* Imagem Direita */}
         <div className="flex w-1/3 flex-col items-center gap-5">

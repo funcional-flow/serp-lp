@@ -23,6 +23,7 @@ import { logosBranca, logosPreta } from "@/config/logos";
 import ScaleOnScroll from "@/components/gsap/ScaleOnScroll";
 import { ArrowDown } from "lucide-react";
 import QualidadeHero from "@/widgets/QualidadeHero";
+import Footer from "@/widgets/Footer";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -34,6 +35,7 @@ export default function Home() {
       {/* {loading && <Preloader onComplete={() => setLoading(false)} />} */}
       {/* <header className="fixed top-0 left-0 w-full z-1000 bg-white">Dale</header> */}
       <main className="w-full">
+        <section id="inicio" className=""></section>
         <ImageSequenceFixed
           responsive={{
             desktop: imageSequenceDesktop,
@@ -47,8 +49,8 @@ export default function Home() {
           //   scaleDownFrom={1.05}
           panels={[
             <section
-              key="carousel"
-              id="carousel"
+              key="hero"
+              id="hero"
               className="relative z-0 overflow-hidden"
             >
               <SerpCarousel />
@@ -109,7 +111,7 @@ export default function Home() {
         </section>
 
         <section
-          id="qualidade1"
+          id="qualidadeBoxy"
           className="relative z-1 overflow-hidden lg:overflow-visible"
         >
           <Qualidade
@@ -128,7 +130,7 @@ export default function Home() {
         />
 
         <section
-          id="qualidade2"
+          id="qualidadeClassica"
           className="relative z-1 overflow-hidden lg:overflow-visible"
         >
           <Qualidade
@@ -148,7 +150,7 @@ export default function Home() {
         />
 
         <section
-          id="qualidade3"
+          id="qualidadeRegata"
           className="relative z-1 overflow-hidden lg:overflow-visible"
         >
           <Qualidade
@@ -205,12 +207,8 @@ export default function Home() {
           <span className="text-xl">Em construção...</span>
         </section>
 
-        <footer className="relative z-20 hidden bg-gray-500 lg:block">
-          <div className="container mx-auto px-4">
-            <p className="text-white">
-              © 2026 Serpentize. Todos os direitos reservados.
-            </p>
-          </div>
+        <footer className="relative z-20">
+          <Footer />
         </footer>
       </main>
     </>

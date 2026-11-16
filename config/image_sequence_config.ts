@@ -28,7 +28,7 @@ export const imageSequenceDesktop = {
       holdEnd: 125,
       end: 200,
       unit: "section",
-      color: "#27272a", // rgba(39, 39, 42, 1)
+      color: "#18181b", // rgba(39, 39, 42, 1)
     },
     {
       trigger: "#qualidadeHero",
@@ -40,7 +40,7 @@ export const imageSequenceDesktop = {
       color: "rgba(39, 39, 42, 0.7)",
     },
     {
-      trigger: "#qualidade1",
+      trigger: "#qualidadeBoxy",
       start: 25,
       peak: 90,
       holdEnd: 130,
@@ -49,7 +49,7 @@ export const imageSequenceDesktop = {
       color: "#EBEBEB",
     },
     {
-      trigger: "#qualidade2",
+      trigger: "#qualidadeClassica",
       start: 50,
       peak: 90,
       holdEnd: 130,
@@ -59,7 +59,7 @@ export const imageSequenceDesktop = {
     },
 
     {
-      trigger: "#qualidade3",
+      trigger: "#qualidadeRegata",
       start: 50,
       peak: 90,
       holdEnd: 130,
@@ -165,7 +165,7 @@ export const imageSequenceMobile = {
       color: "rgba(39, 39, 42, 0.7)",
     },
     {
-      trigger: "#qualidade1",
+      trigger: "#qualidadeBoxy",
       start: 25,
       peak: 70,
       holdEnd: 110,
@@ -174,7 +174,7 @@ export const imageSequenceMobile = {
       color: "#EBEBEB",
     },
     {
-      trigger: "#qualidade2",
+      trigger: "#qualidadeClassica",
       start: 25,
       peak: 70,
       holdEnd: 110,
@@ -183,7 +183,7 @@ export const imageSequenceMobile = {
       color: "#18181b",
     },
     {
-      trigger: "#qualidade3",
+      trigger: "#qualidadeRegata",
       start: 25,
       peak: 70,
       holdEnd: 110,
