@@ -3,29 +3,29 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <div className="flex h-lvh w-full flex-col bg-zinc-900 px-12 text-white">
+    <div className="flex h-lvh w-full flex-col items-center bg-zinc-900 px-12 text-white">
       {/* Parte superior */}
       <div className="mt-20 flex gap-20">
         {/* Coluna 1 */}
-        <div className="mr-20 ml-30 flex flex-col gap-5">
+        <div className="mr-50 flex flex-col gap-5">
           <Link
             href={"#inicio"}
-            className="group flex w-fit items-center gap-2"
+            className="group flex w-fit items-center gap-4"
           >
-            <div className="rounded-sm bg-white px-1 py-1.75 transition-all duration-200 group-hover:px-0.5 group-hover:py-1.5">
+            <div className="flex aspect-square items-center rounded-full bg-white px-1 transition-all duration-200">
               <Image
                 src="/logos/preta/logo_serp_preta (3).png"
                 alt="Serpentize"
                 width={100}
                 height={100}
-                className="h-auto w-5 transition-all duration-200 group-hover:w-6"
+                className="h-auto w-10 transition-all duration-200 group-hover:w-10"
               />
             </div>
-            <span className="text-xl transition-all duration-100 group-hover:font-bold">
+            <span className="text-3xl transition-all duration-100 group-hover:font-bold">
               Serpentize
             </span>
           </Link>
-          <span className="text-zinc-500">
+          <span className="text-white/40">
             © Copyright Serpentize 2026. Todos os direitos reservados.
           </span>
         </div>
@@ -87,7 +87,7 @@ export default function Footer() {
 
       {/* Parte Inferior */}
       <div className="relative flex flex-col items-center gap-5 pt-40">
-        <div className="absolute top-39 z-2 h-full w-full bg-linear-to-b from-zinc-900 to-transparent" />
+        <div className="absolute top-39 z-2 h-50 w-full bg-linear-to-b from-zinc-900 to-transparent" />
         <h1 className="font-metrim z-1 text-9xl tracking-widest text-white/10 uppercase">
           Serpentize
         </h1>
