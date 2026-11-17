@@ -24,6 +24,15 @@ import ScaleOnScroll from "@/components/gsap/ScaleOnScroll";
 import { ArrowDown } from "lucide-react";
 import QualidadeHero from "@/widgets/QualidadeHero";
 import Footer from "@/widgets/Footer";
+import ModelosHero from "@/widgets/ModelosHero";
+import {
+    ModeloMinimalBoxy,
+  ModeloMinimalClassica,
+  ModeloMinimalRegata,
+  ModeloSerpBoxy,
+  ModeloSerpClassica,
+  ModeloSerpRegata,
+} from "@/config/modelos_dados";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -63,7 +72,7 @@ export default function Home() {
 
         <section
           id="divisao11"
-          className="relative h-[250lvh] w-full bg-transparent lg:h-[150vh]"
+          className="relative h-[250lvh] w-full bg-transparent lg:h-[30vh]"
         />
 
         {/* <section
@@ -81,8 +90,39 @@ export default function Home() {
           />
         </section> */}
 
-        <section id="modelos" className="relative z-1 bg-transparent">
-          <Modelos />
+        <section id="modeloSerpHero" className="relative z-1">
+          <ModelosHero
+            preTitle="Para quem não tem medo de se destacar"
+            title="Modelo SERP"
+            description="Estampas marcantes, composições expressivas e personalidade em cada detalhe. Conheça os modelos SERP e descubra peças que transformam o visual em uma forma de expressão."
+          />
+        </section>
+
+        <section id="modelosSerp" className="relative z-1 bg-transparent">
+          <Modelos
+            boxy={ModeloSerpBoxy}
+            classica={ModeloSerpClassica}
+            regata={ModeloSerpRegata}
+          />
+        </section>
+
+        <section id="modeloMinimalHero" className="relative z-1">
+          <ModelosHero
+            preTitle="A beleza está na simplicidade"
+            title="Modelo MINIMAL"
+            description="Linhas sutis, estampas discretas e uma estética que valoriza o essencial. Conheça os modelos MINIMAL e descubra como pequenos detalhes podem fazer toda a diferença."
+            textColor="text-black"
+            textSecondaryColor="text-black/60"
+          />
+        </section>
+
+        <section id="modelosMinimal" className="relative z-1 bg-transparent">
+          <Modelos
+            boxy={ModeloMinimalBoxy}
+            classica={ModeloMinimalClassica}
+            regata={ModeloMinimalRegata}
+            divisoria="via-black/15"
+          />
         </section>
 
         {/* <section

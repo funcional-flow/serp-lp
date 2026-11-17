@@ -1,12 +1,13 @@
 import {
-  video_serp_1,
-  video_serp_2,
-  video_serp_3,
+  frames_serp_1,
+  frames_serp_2,
+  frames_serp_3,
 } from "@/config/videos_frames";
 
 import type { ImageSequenceConfig } from "@/components/gsap/ImageSequenceFixed";
 
-const video_serp_2_final = "/video_serp_final_.mp4";
+const video_serp_1 = "/video_serp_1.mp4";
+const video_serp_2 = "/video_serp_final_.mp4";
 
 export const imageSequenceDesktop = {
   duration: 100000,
@@ -22,13 +23,40 @@ export const imageSequenceDesktop = {
   objectPosition: "top",
   overlayIntervals: [
     {
-      trigger: "#modelos",
+      trigger: "#modeloSerpHero",
+      start: 40,
+      peak: 80,
+      holdEnd: 100,
+      end: 150,
+      unit: "section",
+      color: "rgba(39, 39, 42, 0.7)",
+    },
+    {
+      trigger: "#modelosSerp",
       start: 30,
       peak: 75,
       holdEnd: 125,
       end: 200,
       unit: "section",
       color: "#18181b", // rgba(39, 39, 42, 1)
+    },
+    {
+      trigger: "#modeloMinimalHero",
+      start: 40,
+      peak: 80,
+      holdEnd: 100,
+      end: 150,
+      unit: "section",
+      color: "rgba(235, 235, 235, 0.8)",
+    },
+    {
+      trigger: "#modelosMinimal",
+      start: 0,
+      peak: 75,
+      holdEnd: 125,
+      end: 200,
+      unit: "section",
+      color: "rgba(235, 235, 235, 1)",
     },
     {
       trigger: "#qualidadeHero",
@@ -46,7 +74,7 @@ export const imageSequenceDesktop = {
       holdEnd: 130,
       end: 180,
       unit: "section",
-      color: "#EBEBEB",
+      color: "#EBEBEB", // rgba(235, 235, 235, 1)
     },
     {
       trigger: "#qualidadeClassica",
@@ -79,8 +107,8 @@ export const imageSequenceDesktop = {
   ],
   videoSegments: [
     {
-      type: "sequence",
-      images: video_serp_1,
+      type: "video",
+      src: video_serp_1,
       start: {
         trigger: "#manifesto",
       },
@@ -89,9 +117,20 @@ export const imageSequenceDesktop = {
         afterFrames: 10,
       },
     },
+    // {
+    //   type: "sequence",
+    //   images: frames_serp_1,
+    //   start: {
+    //     trigger: "#manifesto",
+    //   },
+    //   end: {
+    //     trigger: "#divisao21",
+    //     afterFrames: 10,
+    //   },
+    // },
     {
       type: "video",
-      src: video_serp_2_final,
+      src: video_serp_2,
       loop: true,
       start: {
         trigger: "#divisao21",
@@ -103,7 +142,7 @@ export const imageSequenceDesktop = {
     },
     // {
     //   type: "sequence",
-    //   images: video_serp_2.slice(50, 150),
+    //   images: frames_serp_2.slice(50, 150),
     //   start: {
     //     trigger: "#divisao21",
     //   },
@@ -114,7 +153,7 @@ export const imageSequenceDesktop = {
     // },
     {
       type: "sequence",
-      images: video_serp_3.slice(104),
+      images: frames_serp_3.slice(104),
       start: {
         trigger: "#divisao31",
       },
@@ -147,7 +186,7 @@ export const imageSequenceMobile = {
   objectPosition: "top",
   overlayIntervals: [
     {
-      trigger: "#modelos",
+      trigger: "#modelosSerp",
       start: 0,
       peak: 30,
       holdEnd: 120,
@@ -214,7 +253,7 @@ export const imageSequenceMobile = {
   videoSegments: [
     {
       type: "sequence",
-      images: video_serp_1,
+      images: frames_serp_1,
       start: {
         trigger: "#manifesto",
       },
@@ -226,7 +265,7 @@ export const imageSequenceMobile = {
 
     {
       type: "video",
-      src: video_serp_2_final,
+      src: video_serp_2,
       loop: true,
       start: {
         trigger: "#divisao21",
@@ -251,7 +290,7 @@ export const imageSequenceMobile = {
 
     {
       type: "sequence",
-      images: video_serp_3.slice(20, 110),
+      images: frames_serp_3.slice(20, 110),
       start: {
         trigger: "#divisao31",
       },

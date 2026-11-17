@@ -68,7 +68,7 @@ export default function ConteudoCarousel({
               <div className="flex flex-col pt-4 pl-4 lg:pt-10 lg:pl-14">
                 <div className="flex items-center gap-6">
                   <Link
-                    href="#modelos"
+                    href="#modelosSerp"
                     className="font-metrim text-md z-20 tracking-[0.15em] lg:text-xl lg:tracking-[0.2em]"
                   >
                     SERPENTIZE

@@ -1,4 +1,4 @@
-const video_serp_1 = Array.from({ length: 120 }, (_, index) => {
+const frames_serp_1 = Array.from({ length: 120 }, (_, index) => {
   const frame = String(index + 1);
   // const frame = String(index + 1).padStart(3, "0");
 
@@ -6,7 +6,7 @@ const video_serp_1 = Array.from({ length: 120 }, (_, index) => {
 });
 
 
-const video_serp_2 = Array.from({ length: 192 }, (_, index) => {
+const frames_serp_2 = Array.from({ length: 192 }, (_, index) => {
   const frame = String(index + 1);
   // const frame = String(index + 1).padStart(3, "0");
 
@@ -14,11 +14,11 @@ const video_serp_2 = Array.from({ length: 192 }, (_, index) => {
 });
 
 
-const video_serp_3 = Array.from({ length: 172 }, (_, index) => {
+const frames_serp_3 = Array.from({ length: 172 }, (_, index) => {
   const frame = String(index + 1);
   // const frame = String(index + 1).padStart(3, "0");
 
   return `/video_serp_3/video_serp3_frame (${frame}).jpg`;
 });
 
-export { video_serp_1, video_serp_2, video_serp_3 };
+export { frames_serp_1, frames_serp_2, frames_serp_3 };

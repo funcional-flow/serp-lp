@@ -42,7 +42,7 @@ export default function Footer() {
           >
             Sobre
           </a>
-          <a href={"#modelos"} className="w-fit text-zinc-200 hover:text-white">
+          <a href={"#modelosSerp"} className="w-fit text-zinc-200 hover:text-white">
             Peças
           </a>
           <a

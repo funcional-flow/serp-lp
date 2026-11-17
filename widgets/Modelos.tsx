@@ -1,9 +1,19 @@
+import type { ModeloConfig } from "@/config/modelos_dados";
 import CardModelo from "@/components/CardModelo";
-// import CardModeloDesk from "@/components/CardModeloDesk";
-import LogoLoop from "@/components/reactbits/LogoLoop";
-import { logosBranca, logosPreta } from "@/config/logos";
 
-export default function Modelos() {
+interface ModelosProps {
+  boxy: ModeloConfig;
+  classica: ModeloConfig;
+  regata: ModeloConfig;
+  divisoria?: string;
+}
+
+export default function Modelos({
+  boxy,
+  classica,
+  regata,
+  divisoria = "via-white/15",
+}: ModelosProps) {
   return (
     <div className="relative flex min-h-lvh w-full flex-col">
       {/* Primeira Sessão */}
@@ -11,82 +21,86 @@ export default function Modelos() {
         {/* Card #1 */}
         <div className="relative w-full flex-1">
           <CardModelo
-            img_modelo_frente="/modelos/modelo_principal_frente_transparente.png"
-            img_modelo_costas="/modelos/modelo_principal_costas_transparente.png"
-            width={940}
-            height={1672}
-            larguraImagem="w-[35vh] lg:w-xs"
-            tamanhoImagem="h-[45vh] lg:h-[50vh]"
-            classNameImage="object-top object-contain"
-            titulo="boxy"
-            texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
-            background="bg-transparent"
+            img_modelo_frente={boxy.img_modelo_frente}
+            img_modelo_costas={boxy.img_modelo_costas}
+            width={boxy.width}
+            height={boxy.height}
+            larguraImagem={boxy.larguraImagem}
+            tamanhoImagem={boxy.tamanhoImagem}
+            classNameImage={boxy.classNameImage}
+            titulo={boxy.titulo}
+            texto={boxy.texto}
+            background={boxy.background}
             // background="bg-linear-to-b from-zinc-800 to-zinc-950"
-            textColor="text-white"
-            textSecondaryColor="text-white/70"
-            logoColor="white"
-            buttonColor="bg-white"
-            lineColor="border-white/25"
-            linkCamisa="/pecas/preta-boxy-serp"
-            buttonTextColor="text-black"
-            buttonShadowColor="hover:shadow-white/50"
+            textColor={boxy.textColor}
+            textSecondaryColor={boxy.textSecondaryColor}
+            logoColor={boxy.logoColor}
+            buttonColor={boxy.buttonColor}
+            lineColor={boxy.lineColor}
+            linkCamisa={boxy.linkCamisa}
+            buttonTextColor={boxy.buttonTextColor}
+            buttonShadowColor={boxy.buttonShadowColor}
             // tabsPosition="bottom"
           />
         </div>
 
         {/* Divisor */}
-        <div className="hidden h-[70vh] w-px bg-linear-to-b from-transparent via-white/15 to-transparent lg:flex" />
-        <div className="h-px w-xs bg-linear-to-r from-transparent via-white/15 to-transparent px-10 lg:hidden" />
+        <div className={`hidden h-[70vh] w-px bg-linear-to-b from-transparent ${divisoria} to-transparent lg:flex`} />
+        <div className={`h-px w-xs bg-linear-to-r from-transparent ${divisoria} to-transparent px-10 lg:hidden`} />
 
         {/* Card #2 */}
         <div className="relative w-full flex-1">
           <CardModelo
-            img_modelo_frente="/modelos/modelo_principal_frente_transparente.png"
-            img_modelo_costas="/modelos/modelo_principal_costas_transparente.png"
-            width={940}
-            height={1672}
-            larguraImagem="w-[35vh] lg:w-xs"
-            tamanhoImagem="h-[45vh] lg:h-[50vh]"
-            classNameImage="object-top object-contain"
-            titulo="classica"
-            texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
-            background="bg-transparent"
-            textColor="text-white"
-            textSecondaryColor="text-white/70"
-            logoColor="white"
-            buttonColor="bg-white"
-            lineColor="border-white/25"
-            linkCamisa="/pecas/preta-boxy-serp"
-            buttonTextColor="text-black"
-            buttonShadowColor="hover:shadow-white/50"
+            img_modelo_frente={classica.img_modelo_frente}
+            img_modelo_costas={classica.img_modelo_costas}
+            width={classica.width}
+            height={classica.height}
+            larguraImagem={classica.larguraImagem}
+            tamanhoImagem={classica.tamanhoImagem}
+            classNameImage={classica.classNameImage}
+            titulo={classica.titulo}
+            texto={classica.texto}
+            background={classica.background}
+            // background="bg-linear-to-b from-zinc-800 to-zinc-950"
+            textColor={classica.textColor}
+            textSecondaryColor={classica.textSecondaryColor}
+            logoColor={classica.logoColor}
+            buttonColor={classica.buttonColor}
+            lineColor={classica.lineColor}
+            linkCamisa={classica.linkCamisa}
+            buttonTextColor={classica.buttonTextColor}
+            buttonShadowColor={classica.buttonShadowColor}
+            // tabsPosition="bottom"
           />
         </div>
 
         {/* Divisor */}
-        <div className="hidden h-[70vh] w-px bg-linear-to-b from-transparent via-white/15 to-transparent lg:flex" />
-        <div className="h-px w-xs bg-linear-to-r from-transparent via-white/15 to-transparent px-10 lg:hidden" />
+        <div className={`hidden h-[70vh] w-px bg-linear-to-b from-transparent ${divisoria} to-transparent lg:flex`} />
+        <div className={`h-px w-xs bg-linear-to-r from-transparent ${divisoria} to-transparent px-10 lg:hidden`} />
 
         {/* Card #3 */}
         <div className="relative w-full flex-1">
           <CardModelo
-            img_modelo_frente="/modelos/modelo_principal_frente_transparente.png"
-            img_modelo_costas="/modelos/modelo_principal_costas_transparente.png"
-            width={940}
-            height={1672}
-            larguraImagem="w-[35vh] lg:w-xs"
-            tamanhoImagem="h-[45vh] lg:h-[50vh]"
-            classNameImage="object-top object-contain"
-            titulo="regata"
-            texto="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!"
-            background="bg-transparent"
-            textColor="text-white"
-            textSecondaryColor="text-white/70"
-            logoColor="white"
-            buttonColor="bg-white"
-            lineColor="border-white/25"
-            linkCamisa="/pecas/preta-boxy-serp"
-            buttonTextColor="text-black"
-            buttonShadowColor="hover:shadow-white/50"
+            img_modelo_frente={regata.img_modelo_frente}
+            img_modelo_costas={regata.img_modelo_costas}
+            width={regata.width}
+            height={regata.height}
+            larguraImagem={regata.larguraImagem}
+            tamanhoImagem={regata.tamanhoImagem}
+            classNameImage={regata.classNameImage}
+            titulo={regata.titulo}
+            texto={regata.texto}
+            background={regata.background}
+            // background="bg-linear-to-b from-zinc-800 to-zinc-950"
+            textColor={regata.textColor}
+            textSecondaryColor={regata.textSecondaryColor}
+            logoColor={regata.logoColor}
+            buttonColor={regata.buttonColor}
+            lineColor={regata.lineColor}
+            linkCamisa={regata.linkCamisa}
+            buttonTextColor={regata.buttonTextColor}
+            buttonShadowColor={regata.buttonShadowColor}
+            // tabsPosition="bottom"
           />
         </div>
       </div>
