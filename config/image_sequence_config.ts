@@ -114,7 +114,7 @@ export const imageSequenceDesktop = {
       },
       end: {
         trigger: "#divisao21",
-        afterFrames: 10,
+        afterFrames: 0,
       },
     },
     // {
@@ -252,14 +252,14 @@ export const imageSequenceMobile = {
   ],
   videoSegments: [
     {
-      type: "sequence",
-      images: frames_serp_1,
+      type: "video",
+      src: video_serp_1,
       start: {
         trigger: "#manifesto",
       },
       end: {
         trigger: "#divisao21",
-        afterFrames: 50,
+        afterFrames: 0,
       },
     },
 

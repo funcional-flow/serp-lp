@@ -26,7 +26,7 @@ import QualidadeHero from "@/widgets/QualidadeHero";
 import Footer from "@/widgets/Footer";
 import ModelosHero from "@/widgets/ModelosHero";
 import {
-    ModeloMinimalBoxy,
+  ModeloMinimalBoxy,
   ModeloMinimalClassica,
   ModeloMinimalRegata,
   ModeloSerpBoxy,
@@ -239,15 +239,7 @@ export default function Home() {
           <Cta />
         </section>
 
-        <section
-          id="final"
-          className="relative z-2 flex h-lvh w-full flex-col items-center justify-center gap-2 bg-black text-white lg:hidden"
-        >
-          <h2 className="font-metrim text-3xl uppercase">serpentize</h2>
-          <span className="text-xl">Em construção...</span>
-        </section>
-
-        <footer className="relative z-20">
+        <footer className="relative z-2 lg:block">
           <Footer />
         </footer>
       </main>
