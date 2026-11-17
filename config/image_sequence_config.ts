@@ -8,6 +8,7 @@ import type { ImageSequenceConfig } from "@/components/gsap/ImageSequenceFixed";
 
 const video_serp_1 = "/video_serp_1.mp4";
 const video_serp_2 = "/video_serp_final_.mp4";
+const video_serp_3 = "/video_serp_3.mp4";
 
 export const imageSequenceDesktop = {
   duration: 100000,
@@ -186,13 +187,40 @@ export const imageSequenceMobile = {
   objectPosition: "top",
   overlayIntervals: [
     {
+      trigger: "#modeloSerpHero",
+      start: 40,
+      peak: 80,
+      holdEnd: 100,
+      end: 150,
+      unit: "section",
+      color: "rgba(39, 39, 42, 0.7)",
+    },
+    {
       trigger: "#modelosSerp",
       start: 0,
       peak: 30,
       holdEnd: 120,
-      end: 150,
+      end: 135,
       unit: "section",
       color: "#27272a",
+    },
+    {
+      trigger: "#modeloMinimalHero",
+      start: 40,
+      peak: 80,
+      holdEnd: 100,
+      end: 150,
+      unit: "section",
+      color: "rgba(235, 235, 235, 0.9)",
+    },
+    {
+      trigger: "#modelosMinimal",
+      start: 0,
+      peak: 30,
+      holdEnd: 115,
+      end: 135,
+      unit: "section",
+      color: "rgba(235, 235, 235, 1)",
     },
     {
       trigger: "#qualidadeHero",
@@ -289,8 +317,8 @@ export const imageSequenceMobile = {
     // },
 
     {
-      type: "sequence",
-      images: frames_serp_3.slice(20, 110),
+      type: "video",
+      src: video_serp_3,
       start: {
         trigger: "#divisao31",
       },
@@ -299,6 +327,18 @@ export const imageSequenceMobile = {
         afterFrames: 0,
       },
     },
+
+    // {
+    //   type: "sequence",
+    //   images: frames_serp_3.slice(20, 110),
+    //   start: {
+    //     trigger: "#divisao31",
+    //   },
+    //   end: {
+    //     trigger: "#lifestyle",
+    //     afterFrames: 0,
+    //   },
+    // },
   ],
   // o slice é o intervalo que quer os frames, poderia ser slice(50,120) - primeiro e ultimo-1.
   // E se for o numero sozinho slice(30) significa que começa a partir dele até o final do array.

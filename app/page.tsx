@@ -72,7 +72,7 @@ export default function Home() {
 
         <section
           id="divisao11"
-          className="relative h-[250lvh] w-full bg-transparent lg:h-[30vh]"
+          className="relative w-full bg-transparent h-[30vh]"
         />
 
         {/* <section

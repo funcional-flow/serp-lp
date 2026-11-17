@@ -17,7 +17,7 @@ export default function ModelosHero({
 }: ModeloHeroProps) {
   return (
     <ScaleOnScroll
-      scale={{ from: 1, to: 1 }}
+      scale={{ from: 0, to: 1 }}
       opacity={{ from: 0, to: 1 }}
       pin
       pinDuration={1500}
