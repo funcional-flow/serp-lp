@@ -111,7 +111,7 @@ export const imageSequenceDesktop = {
       type: "video",
       src: video_serp_1,
       start: {
-        trigger: "#manifesto",
+        trigger: "#hero",
       },
       end: {
         trigger: "#divisao21",
@@ -283,7 +283,7 @@ export const imageSequenceMobile = {
       type: "video",
       src: video_serp_1,
       start: {
-        trigger: "#manifesto",
+        trigger: "#hero",
       },
       end: {
         trigger: "#divisao21",

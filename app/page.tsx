@@ -51,28 +51,14 @@ export default function Home() {
             mobile: imageSequenceMobile,
           }}
         />
-        <ScrollTransition
-          background="bg-gray-400"
-          transitionDuration={1000}
-          className="relative"
-          //   scaleDownFrom={1.05}
-          panels={[
-            <section
-              key="hero"
-              id="hero"
-              className="relative z-0 overflow-hidden"
-            >
-              <SerpCarousel />
-            </section>,
-            <section key="manifesto" id="manifesto" className="relative z-1">
-              <Manifesto />
-            </section>,
-          ]}
-        />
+
+        <section key="hero" id="hero" className="relative z-0 overflow-hidden">
+          <SerpCarousel />
+        </section>
 
         <section
           id="divisao11"
-          className="relative w-full bg-transparent h-[30vh]"
+          className="relative h-[30vh] w-full bg-transparent"
         />
 
         {/* <section
