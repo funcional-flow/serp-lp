@@ -20,13 +20,14 @@ export type ModeloConfig = {
 };
 
 export const ModeloSerpBoxy = {
-  img_modelo_frente: "/modelos/modelo_principal_frente_transparente.png",
-  img_modelo_costas: "/modelos/modelo_principal_costas_transparente.png",
+  img_modelo_frente: "/modelos/boxy_serp_frente.jfif",
+  img_modelo_costas: "/modelos/boxy_serp_costas.jfif",
   width: 940,
   height: 1672,
   larguraImagem: "w-[35vh] lg:w-xs",
   tamanhoImagem: "h-[45vh] lg:h-[50vh]",
-  classNameImage: "object-top object-contain",
+  classNameImage: "object-[center_30%] object-cover rounded-2xl",
+  //   classNameImage: "object-top object-contain",
   titulo: "boxy",
   texto:
     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!",
@@ -44,13 +45,14 @@ export const ModeloSerpBoxy = {
 } satisfies ModeloConfig;
 
 export const ModeloSerpClassica = {
-  img_modelo_frente: "/modelos/modelo_principal_frente_transparente.png",
-  img_modelo_costas: "/modelos/modelo_principal_costas_transparente.png",
+  img_modelo_frente: "/modelos/classica_serp_frente.jpg",
+  img_modelo_costas: "/modelos/classica_serp_costas.jfif",
   width: 940,
   height: 1672,
   larguraImagem: "w-[35vh] lg:w-xs",
   tamanhoImagem: "h-[45vh] lg:h-[50vh]",
-  classNameImage: "object-top object-contain",
+  classNameImage: "object-top object-cover rounded-2xl",
+  //   classNameImage: "object-top object-contain",
   titulo: "classica",
   texto:
     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt tempora, at, dolorem officiis culpa iste obcaecati quas blanditiis ad eos fuga assumenda incidunt error, suscipit temporibus dolorum atque quisquam. Ipsam!",
