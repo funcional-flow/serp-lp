@@ -20,8 +20,8 @@ export type ModeloConfig = {
 };
 
 export const ModeloSerpBoxy = {
-  img_modelo_frente: "/modelos/boxy_serp_frente.jfif",
-  img_modelo_costas: "/modelos/boxy_serp_costas.jfif",
+  img_modelo_frente: "/modelos/boxy_serp_frente.jpg",
+  img_modelo_costas: "/modelos/boxy_serp_costas.jpg",
   width: 940,
   height: 1672,
   larguraImagem: "w-[35vh] lg:w-xs",
@@ -46,7 +46,7 @@ export const ModeloSerpBoxy = {
 
 export const ModeloSerpClassica = {
   img_modelo_frente: "/modelos/classica_serp_frente.jpg",
-  img_modelo_costas: "/modelos/classica_serp_costas.jfif",
+  img_modelo_costas: "/modelos/classica_serp_costas.jpg",
   width: 940,
   height: 1672,
   larguraImagem: "w-[35vh] lg:w-xs",
