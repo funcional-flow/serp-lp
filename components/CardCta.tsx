@@ -75,7 +75,7 @@ export default function CardCta({
 
         {/* Texto no Centro */}
         <div
-          className={`w-1/3 flex-1 text-lg ${larguraTexto} ${corTexto} order-2 flex flex-col justify-center gap-5 text-center`}
+          className={`w-1/3 flex-1 text-lg ${larguraTexto} ${corTexto} order-2 flex flex-col justify-center gap-5 px-6 text-center lg:px-0`}
         >
           <h1 className="font-metrim text-7xl uppercase [-webkit-text-stroke:1px_black]">
             {titulo}
